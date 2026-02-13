@@ -42,6 +42,15 @@
     td:first-child{display:flex; align-items:center; gap:10px;}
     /* 300% size so the card text is readable */
     .thumb{width:132px; height:183px; border-radius:8px; border:1px solid var(--line); background:rgba(255,255,255,.04); object-fit:cover; flex:0 0 auto; cursor:zoom-in;}
+
+    /* full deck list image (visual grid) */
+    .deckshot{margin-top:14px; padding:14px; border:1px solid var(--line); background:rgba(255,255,255,.03); border-radius:14px;}
+    .deckshot h2{margin:0 0 10px; font-size:16px; color:#dce3ff}
+    .deckgrid{display:grid; grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); gap:10px;}
+    .deckcard{position:relative; border-radius:10px; overflow:hidden; border:1px solid var(--line); background:rgba(255,255,255,.04);}
+    .deckcard img{width:100%; height:auto; display:block;}
+    .badge{position:absolute; left:8px; bottom:8px; min-width:28px; padding:4px 8px; border-radius:999px; background:rgba(0,0,0,.65); border:1px solid rgba(255,255,255,.22); color:#fff; font-family:var(--mono); font-weight:800; font-size:14px; text-align:center;}
+    .deckcard:hover{border-color:rgba(141,225,255,.55);}
   </style>
 </head>
 <body>
@@ -56,6 +65,12 @@
       </div>
       <div class="pill"><span class="mono">Deck</span> <span class="ok">60</span></div>
     </header>
+
+    <section class="deckshot" aria-label="Full deck list image">
+      <h2>完整 Deck List 圖片</h2>
+      <div id="deckGrid" class="deckgrid"></div>
+      <div class="sub" style="margin-top:8px">提示：撳卡圖會開原圖（可再放大）。</div>
+    </section>
 
     <section class="grid" aria-label="Deck list">
       <div class="box half">
@@ -192,6 +207,20 @@
         '富裕能量': 'https://asia.pokemon-card.com/hk/card-img/hk00018493.png'
       };
 
+      function getDeckRows() {
+        const rows = [];
+        document.querySelectorAll('table tbody tr').forEach(tr => {
+          const tds = tr.querySelectorAll('td');
+          if (!tds || tds.length < 2) return;
+          const name = (tds[0].textContent || '').trim();
+          const count = (tds[tds.length - 1].textContent || '').trim();
+          const url = CARD_IMG[name];
+          if (!name || !count || !url) return;
+          rows.push({ name, count, url });
+        });
+        return rows;
+      }
+
       function addThumbs() {
         document.querySelectorAll('table tbody tr').forEach(tr => {
           const first = tr.querySelector('td');
@@ -209,10 +238,44 @@
           first.prepend(img);
         });
       }
-      if (document.readyState === 'loading') {
-        document.addEventListener('DOMContentLoaded', addThumbs);
-      } else {
+
+      function renderDeckGrid() {
+        const host = document.getElementById('deckGrid');
+        if (!host) return;
+        const rows = getDeckRows();
+        host.innerHTML = '';
+        rows.forEach(({ name, count, url }) => {
+          const card = document.createElement('a');
+          card.className = 'deckcard';
+          card.href = url;
+          card.target = '_blank';
+          card.rel = 'noopener';
+          card.title = name;
+
+          const img = document.createElement('img');
+          img.loading = 'lazy';
+          img.alt = name;
+          img.src = url;
+
+          const badge = document.createElement('span');
+          badge.className = 'badge';
+          badge.textContent = count;
+
+          card.appendChild(img);
+          card.appendChild(badge);
+          host.appendChild(card);
+        });
+      }
+
+      function init() {
         addThumbs();
+        renderDeckGrid();
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', init);
+      } else {
+        init();
       }
     </script>
 
