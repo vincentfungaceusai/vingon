@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="zh-HK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PTCG｜胡地（優勝骨架 60）</title>
+  <style>
+    :root{
+      --bg:#0b1020; --card:#121a33; --muted:#a9b3d1; --text:#eef1ff;
+      --accent:#8de1ff; --line:rgba(255,255,255,.12);
+      --good:#86efac;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+    *{box-sizing:border-box}
+    body{margin:0; background:linear-gradient(180deg,#070a16, var(--bg)); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,"PingFang HK","Noto Sans CJK HK",sans-serif;}
+    a{color:var(--accent)}
+    .wrap{max-width:980px; margin:0 auto; padding:28px 18px 60px;}
+    header{display:flex; gap:14px; align-items:flex-start; justify-content:space-between; flex-wrap:wrap;}
+    h1{margin:0; font-size:22px; letter-spacing:.2px}
+    .sub{margin-top:6px; color:var(--muted); font-size:14px; line-height:1.35}
+    .pill{display:inline-flex; align-items:center; gap:8px; padding:8px 10px; border:1px solid var(--line); background:rgba(255,255,255,.04); border-radius:999px; color:var(--muted); font-size:13px;}
+    .grid{display:grid; gap:14px; grid-template-columns: repeat(12, 1fr); margin-top:18px;}
+    .box{grid-column: span 12; background:rgba(255,255,255,.03); border:1px solid var(--line); border-radius:14px; padding:14px;}
+    @media(min-width:860px){
+      .box.half{grid-column: span 6;}
+    }
+    h2{margin:0 0 10px; font-size:16px; color:#dce3ff}
+    table{width:100%; border-collapse:collapse; font-size:14px;}
+    th,td{padding:8px 6px; border-bottom:1px solid var(--line); vertical-align:top;}
+    th{color:var(--muted); font-weight:600; text-align:left; font-size:12px; letter-spacing:.4px; text-transform:uppercase;}
+    td.count{width:54px; text-align:right; font-family:var(--mono); color:#dbe4ff;}
+    td.tag{width:120px; font-size:12px; color:var(--muted)}
+    .mono{font-family:var(--mono)}
+    .totals{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; color:var(--muted); font-size:13px;}
+    .ok{color:var(--good); font-family:var(--mono)}
+    footer{margin-top:22px; color:var(--muted); font-size:12px; line-height:1.5}
+    .note{border-left:3px solid rgba(141,225,255,.55); padding-left:10px; margin-top:10px;}
+    ol,ul{margin:10px 0 0 18px; padding:0}
+    li{margin:6px 0; color:var(--text)}
+
+    /* thumbnails */
+    td:first-child{display:flex; align-items:center; gap:10px;}
+    .thumb{width:44px; height:61px; border-radius:6px; border:1px solid var(--line); background:rgba(255,255,255,.04); object-fit:cover; flex:0 0 auto;}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>胡地（優勝骨架 60）</h1>
+        <div class="sub">
+          Standard｜卡名以香港官方網站（訓練家網站）為準。
+          <div class="note">提示：如果你要返去之前嗰副「火箭隊」牌組頁，喺 <a href="../">PTCG 主頁</a> 可以揀。</div>
+        </div>
+      </div>
+      <div class="pill"><span class="mono">Deck</span> <span class="ok">60</span></div>
+    </header>
+
+    <section class="grid" aria-label="Deck list">
+      <div class="box half">
+        <h2>寶可夢（23）</h2>
+        <table>
+          <thead>
+            <tr><th>卡名</th><th class="tag">卡種</th><th class="count">數量</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>凱西</td><td class="tag">寶可夢</td><td class="count">4</td></tr>
+            <tr><td>勇基拉</td><td class="tag">寶可夢</td><td class="count">4</td></tr>
+            <tr><td>胡地</td><td class="tag">寶可夢</td><td class="count">4</td></tr>
+            <tr><td>土龍弟弟</td><td class="tag">寶可夢</td><td class="count">4</td></tr>
+            <tr><td>土龍節節ex</td><td class="tag">寶可夢</td><td class="count">4</td></tr>
+            <tr><td>吉雉雞ex</td><td class="tag">寶可夢</td><td class="count">1</td></tr>
+            <tr><td>旋轉洛托姆</td><td class="tag">寶可夢</td><td class="count">1</td></tr>
+            <tr><td>可達鴨</td><td class="tag">寶可夢</td><td class="count">1</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="box half">
+        <h2>物品（16）</h2>
+        <table>
+          <thead>
+            <tr><th>卡名</th><th class="tag">卡種</th><th class="count">數量</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>神奇糖果</td><td class="tag">物品</td><td class="count">4</td></tr>
+            <tr><td>好友寶芬</td><td class="tag">物品</td><td class="count">4</td></tr>
+            <tr><td>寶可平板</td><td class="tag">物品</td><td class="count">4</td></tr>
+            <tr><td>奇跡修正檔</td><td class="tag">物品</td><td class="count">2</td></tr>
+            <tr><td>聖灰</td><td class="tag">物品</td><td class="count">2</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="box half">
+        <h2>支援者（11）</h2>
+        <table>
+          <thead>
+            <tr><th>卡名</th><th class="tag">卡種</th><th class="count">數量</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>鬥子</td><td class="tag">支援者</td><td class="count">4</td></tr>
+            <tr><td>小光</td><td class="tag">支援者</td><td class="count">3</td></tr>
+            <tr><td>老大的指令</td><td class="tag">支援者</td><td class="count">3</td></tr>
+            <tr><td>水蓮的照顧</td><td class="tag">支援者</td><td class="count">1</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="box half">
+        <h2>競技場 / 能量</h2>
+        <table>
+          <thead>
+            <tr><th>卡名</th><th class="tag">卡種</th><th class="count">數量</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>對戰圓形競技場</td><td class="tag">競技場</td><td class="count">4</td></tr>
+            <tr><td>基本超能量</td><td class="tag">基本能量</td><td class="count">3</td></tr>
+            <tr><td>感應【超】能量</td><td class="tag">特殊能量</td><td class="count">2</td></tr>
+            <tr><td>富裕能量</td><td class="tag">特殊能量</td><td class="count">1</td></tr>
+          </tbody>
+        </table>
+
+        <div class="totals">
+          <span class="pill">寶可夢 <span class="ok">23</span></span>
+          <span class="pill">訓練家 <span class="ok">31</span></span>
+          <span class="pill">能量 <span class="ok">6</span></span>
+          <span class="pill">合計 <span class="ok">60</span></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid" aria-label="Play guide">
+      <div class="box">
+        <h2>起手／前兩回合流程（簡化版）</h2>
+        <div class="sub">以下係以「優勝骨架嘅結構」去寫嘅操作目標，方便你實戰對照。</div>
+        <ol>
+          <li><b>先鋪主線進化：</b>優先確保場上有 <span class="mono">凱西</span>，同時鋪到 <span class="mono">土龍弟弟</span>，方便中期引擎成形。</li>
+          <li><b>神奇糖果時機：</b>手上有進化目標時，<span class="mono">神奇糖果</span>通常係你最關鍵嘅節奏卡；唔好太早亂交資源。</li>
+          <li><b>用物品搵基礎怪：</b><span class="mono">好友寶芬</span> 令你起手更穩定；目標係「場上有進化材料 + 有一隻可以持續抽/循環資源嘅引擎位」。</li>
+          <li><b>能量分配：</b>先確保主攻/主要輸出位可以開始施壓；同時留意 <span class="mono">感應【超】能量</span> 同 <span class="mono">富裕能量</span> 嘅使用次序，避免中後期卡能量。</li>
+        </ol>
+      </div>
+
+      <div class="box half">
+        <h2>對局要點（方向性）</h2>
+        <ul>
+          <li><b>對快攻：</b>起手要更貪穩定：鋪夠進化材料、唔好貪一回合爆發而令後續斷資源。</li>
+          <li><b>對控制/干擾：</b><span class="mono">聖灰</span>（資源回收）好重要；有需要就留一份回收位，唔好一次過用晒。</li>
+          <li><b>對鋪場型：</b>你嘅優勢係「可持續建立板面」，盡量令對手每回合都要處理你場上嘅核心線。</li>
+        </ul>
+      </div>
+
+      <div class="box half">
+        <h2>可替換 / Tech 位（優勝常見方向）</h2>
+        <ul>
+          <li><b>功能怪位：</b>優勝牌組見到有人會用 <span class="mono">謝米</span>、<span class="mono">波克比/波克基斯</span> 等功能位；你可按自己習慣替換 1–2 張。</li>
+          <li><b>物品位：</b>有些優勝會混入 <span class="mono">夜間擔架</span>、<span class="mono">改造之錘</span> 等 1 張 tech（視乎環境）。</li>
+          <li><b>競技場數量：</b>多數優勝係 <span class="mono">對戰圓形競技場 ×4</span>，但如果你覺得卡手，可以喺物品/功能怪位度調整。</li>
+        </ul>
+        <div class="sub">如果你話我知你最常遇到嘅對手 deck，我可以再幫你把 tech 位具體化（加/減邊張、減幾多）。</div>
+      </div>
+    </section>
+
+    <script>
+      // Card thumbnails (source: asia.pokemon-card.com/hk card search)
+      const CARD_IMG = {
+        '凱西': 'https://asia.pokemon-card.com/hk/card-img/hk00014302.png',
+        '勇基拉': 'https://asia.pokemon-card.com/hk/card-img/hk00014303.png',
+        '胡地': 'https://asia.pokemon-card.com/hk/card-img/hk00014304.png',
+        '土龍弟弟': 'https://asia.pokemon-card.com/hk/card-img/hk00018327.png',
+        '土龍節節ex': 'https://asia.pokemon-card.com/hk/card-img/hk00018328.png',
+        '吉雉雞ex': 'https://asia.pokemon-card.com/hk/card-img/hk00018242.png',
+        '旋轉洛托姆': 'https://asia.pokemon-card.com/hk/card-img/hk00014720.png',
+        '可達鴨': 'https://asia.pokemon-card.com/hk/card-img/hk00014613.png',
+
+        '神奇糖果': 'https://asia.pokemon-card.com/hk/card-img/hk00018408.png',
+        '好友寶芬': 'https://asia.pokemon-card.com/hk/card-img/hk00018401.png',
+        '寶可平板': 'https://asia.pokemon-card.com/hk/card-img/hk00018580.png',
+        '奇跡修正檔': 'https://asia.pokemon-card.com/hk/card-img/hk00014375.png',
+        '聖灰': 'https://asia.pokemon-card.com/hk/card-img/hk00014731.png',
+
+        '鬥子': 'https://asia.pokemon-card.com/hk/card-img/hk00018471.png',
+        '小光': 'https://asia.pokemon-card.com/hk/card-img/hk00014541.png',
+        '老大的指令': 'https://asia.pokemon-card.com/hk/card-img/hk00018477.png',
+        '水蓮的照顧': 'https://asia.pokemon-card.com/hk/card-img/hk00018465.png',
+
+        '對戰圓形競技場': 'https://asia.pokemon-card.com/hk/card-img/hk00014543.png',
+        '基本超能量': 'https://asia.pokemon-card.com/hk/card-img/hk00008541.png',
+        '感應【超】能量': 'https://asia.pokemon-card.com/hk/card-img/hk00018589.png',
+        '富裕能量': 'https://asia.pokemon-card.com/hk/card-img/hk00018493.png'
+      };
+
+      function addThumbs() {
+        document.querySelectorAll('table tbody tr').forEach(tr => {
+          const first = tr.querySelector('td');
+          if (!first) return;
+          const name = (first.textContent || '').trim();
+          const url = CARD_IMG[name];
+          if (!url) return;
+          if (first.querySelector('img.thumb')) return;
+          const img = document.createElement('img');
+          img.className = 'thumb';
+          img.loading = 'lazy';
+          img.alt = name;
+          img.src = url;
+          first.prepend(img);
+        });
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', addThumbs);
+      } else {
+        addThumbs();
+      }
+    </script>
+
+    <footer>
+      <div>來源參考：PokecaBook（胡地／フーディン 環境牌組整理）</div>
+      <div>卡名/卡圖來源：<a href="https://asia.pokemon-card.com/hk/" target="_blank" rel="noreferrer">香港訓練家網站</a>（卡牌搜尋）</div>
+      <div>備註：呢頁係「優勝骨架」整合版；如果你想指定某一副優勝 list 做完全 1:1（包括 tech 位），你俾我 deck code 我可以再幫你出。</div>
+    </footer>
+  </div>
+</body>
+</html>
