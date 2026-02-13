@@ -153,6 +153,23 @@ function cardRowsHtml(rows, cardImgById){
   }).join('\n');
 }
 
+function sumCounts(rows){
+  return (rows||[]).reduce((acc,r)=>acc + (Number(r.count)||0), 0);
+}
+
+function groupSkeleton(rows){
+  const out = { pokemon: [], items: [], supporters: [], stadiumEnergy: [] };
+  for(const r of (rows||[])){
+    const sec = r.section;
+    if (sec === 'ポケモン') out.pokemon.push(r);
+    else if (sec === 'サポート') out.supporters.push(r);
+    else if (sec === 'スタジアム' || sec === 'エネルギー') out.stadiumEnergy.push(r);
+    else if (sec === 'グッズ' || sec === 'ポケモンのどうぐ') out.items.push(r);
+    else out.items.push(r); // fallback into items
+  }
+  return out;
+}
+
 function deckGridHtml(rows, cardImgById){
   return rows.map(r=>{
     const jp = (r.name||'').trim();
@@ -196,9 +213,12 @@ ul{margin:10px 0 0 18px; padding:0}
 li{margin:6px 0; color:var(--text)}
 .small{font-size:12px; color:var(--muted)}
 
-/* thumbnails - 300% */
+.totals{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; color:var(--muted); font-size:13px;}
+.ok{color:var(--good); font-family:var(--mono)}
+
+/* thumbnails (70% of original) */
 .name{display:flex; align-items:center; gap:10px;}
-.thumb{width:132px; height:183px; border-radius:8px; border:1px solid var(--line); background:rgba(255,255,255,.04); object-fit:cover; flex:0 0 auto; cursor:zoom-in;}
+.thumb{width:92px; height:128px; border-radius:8px; border:1px solid var(--line); background:rgba(255,255,255,.04); object-fit:cover; flex:0 0 auto; cursor:zoom-in;}
 
 /* top nav */
 .topnav{display:flex; gap:12px; flex-wrap:wrap; margin-top:10px;}
@@ -254,9 +274,22 @@ for(const a of archetypes){
   const title = ARCHETYPE_DISPLAY[a] || a;
   links.push({a, title, slug, winnerCount: det.winnerCount});
 
-  const skeletonRows = cardRowsHtml(det.skeleton||[], cardImgById);
+  const skeleton = det.skeleton || [];
+  const grouped = groupSkeleton(skeleton);
+
+  const skeletonPokemonRows = cardRowsHtml(grouped.pokemon, cardImgById);
+  const skeletonItemsRows = cardRowsHtml(grouped.items, cardImgById);
+  const skeletonSupporterRows = cardRowsHtml(grouped.supporters, cardImgById);
+  const skeletonStadiumEnergyRows = cardRowsHtml(grouped.stadiumEnergy, cardImgById);
+
+  const pokemonTotal = sumCounts(grouped.pokemon);
+  const itemsTotal = sumCounts(grouped.items);
+  const supporterTotal = sumCounts(grouped.supporters);
+  const stadiumEnergyTotal = sumCounts(grouped.stadiumEnergy);
+  const skeletonTotal = pokemonTotal + itemsTotal + supporterTotal + stadiumEnergyTotal;
+
   const techRows = cardRowsHtml(det.commonTechs||[], cardImgById);
-  const deckGrid = deckGridHtml(det.skeleton||[], cardImgById);
+  const deckGrid = deckGridHtml(skeleton, cardImgById);
 
   const guide = GUIDES[a];
   const flowLis = (guide?.flow||[]).map(x=>`<li>${x}</li>`).join('\n');
@@ -300,12 +333,54 @@ for(const a of archetypes){
     </section>
 
     <section class="grid" aria-label="Skeleton">
-      <div class="box half">
+      <div class="box">
         <h2>骨架（統計整合）</h2>
+        <div class="sub">骨架總卡數（合計）：<b>${skeletonTotal}</b></div>
+        <div class="totals">
+          <span class="pill">寶可夢 <span class="ok">${pokemonTotal}</span></span>
+          <span class="pill">物品/道具 <span class="ok">${itemsTotal}</span></span>
+          <span class="pill">支援者 <span class="ok">${supporterTotal}</span></span>
+          <span class="pill">競技場/能量 <span class="ok">${stadiumEnergyTotal}</span></span>
+          <span class="pill">合計 <span class="ok">${skeletonTotal}</span></span>
+        </div>
+      </div>
+
+      <div class="box half">
+        <h2>寶可夢（${pokemonTotal}）</h2>
         <table>
           <thead><tr><th>卡名</th><th class="tag">分類</th><th class="count">數量</th></tr></thead>
           <tbody>
-            ${skeletonRows || '<tr><td colspan="3" class="small">（暫無資料）</td></tr>'}
+            ${skeletonPokemonRows || '<tr><td colspan="3" class="small">（暫無資料）</td></tr>'}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="box half">
+        <h2>物品/道具（${itemsTotal}）</h2>
+        <table>
+          <thead><tr><th>卡名</th><th class="tag">分類</th><th class="count">數量</th></tr></thead>
+          <tbody>
+            ${skeletonItemsRows || '<tr><td colspan="3" class="small">（暫無資料）</td></tr>'}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="box half">
+        <h2>支援者（${supporterTotal}）</h2>
+        <table>
+          <thead><tr><th>卡名</th><th class="tag">分類</th><th class="count">數量</th></tr></thead>
+          <tbody>
+            ${skeletonSupporterRows || '<tr><td colspan="3" class="small">（暫無資料）</td></tr>'}
+          </tbody>
+        </table>
+      </div>
+
+      <div class="box half">
+        <h2>競技場 / 能量（${stadiumEnergyTotal}）</h2>
+        <table>
+          <thead><tr><th>卡名</th><th class="tag">分類</th><th class="count">數量</th></tr></thead>
+          <tbody>
+            ${skeletonStadiumEnergyRows || '<tr><td colspan="3" class="small">（暫無資料）</td></tr>'}
           </tbody>
         </table>
       </div>

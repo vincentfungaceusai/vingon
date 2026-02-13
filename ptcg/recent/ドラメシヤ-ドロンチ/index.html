@@ -33,7 +33,10 @@ ul{margin:10px 0 0 18px; padding:0}
 li{margin:6px 0; color:var(--text)}
 .small{font-size:12px; color:var(--muted)}
 
-/* thumbnails - 300% */
+.totals{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; color:var(--muted); font-size:13px;}
+.ok{color:var(--good); font-family:var(--mono)}
+
+/* thumbnails (70% of original) */
 .name{display:flex; align-items:center; gap:10px;}
 .thumb{width:92px; height:128px; border-radius:8px; border:1px solid var(--line); background:rgba(255,255,255,.04); object-fit:cover; flex:0 0 auto; cursor:zoom-in;}
 
@@ -74,8 +77,8 @@ li{margin:6px 0; color:var(--text)}
       <img src="https://asia.pokemon-card.com/hk/card-img/hk00018242.png" alt="吉雉雞ex" loading="lazy" />
       <div class="badge">1</div>
     </a>
-<a class="deckcard" href="https://asia.pokemon-card.com/tw/card-img/tw00012664.png" target="_blank" rel="noreferrer" title="謝米｜JP：シェイミ">
-      <img src="https://asia.pokemon-card.com/tw/card-img/tw00012664.png" alt="謝米" loading="lazy" />
+<a class="deckcard" href="https://asia.pokemon-card.com/hk/card-img/hk00018513.png" target="_blank" rel="noreferrer" title="謝米｜JP：シェイミ">
+      <img src="https://asia.pokemon-card.com/hk/card-img/hk00018513.png" alt="謝米" loading="lazy" />
       <div class="badge">1</div>
     </a>
 <a class="deckcard" href="https://asia.pokemon-card.com/hk/card-img/hk00014592.png" target="_blank" rel="noreferrer" title="含羞苞｜JP：スボミー">
@@ -175,8 +178,20 @@ li{margin:6px 0; color:var(--text)}
     </section>
 
     <section class="grid" aria-label="Skeleton">
-      <div class="box half">
+      <div class="box">
         <h2>骨架（統計整合）</h2>
+        <div class="sub">骨架總卡數（合計）：<b>58</b></div>
+        <div class="totals">
+          <span class="pill">寶可夢 <span class="ok">21</span></span>
+          <span class="pill">物品/道具 <span class="ok">17</span></span>
+          <span class="pill">支援者 <span class="ok">10</span></span>
+          <span class="pill">競技場/能量 <span class="ok">10</span></span>
+          <span class="pill">合計 <span class="ok">58</span></span>
+        </div>
+      </div>
+
+      <div class="box half">
+        <h2>寶可夢（21）</h2>
         <table>
           <thead><tr><th>卡名</th><th class="tag">分類</th><th class="count">數量</th></tr></thead>
           <tbody>
@@ -186,7 +201,7 @@ li{margin:6px 0; color:var(--text)}
       <td class="count">1</td>
     </tr>
 <tr>
-      <td class="name"><img class="thumb" src="https://asia.pokemon-card.com/tw/card-img/tw00012664.png" alt="謝米" loading="lazy" /><span class="card-name" title="JP：シェイミ">謝米</span></td>
+      <td class="name"><img class="thumb" src="https://asia.pokemon-card.com/hk/card-img/hk00018513.png" alt="謝米" loading="lazy" /><span class="card-name" title="JP：シェイミ">謝米</span></td>
       <td class="tag">寶可夢</td>
       <td class="count">1</td>
     </tr>
@@ -235,7 +250,16 @@ li{margin:6px 0; color:var(--text)}
       <td class="tag">寶可夢</td>
       <td class="count">1</td>
     </tr>
-<tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="box half">
+        <h2>物品/道具（17）</h2>
+        <table>
+          <thead><tr><th>卡名</th><th class="tag">分類</th><th class="count">數量</th></tr></thead>
+          <tbody>
+            <tr>
       <td class="name"><img class="thumb" src="https://asia.pokemon-card.com/hk/card-img/hk00018401.png" alt="好友寶芬" loading="lazy" /><span class="card-name" title="JP：なかよしポフィン">好友寶芬</span></td>
       <td class="tag">物品</td>
       <td class="count">4</td>
@@ -265,7 +289,16 @@ li{margin:6px 0; color:var(--text)}
       <td class="tag">物品</td>
       <td class="count">2</td>
     </tr>
-<tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="box half">
+        <h2>支援者（10）</h2>
+        <table>
+          <thead><tr><th>卡名</th><th class="tag">分類</th><th class="count">數量</th></tr></thead>
+          <tbody>
+            <tr>
       <td class="name"><img class="thumb" src="https://asia.pokemon-card.com/hk/card-img/hk00018449.png" alt="赤松" loading="lazy" /><span class="card-name" title="JP：アカマツ">赤松</span></td>
       <td class="tag">支援者</td>
       <td class="count">2</td>
@@ -285,7 +318,16 @@ li{margin:6px 0; color:var(--text)}
       <td class="tag">支援者</td>
       <td class="count">4</td>
     </tr>
-<tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="box half">
+        <h2>競技場 / 能量（10）</h2>
+        <table>
+          <thead><tr><th>卡名</th><th class="tag">分類</th><th class="count">數量</th></tr></thead>
+          <tbody>
+            <tr>
       <td class="name"><img class="thumb" src="https://asia.pokemon-card.com/hk/card-img/hk00015239.png" alt="阻礙之塔" loading="lazy" /><span class="card-name" title="JP：ジャミングタワー">阻礙之塔</span></td>
       <td class="tag">競技場</td>
       <td class="count">2</td>

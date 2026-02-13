@@ -33,7 +33,10 @@ ul{margin:10px 0 0 18px; padding:0}
 li{margin:6px 0; color:var(--text)}
 .small{font-size:12px; color:var(--muted)}
 
-/* thumbnails - 300% */
+.totals{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; color:var(--muted); font-size:13px;}
+.ok{color:var(--good); font-family:var(--mono)}
+
+/* thumbnails (70% of original) */
 .name{display:flex; align-items:center; gap:10px;}
 .thumb{width:92px; height:128px; border-radius:8px; border:1px solid var(--line); background:rgba(255,255,255,.04); object-fit:cover; flex:0 0 auto; cursor:zoom-in;}
 
@@ -175,8 +178,20 @@ li{margin:6px 0; color:var(--text)}
     </section>
 
     <section class="grid" aria-label="Skeleton">
-      <div class="box half">
+      <div class="box">
         <h2>骨架（統計整合）</h2>
+        <div class="sub">骨架總卡數（合計）：<b>60</b></div>
+        <div class="totals">
+          <span class="pill">寶可夢 <span class="ok">19</span></span>
+          <span class="pill">物品/道具 <span class="ok">18</span></span>
+          <span class="pill">支援者 <span class="ok">13</span></span>
+          <span class="pill">競技場/能量 <span class="ok">10</span></span>
+          <span class="pill">合計 <span class="ok">60</span></span>
+        </div>
+      </div>
+
+      <div class="box half">
+        <h2>寶可夢（19）</h2>
         <table>
           <thead><tr><th>卡名</th><th class="tag">分類</th><th class="count">數量</th></tr></thead>
           <tbody>
@@ -230,7 +245,16 @@ li{margin:6px 0; color:var(--text)}
       <td class="tag">寶可夢</td>
       <td class="count">1</td>
     </tr>
-<tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="box half">
+        <h2>物品/道具（18）</h2>
+        <table>
+          <thead><tr><th>卡名</th><th class="tag">分類</th><th class="count">數量</th></tr></thead>
+          <tbody>
+            <tr>
       <td class="name"><img class="thumb" src="https://asia.pokemon-card.com/hk/card-img/hk00018388.png" alt="N的ＰＰ提升劑" loading="lazy" /><span class="card-name" title="JP：Nのポイントアップ">N的ＰＰ提升劑</span></td>
       <td class="tag">物品</td>
       <td class="count">3</td>
@@ -265,7 +289,16 @@ li{margin:6px 0; color:var(--text)}
       <td class="tag">寶可夢道具</td>
       <td class="count">2</td>
     </tr>
-<tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="box half">
+        <h2>支援者（13）</h2>
+        <table>
+          <thead><tr><th>卡名</th><th class="tag">分類</th><th class="count">數量</th></tr></thead>
+          <tbody>
+            <tr>
       <td class="name"><img class="thumb" src="https://asia.pokemon-card.com/hk/card-img/hk00018457.png" alt="空手道王的演練" loading="lazy" /><span class="card-name" title="JP：からておうの稽古">空手道王的演練</span></td>
       <td class="tag">支援者</td>
       <td class="count">1</td>
@@ -295,7 +328,16 @@ li{margin:6px 0; color:var(--text)}
       <td class="tag">支援者</td>
       <td class="count">4</td>
     </tr>
-<tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="box half">
+        <h2>競技場 / 能量（10）</h2>
+        <table>
+          <thead><tr><th>卡名</th><th class="tag">分類</th><th class="count">數量</th></tr></thead>
+          <tbody>
+            <tr>
       <td class="name"><img class="thumb" src="https://asia.pokemon-card.com/hk/card-img/hk00014762.png" alt="N的城堡" loading="lazy" /><span class="card-name" title="JP：Nの城">N的城堡</span></td>
       <td class="tag">競技場</td>
       <td class="count">2</td>
