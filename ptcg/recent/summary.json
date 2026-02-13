@@ -1,0 +1,47 @@
+{
+  "generatedFrom": [
+    "https://pokecabook.com/archives/288328",
+    "https://pokecabook.com/archives/292886",
+    "https://pokecabook.com/archives/291653",
+    "https://pokecabook.com/archives/290799"
+  ],
+  "winnerDeckCount": 99,
+  "top6": [
+    {
+      "archetype": "キチキギスex/ドラパルトex",
+      "slug": "キチキギスex-ドラパルトex",
+      "winnerCount": 12,
+      "path": "ptcg/recent/キチキギスex-ドラパルトex/index.html"
+    },
+    {
+      "archetype": "マシマシラ/マリィのオーロンゲex",
+      "slug": "マシマシラ-マリィのオーロンゲex",
+      "winnerCount": 8,
+      "path": "ptcg/recent/マシマシラ-マリィのオーロンゲex/index.html"
+    },
+    {
+      "archetype": "Nのゾロアークex/キチキギスex",
+      "slug": "Nのゾロアークex-キチキギスex",
+      "winnerCount": 5,
+      "path": "ptcg/recent/Nのゾロアークex-キチキギスex/index.html"
+    },
+    {
+      "archetype": "キチキギスex/ケーシィ",
+      "slug": "キチキギスex-ケーシィ",
+      "winnerCount": 4,
+      "path": "ptcg/recent/キチキギスex-ケーシィ/index.html"
+    },
+    {
+      "archetype": "オーガポン みどりのめんex/タケルライコex",
+      "slug": "オーガポン みどりのめんex-タケルライコex",
+      "winnerCount": 4,
+      "path": "ptcg/recent/オーガポン みどりのめんex-タケルライコex/index.html"
+    },
+    {
+      "archetype": "ガチグマ アカツキex/ドラパルトex",
+      "slug": "ガチグマ アカツキex-ドラパルトex",
+      "winnerCount": 4,
+      "path": "ptcg/recent/ガチグマ アカツキex-ドラパルトex/index.html"
+    }
+  ]
+}
