@@ -37,6 +37,8 @@
     .note{border-left:3px solid rgba(141,225,255,.55); padding-left:10px; margin-top:10px;}
     ol,ul{margin:10px 0 0 18px; padding:0}
     li{margin:6px 0; color:var(--text)}
+    td:first-child{display:flex; align-items:center; gap:10px;}
+    .thumb{width:44px; height:61px; border-radius:6px; border:1px solid var(--line); background:rgba(255,255,255,.04); object-fit:cover; flex:0 0 auto;}
   </style>
 </head>
 <body>
@@ -167,9 +169,64 @@
       </div>
     </section>
 
+
+    <script>
+      // Card thumbnails (source: asia.pokemon-card.com/hk card search)
+      // Note: We map to the *display names used on this page*.
+      const CARD_IMG = {
+        '火箭兵團的黑暗鴉': 'https://asia.pokemon-card.com/hk/card-img/hk00018200.png',
+        '火箭兵團的烏鴉頭頭': 'https://asia.pokemon-card.com/hk/card-img/hk00014684.png',
+        '火箭兵團的多邊獸': 'https://asia.pokemon-card.com/hk/card-img/hk00013433.png',
+        '火箭兵團的多邊獸Ⅱ': 'https://asia.pokemon-card.com/hk/card-img/hk00013434.png',
+        '火箭兵團的多邊獸Z': 'https://asia.pokemon-card.com/hk/card-img/hk00013435.png',
+        '火箭兵團的急凍鳥': 'https://asia.pokemon-card.com/hk/card-img/hk00014615.png',
+
+        '火箭兵團的接收器': 'https://asia.pokemon-card.com/hk/card-img/hk00018428.png',
+        '寶可夢平板（PokéPad）': 'https://asia.pokemon-card.com/hk/card-img/hk00018580.png',
+        '夜之擔架': 'https://asia.pokemon-card.com/hk/card-img/hk00018423.png',
+        '道具拆除器': 'https://asia.pokemon-card.com/hk/card-img/hk00014732.png',
+        '寶可夢齒輪3.0': 'https://asia.pokemon-card.com/hk/card-img/hk00006894.png',
+        '奇蹟收入（ACE SPEC）': 'https://asia.pokemon-card.com/hk/card-img/hk00012173.png',
+        '高級球': 'https://asia.pokemon-card.com/hk/card-img/hk00018404.png',
+
+        '火箭兵團的雅典娜': 'https://asia.pokemon-card.com/hk/card-img/hk00018484.png',
+        '火箭兵團的阿波羅': 'https://asia.pokemon-card.com/hk/card-img/hk00018485.png',
+        '火箭兵團的蘭斯': 'https://asia.pokemon-card.com/hk/card-img/hk00018488.png',
+        '火箭兵團的拉姆達': 'https://asia.pokemon-card.com/hk/card-img/hk00018487.png',
+        '火箭兵團的坂木': 'https://asia.pokemon-card.com/hk/card-img/hk00018486.png',
+
+        '火箭兵團工廠': 'https://asia.pokemon-card.com/hk/card-img/hk00014771.png',
+        '火箭兵團能量': 'https://asia.pokemon-card.com/hk/card-img/hk00018495.png',
+        '點火能量': 'https://asia.pokemon-card.com/hk/card-img/hk00018489.png'
+      };
+
+      function addThumbs() {
+        document.querySelectorAll('table tbody tr').forEach(tr => {
+          const first = tr.querySelector('td');
+          if (!first) return;
+          const name = (first.textContent || '').trim();
+          const url = CARD_IMG[name];
+          if (!url) return;
+          if (first.querySelector('img.thumb')) return;
+          const img = document.createElement('img');
+          img.className = 'thumb';
+          img.loading = 'lazy';
+          img.alt = name;
+          img.src = url;
+          first.prepend(img);
+        });
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', addThumbs);
+      } else {
+        addThumbs();
+      }
+    </script>
+
     <footer>
       <div>來源參考：PokecaBook（火箭兵團 烏鴉頭頭 + 多邊獸Z 環境牌組整理）</div>
       <div>備註：本頁同時提供「起手流程 / 對局方向 / Tech 位」。如要完全對齊港版卡面官方譯名，麻煩你影一張實卡畀我校對格式，唔該。</div>
+      <div>卡圖來源：asia.pokemon-card.com/hk（香港訓練家網站／卡牌搜尋）</div>
     </footer>
   </div>
 </body>
