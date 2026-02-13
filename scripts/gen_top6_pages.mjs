@@ -272,7 +272,23 @@ for(const a of archetypes){
   await fs.mkdir(dir, {recursive:true});
 
   const title = ARCHETYPE_DISPLAY[a] || a;
-  links.push({a, title, slug, winnerCount: det.winnerCount});
+  // representative thumbnail for the archetype list (prefer a Pokémon from skeleton)
+  let thumbUrl = '';
+  for (const r of (det.skeleton||[])) {
+    if (r.section !== 'ポケモン') continue;
+    const jp = (r.name||'').trim();
+    thumbUrl = hkImg(jp) || cardImgById[r.cardID] || '';
+    if (thumbUrl) break;
+  }
+  if (!thumbUrl) {
+    for (const r of (det.skeleton||[])) {
+      const jp = (r.name||'').trim();
+      thumbUrl = hkImg(jp) || cardImgById[r.cardID] || '';
+      if (thumbUrl) break;
+    }
+  }
+
+  links.push({a, title, slug, winnerCount: det.winnerCount, thumbUrl});
 
   const skeleton = det.skeleton || [];
   const grouped = groupSkeleton(skeleton);
@@ -436,9 +452,15 @@ for(const a of archetypes){
 
 // write index page
 const listCards = links.map(x=>{
+  const img = x.thumbUrl ? `<img class="thumb" loading="lazy" alt="${esc(x.title)}" src="${esc(x.thumbUrl)}" />` : `<div class="thumb" aria-hidden="true" style="display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:800;font-size:12px;letter-spacing:.6px;">Top6</div>`;
   return `<a class="box" href="./${x.slug}/" style="display:block;text-decoration:none">
-    <h2 style="margin:0">${x.title}</h2>
-    <div class="sub" style="margin-top:6px">優勝次數：<b>${x.winnerCount}</b></div>
+    <div style="display:flex;gap:12px;align-items:flex-start">
+      ${img}
+      <div style="min-width:0">
+        <h2 style="margin:0">${x.title}</h2>
+        <div class="sub" style="margin-top:6px">優勝次數：<b>${x.winnerCount}</b></div>
+      </div>
+    </div>
   </a>`;
 }).join('\n');
 
