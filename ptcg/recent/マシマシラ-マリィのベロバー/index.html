@@ -40,6 +40,15 @@ li{margin:6px 0; color:var(--text)}
 /* top nav */
 .topnav{display:flex; gap:12px; flex-wrap:wrap; margin-top:10px;}
 .topnav a{display:inline-block; padding:6px 10px; border:1px solid var(--line); border-radius:999px; text-decoration:none; background:rgba(255,255,255,.04); color:var(--accent); font-size:13px;}
+
+/* full deck list image (visual grid) */
+.deckshot{margin-top:14px; padding:14px; border:1px solid var(--line); background:rgba(255,255,255,.03); border-radius:14px;}
+.deckshot h2{margin:0 0 10px; font-size:16px; color:#dce3ff}
+.deckgrid{display:grid; grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); gap:10px;}
+.deckcard{position:relative; border-radius:10px; overflow:hidden; border:1px solid var(--line); background:rgba(255,255,255,.04);}
+.deckcard img{width:100%; height:auto; display:block;}
+.badge{position:absolute; left:8px; bottom:8px; min-width:28px; padding:4px 8px; border-radius:999px; background:rgba(0,0,0,.65); border:1px solid rgba(255,255,255,.22); color:#fff; font-family:var(--mono); font-weight:800; font-size:14px; text-align:center;}
+.deckcard:hover{border-color:rgba(141,225,255,.55);}
 </style>
 </head>
 <body>
@@ -57,6 +66,93 @@ li{margin:6px 0; color:var(--text)}
       </div>
       <div class="pill"><span style="font-family:var(--mono)">WINS</span> <span style="color:var(--good);font-family:var(--mono)">7</span></div>
     </header>
+
+    <section class="deckshot" aria-label="Full deck list image">
+      <h2>完整 Deck List 圖片（骨架視覺化）</h2>
+      <div class="deckgrid">
+        <a class="deckcard" href="https://asia.pokemon-card.com/hk/card-img/hk00014592.png" target="_blank" rel="noreferrer" title="含羞苞｜JP：スボミー">
+      <img src="https://asia.pokemon-card.com/hk/card-img/hk00014592.png" alt="含羞苞" loading="lazy" />
+      <div class="badge">1</div>
+    </a>
+<a class="deckcard" href="https://asia.pokemon-card.com/hk/card-img/hk00018111.png" target="_blank" rel="noreferrer" title="願增猿｜JP：マシマシラ">
+      <img src="https://asia.pokemon-card.com/hk/card-img/hk00018111.png" alt="願增猿" loading="lazy" />
+      <div class="badge">4</div>
+    </a>
+<a class="deckcard" href="https://asia.pokemon-card.com/hk/card-img/hk00015260.png" target="_blank" rel="noreferrer" title="＜瑪俐的＞長毛巨魔ex｜JP：マリィのオーロンゲex">
+      <img src="https://asia.pokemon-card.com/hk/card-img/hk00015260.png" alt="＜瑪俐的＞長毛巨魔ex" loading="lazy" />
+      <div class="badge">2</div>
+    </a>
+<a class="deckcard" href="https://asia.pokemon-card.com/hk/card-img/hk00013152.png" target="_blank" rel="noreferrer" title="＜瑪俐的＞詐唬魔｜JP：マリィのギモー">
+      <img src="https://asia.pokemon-card.com/hk/card-img/hk00013152.png" alt="＜瑪俐的＞詐唬魔" loading="lazy" />
+      <div class="badge">2</div>
+    </a>
+<a class="deckcard" href="https://asia.pokemon-card.com/hk/card-img/hk00013151.png" target="_blank" rel="noreferrer" title="＜瑪俐的＞搗蛋小妖｜JP：マリィのベロバー">
+      <img src="https://asia.pokemon-card.com/hk/card-img/hk00013151.png" alt="＜瑪俐的＞搗蛋小妖" loading="lazy" />
+      <div class="badge">3</div>
+    </a>
+<a class="deckcard" href="https://asia.pokemon-card.com/hk/card-img/hk00014617.png" target="_blank" rel="noreferrer" title="超級雪妖女ex｜JP：ユキメノコ">
+      <img src="https://asia.pokemon-card.com/hk/card-img/hk00014617.png" alt="超級雪妖女ex" loading="lazy" />
+      <div class="badge">2</div>
+    </a>
+<a class="deckcard" href="https://asia.pokemon-card.com/hk/card-img/hk00017939.png" target="_blank" rel="noreferrer" title="雪童子｜JP：ユキワラシ">
+      <img src="https://asia.pokemon-card.com/hk/card-img/hk00017939.png" alt="雪童子" loading="lazy" />
+      <div class="badge">3</div>
+    </a>
+<a class="deckcard" href="https://asia.pokemon-card.com/hk/card-img/hk00018401.png" target="_blank" rel="noreferrer" title="好友寶芬｜JP：なかよしポフィン">
+      <img src="https://asia.pokemon-card.com/hk/card-img/hk00018401.png" alt="好友寶芬" loading="lazy" />
+      <div class="badge">3</div>
+    </a>
+<a class="deckcard" href="https://asia.pokemon-card.com/hk/card-img/hk00018408.png" target="_blank" rel="noreferrer" title="神奇糖果｜JP：ふしぎなアメ">
+      <img src="https://asia.pokemon-card.com/hk/card-img/hk00018408.png" alt="神奇糖果" loading="lazy" />
+      <div class="badge">3</div>
+    </a>
+<a class="deckcard" href="https://asia.pokemon-card.com/hk/card-img/hk00018386.png" target="_blank" rel="noreferrer" title="不公印章｜JP：アンフェアスタンプ(ACE SPEC)">
+      <img src="https://asia.pokemon-card.com/hk/card-img/hk00018386.png" alt="不公印章" loading="lazy" />
+      <div class="badge">1</div>
+    </a>
+<a class="deckcard" href="https://asia.pokemon-card.com/hk/card-img/hk00018391.png" target="_blank" rel="noreferrer" title="能量轉移｜JP：エネルギーつけかえ">
+      <img src="https://asia.pokemon-card.com/hk/card-img/hk00018391.png" alt="能量轉移" loading="lazy" />
+      <div class="badge">1</div>
+    </a>
+<a class="deckcard" href="https://asia.pokemon-card.com/hk/card-img/hk00018580.png" target="_blank" rel="noreferrer" title="寶可平板｜JP：ポケパッド">
+      <img src="https://asia.pokemon-card.com/hk/card-img/hk00018580.png" alt="寶可平板" loading="lazy" />
+      <div class="badge">4</div>
+    </a>
+<a class="deckcard" href="https://asia.pokemon-card.com/hk/card-img/hk00018423.png" target="_blank" rel="noreferrer" title="夜間擔架｜JP：夜のタンカ">
+      <img src="https://asia.pokemon-card.com/hk/card-img/hk00018423.png" alt="夜間擔架" loading="lazy" />
+      <div class="badge">3</div>
+    </a>
+<a class="deckcard" href="https://asia.pokemon-card.com/hk/card-img/hk00018441.png" target="_blank" rel="noreferrer" title="氣球｜JP：ふうせん">
+      <img src="https://asia.pokemon-card.com/hk/card-img/hk00018441.png" alt="氣球" loading="lazy" />
+      <div class="badge">2</div>
+    </a>
+<a class="deckcard" href="https://asia.pokemon-card.com/hk/card-img/hk00018477.png" target="_blank" rel="noreferrer" title="老大的指令｜JP：ボスの指令">
+      <img src="https://asia.pokemon-card.com/hk/card-img/hk00018477.png" alt="老大的指令" loading="lazy" />
+      <div class="badge">2</div>
+    </a>
+<a class="deckcard" href="https://asia.pokemon-card.com/hk/card-img/hk00018480.png" target="_blank" rel="noreferrer" title="松葉的信心｜JP：マツバの確信">
+      <img src="https://asia.pokemon-card.com/hk/card-img/hk00018480.png" alt="松葉的信心" loading="lazy" />
+      <div class="badge">2</div>
+    </a>
+<a class="deckcard" href="https://asia.pokemon-card.com/hk/card-img/hk00018482.png" target="_blank" rel="noreferrer" title="莉莉艾的決意｜JP：リーリエの決心">
+      <img src="https://asia.pokemon-card.com/hk/card-img/hk00018482.png" alt="莉莉艾的決意" loading="lazy" />
+      <div class="badge">4</div>
+    </a>
+<a class="deckcard" href="https://asia.pokemon-card.com/hk/card-img/hk00018487.png" target="_blank" rel="noreferrer" title="火箭隊的拉姆達｜JP：ロケット団のラムダ">
+      <img src="https://asia.pokemon-card.com/hk/card-img/hk00018487.png" alt="火箭隊的拉姆達" loading="lazy" />
+      <div class="badge">4</div>
+    </a>
+<a class="deckcard" href="https://asia.pokemon-card.com/hk/card-img/hk00013167.png" target="_blank" rel="noreferrer" title="尖釘鎮道館｜JP：スパイクタウンジム">
+      <img src="https://asia.pokemon-card.com/hk/card-img/hk00013167.png" alt="尖釘鎮道館" loading="lazy" />
+      <div class="badge">4</div>
+    </a>
+<a class="deckcard" href="https://asia.pokemon-card.com/hk/card-img/hk00008543.png" target="_blank" rel="noreferrer" title="基本惡能量｜JP：基本悪エネルギー">
+      <img src="https://asia.pokemon-card.com/hk/card-img/hk00008543.png" alt="基本惡能量" loading="lazy" />
+      <div class="badge">9</div>
+    </a>
+      </div>
+      <div class="sub" style="margin-top:8px">提示：撳卡圖會開原圖（可再放大）。</div>
+    </section>
 
     <section class="grid" aria-label="Skeleton">
       <div class="box half">

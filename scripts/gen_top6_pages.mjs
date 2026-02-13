@@ -153,6 +153,19 @@ function cardRowsHtml(rows, cardImgById){
   }).join('\n');
 }
 
+function deckGridHtml(rows, cardImgById){
+  return rows.map(r=>{
+    const jp = (r.name||'').trim();
+    const zh = hkName(jp);
+    const img = hkImg(jp) || cardImgById[r.cardID] || '';
+    if(!img) return '';
+    return `<a class="deckcard" href="${esc(img)}" target="_blank" rel="noreferrer" title="${esc(zh)}｜JP：${esc(jp)}">
+      <img src="${esc(img)}" alt="${esc(zh)}" loading="lazy" />
+      <div class="badge">${r.count}</div>
+    </a>`;
+  }).filter(Boolean).join('\n');
+}
+
 // Match the existing "Alakazam" page UI (colors, spacing, typography)
 const baseCss = `
 :root{
@@ -190,6 +203,15 @@ li{margin:6px 0; color:var(--text)}
 /* top nav */
 .topnav{display:flex; gap:12px; flex-wrap:wrap; margin-top:10px;}
 .topnav a{display:inline-block; padding:6px 10px; border:1px solid var(--line); border-radius:999px; text-decoration:none; background:rgba(255,255,255,.04); color:var(--accent); font-size:13px;}
+
+/* full deck list image (visual grid) */
+.deckshot{margin-top:14px; padding:14px; border:1px solid var(--line); background:rgba(255,255,255,.03); border-radius:14px;}
+.deckshot h2{margin:0 0 10px; font-size:16px; color:#dce3ff}
+.deckgrid{display:grid; grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); gap:10px;}
+.deckcard{position:relative; border-radius:10px; overflow:hidden; border:1px solid var(--line); background:rgba(255,255,255,.04);}
+.deckcard img{width:100%; height:auto; display:block;}
+.badge{position:absolute; left:8px; bottom:8px; min-width:28px; padding:4px 8px; border-radius:999px; background:rgba(0,0,0,.65); border:1px solid rgba(255,255,255,.22); color:#fff; font-family:var(--mono); font-weight:800; font-size:14px; text-align:center;}
+.deckcard:hover{border-color:rgba(141,225,255,.55);}
 `;
 
 await fs.mkdir(OUT_DIR, {recursive:true});
@@ -234,6 +256,7 @@ for(const a of archetypes){
 
   const skeletonRows = cardRowsHtml(det.skeleton||[], cardImgById);
   const techRows = cardRowsHtml(det.commonTechs||[], cardImgById);
+  const deckGrid = deckGridHtml(det.skeleton||[], cardImgById);
 
   const guide = GUIDES[a];
   const flowLis = (guide?.flow||[]).map(x=>`<li>${x}</li>`).join('\n');
@@ -267,6 +290,14 @@ for(const a of archetypes){
       </div>
       <div class="pill"><span style="font-family:var(--mono)">WINS</span> <span style="color:var(--good);font-family:var(--mono)">${det.winnerCount}</span></div>
     </header>
+
+    <section class="deckshot" aria-label="Full deck list image">
+      <h2>完整 Deck List 圖片（骨架視覺化）</h2>
+      <div class="deckgrid">
+        ${deckGrid || '<div class="small">（暫時冇圖片資料）</div>'}
+      </div>
+      <div class="sub" style="margin-top:8px">提示：撳卡圖會開原圖（可再放大）。</div>
+    </section>
 
     <section class="grid" aria-label="Skeleton">
       <div class="box half">
