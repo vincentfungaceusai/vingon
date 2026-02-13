@@ -1,0 +1,412 @@
+{
+  "Nのゼクロム": {
+    "hkName": "N的捷克羅姆",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00014710.png"
+  },
+  "Nのゾロア": {
+    "hkName": "N的索羅亞",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018222.png"
+  },
+  "Nのゾロアークex": {
+    "hkName": "N的索羅亞克ex",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018223.png"
+  },
+  "Nのダルマッカ": {
+    "hkName": "N的火紅不倒翁",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00017871.png"
+  },
+  "Nのヒヒダルマ": {
+    "hkName": "N的達摩狒狒",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00017872.png"
+  },
+  "Nのポイントアップ": {
+    "hkName": "N的ＰＰ提升劑",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018388.png"
+  },
+  "Nのレシラム": {
+    "hkName": "N的萊希拉姆",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018298.png"
+  },
+  "Nの城": {
+    "hkName": "N的城堡",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00014762.png"
+  },
+  "からておうの稽古": {
+    "hkName": "空手道王的演練",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018457.png"
+  },
+  "くさりもち": {
+    "hkName": "鎖鏈糬",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018434.png"
+  },
+  "せいなるはい": {
+    "hkName": "聖灰",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00014731.png"
+  },
+  "なかよしポフィン": {
+    "hkName": "好友寶芬",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018401.png"
+  },
+  "ふうせん": {
+    "hkName": "氣球",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018441.png"
+  },
+  "ふしぎなアメ": {
+    "hkName": "神奇糖果",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018408.png"
+  },
+  "アカマツ": {
+    "hkName": "赤松",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018449.png"
+  },
+  "アンズの秘技": {
+    "hkName": "阿杏的秘招",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018452.png"
+  },
+  "エネルギーつけかえ": {
+    "hkName": "能量轉移",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018391.png"
+  },
+  "キチキギスex": {
+    "hkName": "吉雉雞ex",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018242.png"
+  },
+  "グラビティーマウンテン": {
+    "hkName": "引力山岳",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00014764.png"
+  },
+  "ケーシィ": {
+    "hkName": "凱西",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00014302.png"
+  },
+  "コダック": {
+    "hkName": "可達鴨",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00014613.png"
+  },
+  "サマヨール": {
+    "hkName": "彷徨夜靈",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018062.png"
+  },
+  "シアノ": {
+    "hkName": "席藍",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00012178.png"
+  },
+  "シェイミ": {
+    "hkName": "謝米",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018513.png"
+  },
+  "シャリタツ": {
+    "hkName": "米立龍",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018302.png"
+  },
+  "ジャッジマン": {
+    "hkName": "裁判",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018464.png"
+  },
+  "ジャミングタワー": {
+    "hkName": "阻礙之塔",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00015239.png"
+  },
+  "スイレンのお世話": {
+    "hkName": "水蓮的照顧",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018465.png"
+  },
+  "スパイクタウンジム": {
+    "hkName": "尖釘鎮道館",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00013167.png"
+  },
+  "スピンロトム": {
+    "hkName": "旋轉洛托姆",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00014720.png"
+  },
+  "スボミー": {
+    "hkName": "含羞苞",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00014592.png"
+  },
+  "ゼイユ": {
+    "hkName": "丹瑜",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018468.png"
+  },
+  "ソルロック": {
+    "hkName": "太陽岩",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018125.png"
+  },
+  "タケシのスカウト": {
+    "hkName": "小剛的發掘",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00013090.png"
+  },
+  "ツールスクラッパー": {
+    "hkName": "道具拆除器",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00014732.png"
+  },
+  "トウコ": {
+    "hkName": "鬥子",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018471.png"
+  },
+  "ドラパルトex": {
+    "hkName": "多龍巴魯托ex",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018301.png"
+  },
+  "ドラメシヤ": {
+    "hkName": "多龍梅西亞",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018299.png"
+  },
+  "ドロンチ": {
+    "hkName": "多龍奇",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018300.png"
+  },
+  "ニャースex": {
+    "hkName": "喵喵ex",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018571.png"
+  },
+  "ノココッチ": {
+    "hkName": "土龍節節ex",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018328.png"
+  },
+  "ノコッチ": {
+    "hkName": "土龍弟弟",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018327.png"
+  },
+  "ハイパーボール": {
+    "hkName": "高級球",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018404.png"
+  },
+  "ハリテヤマ": {
+    "hkName": "鐵掌力士",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00014228.png"
+  },
+  "バトルコロシアム": {
+    "hkName": "對戰圓形競技場",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00014543.png"
+  },
+  "パワープロテイン": {
+    "hkName": "力量蛋白飲",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018405.png"
+  },
+  "ヒカリ": {
+    "hkName": "小光",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00014541.png"
+  },
+  "ファイトゴング": {
+    "hkName": "戰鬥鑼",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018407.png"
+  },
+  "フーディン": {
+    "hkName": "胡地",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00014304.png"
+  },
+  "ブレイブバングル": {
+    "hkName": "猛攻手鐲",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018442.png"
+  },
+  "ボスの指令": {
+    "hkName": "老大的指令",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018477.png"
+  },
+  "ポケパッド": {
+    "hkName": "寶可平板",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018580.png"
+  },
+  "ポケモンいれかえ": {
+    "hkName": "寶可夢交替",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018416.png"
+  },
+  "マクノシタ": {
+    "hkName": "幕下力士",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00014227.png"
+  },
+  "マシマシラ": {
+    "hkName": "願增猿",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018111.png"
+  },
+  "マツバの確信": {
+    "hkName": "松葉的信心",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018480.png"
+  },
+  "マリィのオーロンゲex": {
+    "hkName": "&lt;瑪俐的&gt;長毛巨魔ex",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00015260.png"
+  },
+  "マリィのギモー": {
+    "hkName": "&lt;瑪俐的&gt;詐唬魔",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00013152.png"
+  },
+  "マリィのベロバー": {
+    "hkName": "&lt;瑪俐的&gt;搗蛋小妖",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00013151.png"
+  },
+  "ミツルの思いやり": {
+    "hkName": "滿充的體貼",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00014326.png"
+  },
+  "メガルカリオex": {
+    "hkName": "超級路卡利歐ex",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00014673.png"
+  },
+  "モモワロウex": {
+    "hkName": "桃歹郎ex",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018244.png"
+  },
+  "ユキメノコ": {
+    "hkName": "超級雪妖女ex",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00014617.png"
+  },
+  "ユキワラシ": {
+    "hkName": "雪童子",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00017939.png"
+  },
+  "ユンゲラー": {
+    "hkName": "勇基拉",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00014303.png"
+  },
+  "ヨノワール": {
+    "hkName": "黑夜魔靈",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018063.png"
+  },
+  "ヨマワル": {
+    "hkName": "夜巡靈",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018061.png"
+  },
+  "ラティアスex": {
+    "hkName": "拉帝亞斯ex",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018065.png"
+  },
+  "リオル": {
+    "hkName": "利歐路",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018132.png"
+  },
+  "リーリエのピッピex": {
+    "hkName": "莉莉艾的皮皮ex",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018040.png"
+  },
+  "リーリエの決心": {
+    "hkName": "莉莉艾的決意",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018482.png"
+  },
+  "ルナトーン": {
+    "hkName": "月石",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018124.png"
+  },
+  "ロケット団のアテナ": {
+    "hkName": "火箭隊的雅典娜",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018484.png"
+  },
+  "ロケット団のアポロ": {
+    "hkName": "火箭隊的阿波羅",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018485.png"
+  },
+  "ロケット団のサカキ": {
+    "hkName": "火箭隊的坂木",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018486.png"
+  },
+  "ロケット団のソーナンス": {
+    "hkName": "&lt;火箭隊的&gt;果然翁",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00013392.png"
+  },
+  "ロケット団のタマンチュラ": {
+    "hkName": "&lt;火箭隊的&gt;團珠蛛",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00014596.png"
+  },
+  "ロケット団のニューラ": {
+    "hkName": "&lt;火箭隊的&gt;狃拉",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018201.png"
+  },
+  "ロケット団のファクトリー": {
+    "hkName": "火箭隊的工廠",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00014771.png"
+  },
+  "ロケット団のフリーザー": {
+    "hkName": "&lt;火箭隊的&gt;急凍鳥",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00014615.png"
+  },
+  "ロケット団のミミッキュ": {
+    "hkName": "&lt;火箭隊的&gt;謎擬Ｑ",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018094.png"
+  },
+  "ロケット団のミュウツーex": {
+    "hkName": "&lt;火箭隊的&gt;超夢ex",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018043.png"
+  },
+  "ロケット団のラムダ": {
+    "hkName": "火箭隊的拉姆達",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018487.png"
+  },
+  "ロケット団のランス": {
+    "hkName": "火箭隊的蘭斯",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018488.png"
+  },
+  "ロケット団のレシーバー": {
+    "hkName": "火箭隊的接收器",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018428.png"
+  },
+  "ロケット団のワナイダー": {
+    "hkName": "&lt;火箭隊的&gt;操陷蛛",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00014597.png"
+  },
+  "ロケット団エネルギー": {
+    "hkName": "火箭隊能量",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018495.png"
+  },
+  "ワンダーパッチ": {
+    "hkName": "奇跡修正檔",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00014375.png"
+  },
+  "夜のタンカ": {
+    "hkName": "夜間擔架",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018423.png"
+  },
+  "改造ハンマー": {
+    "hkName": "改造之錘",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00014729.png"
+  },
+  "アンフェアスタンプ(ACE SPEC)": {
+    "hkName": "不公印章",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018386.png",
+    "kwUsed": "アンフェアスタンプ"
+  },
+  "ヒーローマント(ACE SPEC)": {
+    "hkName": "英雄斗篷",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018440.png",
+    "kwUsed": "ヒーローマント"
+  },
+  "マキシマムベルト(ACE SPEC)": {
+    "hkName": "極限腰帶",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018444.png",
+    "kwUsed": "マキシマムベルト"
+  },
+  "リッチエネルギー(ACE SPEC)": {
+    "hkName": "富裕能量",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018493.png",
+    "kwUsed": "リッチエネルギー"
+  },
+  "基本悪エネルギー": {
+    "hkName": "基本惡能量",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00008543.png",
+    "kwUsed": "基本惡能量"
+  },
+  "基本炎エネルギー": {
+    "hkName": "基本火能量",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00008538.png",
+    "kwUsed": "基本火能量"
+  },
+  "基本草エネルギー": {
+    "hkName": "基本草能量",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00008537.png",
+    "kwUsed": "基本草能量"
+  },
+  "基本超エネルギー": {
+    "hkName": "基本超能量",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00008541.png",
+    "kwUsed": "基本超能量"
+  },
+  "基本闘エネルギー": {
+    "hkName": "基本鬥能量",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00008542.png",
+    "kwUsed": "基本鬥能量"
+  },
+  "テレパス超エネルギー": {
+    "hkName": "テレパス超エネルギー",
+    "hkImgUrl": null,
+    "note": "HK官網未搜到（可能未發售/未收錄）；fallback=jpName"
+  }
+}

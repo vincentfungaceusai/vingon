@@ -3,18 +3,116 @@ import path from 'path';
 
 const ROOT = process.cwd();
 const DATA_PATH = path.join(ROOT, 'ptcg_winners_top6.json');
+const HK_MAP_PATH = path.join(ROOT, 'hk_name_map_top6.json');
 const OUT_DIR = path.join(ROOT, 'ptcg', 'recent');
 
 const data = JSON.parse(await fs.readFile(DATA_PATH, 'utf8'));
+const hkMapRaw = JSON.parse(await fs.readFile(HK_MAP_PATH, 'utf8'));
 
-// Display name overrides (JP for now; can later swap to HK official names)
+function unescapeAngle(s=''){
+  return s.replaceAll('&lt;','＜').replaceAll('&gt;','＞');
+}
+
+function hkName(jpName){
+  const v = hkMapRaw?.[jpName]?.hkName;
+  return v ? unescapeAngle(v) : jpName;
+}
+function hkImg(jpName){
+  return hkMapRaw?.[jpName]?.hkImgUrl ?? null;
+}
+
+// Display name overrides (HK Traditional Chinese official names)
 const ARCHETYPE_DISPLAY = {
-  'ドラメシヤ/ドロンチ': 'ドラパルトex（統計：ドラメシヤ/ドロンチ系）',
-  'Nのゾロア/Nのゾロアークex': 'Nのゾロアークex',
-  'メガルカリオex/リオル': 'メガルカリオex',
-  'マシマシラ/マリィのベロバー': 'マシマシラ／マリィ系',
-  'ケーシィ/ユンゲラー': 'フーディン（胡地）系',
-  'ロケット団のタマンチュラ/ロケット団のワナイダー': 'ロケット団ワナイダー系'
+  'ドラメシヤ/ドロンチ': `${hkName('ドラパルトex')}（Top6 統計）`,
+  'Nのゾロア/Nのゾロアークex': hkName('Nのゾロアークex'),
+  'メガルカリオex/リオル': hkName('メガルカリオex'),
+  'マシマシラ/マリィのベロバー': `${hkName('マシマシラ')}／瑪俐系`,
+  'ケーシィ/ユンゲラー': `${hkName('フーディン')}系`, 
+  'ロケット団のタマンチュラ/ロケット団のワナイダー': `${hkName('ロケット団のワナイダー')}（火箭隊）系`
+};
+
+const SECTION_ZH = {
+  'ポケモン': '寶可夢',
+  'グッズ': '物品',
+  'サポート': '支援者',
+  'スタジアム': '競技場',
+  'ポケモンのどうぐ': '寶可夢道具',
+  'エネルギー': '能量'
+};
+
+const GUIDES = {
+  'ドラメシヤ/ドロンチ': {
+    flow: [
+      `起手優先：鋪到 2–3 隻「${hkName('ドラメシヤ')}」，配合「${hkName('なかよしポフィン')}／${hkName('ハイパーボール')}」去起動展開。`,
+      `第 1 回合：先確立進化材料同資源循環位；留意「${hkName('ふしぎなアメ')}」路線，唔好太早亂丟關鍵件。`,
+      `第 2 回合：用「${hkName('ふしぎなアメ')}」直上「${hkName('ドラパルトex')}」，開始向備戰分配傷害指示物，提早鎖定兩回合獎賞線。`
+    ],
+    matchup: [
+      `先規劃「兩回合獎賞線」：點傷要以 2-2 或 3-3 節奏為目標，唔好散得太碎。`,
+      `對手依賴工具/道具時，把「${hkName('ワザマシン デヴォリューション')}／${hkName('スグリ')}」（視構築）嘅出手窗口留喺對手要爆發嗰回合。`,
+      `資源管理：保留「${hkName('夜のタンカ')}」做關鍵回合回收進化線/能量，避免中後期斷攻。`
+    ]
+  },
+  'Nのゾロア/Nのゾロアークex': {
+    flow: [
+      `起手：至少鋪到 2 隻「${hkName('Nのゾロア')}」；有「${hkName('なかよしポフィン')}」就盡量鋪滿基本。`,
+      `第 1 回合：用檢索卡把進化/能量路線準備好，並預留干擾位（例如支援者）。`,
+      `第 2 回合：進化到「${hkName('Nのゾロアークex')}」開始主攻，同步用干擾（如「${hkName('ジャッジマン')}」等）打斷對手節奏。`
+    ],
+    matchup: [
+      `呢副偏中速壓制：重點係「每回合穩定輸出 + 手牌干擾」同時做到。`,
+      `留意「${hkName('Nの城')}」嘅節奏點：有時早落比你換位/續航舒服好多。`,
+      `對高耐久 ex：睇下需唔需要「${hkName('グラビティーマウンテン')}」或者工具位（例如「${hkName('くさりもち')}」）去補傷害線。`
+    ]
+  },
+  'メガルカリオex/リオル': {
+    flow: [
+      `起手：確保「${hkName('リオル')}」落到場；配合檢索卡快速搵到主戰。`,
+      `第 1 回合：優先鋪好能量同輔助位，避免只得一條攻擊線。`,
+      `第 2 回合：讓「${hkName('メガルカリオex')}」開始攻擊；道具加傷（例如「${hkName('カウンターキャッチャー')}」等視構築）要按次序用，推到關鍵擊倒線。`
+    ],
+    matchup: [
+      `呢套成日差 10/20：道具使用順序好重要（先加傷→再換位/拉前→再抽濾）。`,
+      `ACE SPEC 請留喺能改變獎賞交換嘅回合先交。`,
+      `對控制：確保有足夠替換/解工具手段，唔好畀人一鎖就斷攻。`
+    ]
+  },
+  'マシマシラ/マリィのベロバー': {
+    flow: [
+      `起手：至少 1 隻「${hkName('マリィのベロバー')}」，再配合第二條進化/引擎線落場。`,
+      `第 1 回合：鋪基礎怪，先確保「下回合一定進化到」。`,
+      `第 2 回合：完成主力進化後，用場地/支援者開始做壓制節奏，逼對手每回合都要解你板面。`
+    ],
+    matchup: [
+      `干擾點要忍手：留喺對手要爆發嗰回合先交，收益最大。`,
+      `注意自己都怕干擾：T1/T2 鋪場優先級要固定，唔好貪多線而散。`,
+      `對手有工具/場地核心時，工具拆除/換場地嘅 timing 係勝負位。`
+    ]
+  },
+  'ケーシィ/ユンゲラー': {
+    flow: [
+      `起手：以「${hkName('ケーシィ')}」為主，並盡快鋪到「${hkName('ノコッチ')}／${hkName('ノココッチ')}」引擎。`,
+      `第 1 回合：鋪 2–3 隻「${hkName('ケーシィ')}」，確保下回合有進化/糖果路線。`,
+      `第 2 回合：上「${hkName('フーディン')}」開始輸出/控制盤面；支援者要確保資源循環唔好斷。`
+    ],
+    matchup: [
+      `呢套食進化速度：糖果/進化件要避免畀人洗走；有需要就先落關鍵件。`,
+      `場地回合要用喺你最需要推線/換獎賞嗰刻，唔好亂交。`,
+      `對單點高火力：用換位同回血（例如「${hkName('ミズキのケア')}」）拉長交換。`
+    ]
+  },
+  'ロケット団のタマンチュラ/ロケット団のワナイダー': {
+    flow: [
+      `起手：鋪到 2 隻以上「${hkName('ロケット団のタマンチュラ')}」，準備進化「${hkName('ロケット団のワナイダー')}」。`,
+      `第 1 回合：用「${hkName('ロケット団のレシーバー')}」搵支援者，把資源鏈接起嚟。`,
+      `第 2 回合：完成進化後開始以火箭隊系統做節奏壓制，配合場地續航。`
+    ],
+    matchup: [
+      `火箭隊支援者鏈接要有計劃：先展開→再干擾→最後收頭。`,
+      `對依賴備戰引擎嘅對手，優先點殺/壓備戰破壞對方循環。`,
+      `能量管理要克制：火箭隊能量用得太急會令中後期斷供。`
+    ]
+  }
 };
 
 function slugify(s){
@@ -37,13 +135,19 @@ async function fetchCardThumb(cardID){
 
 function uniq(arr){return [...new Set(arr)];}
 
+function esc(s=''){
+  return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+
 function cardRowsHtml(rows, cardImgById){
   return rows.map(r=>{
-    const img = cardImgById[r.cardID] || '';
-    const safeName = (r.name||'').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+    const jp = (r.name||'').trim();
+    const zh = hkName(jp);
+    const img = hkImg(jp) || cardImgById[r.cardID] || '';
+    const sec = SECTION_ZH[r.section] || r.section || '';
     return `<tr>
-      <td class="name">${img?`<img class="thumb" src="${img}" alt="${safeName}" loading="lazy" />`:''}<span>${safeName}</span></td>
-      <td class="tag">${(r.section||'').replace(/</g,'&lt;')}</td>
+      <td class="name">${img?`<img class="thumb" src="${esc(img)}" alt="${esc(zh)}" loading="lazy" />`:''}<span class="card-name" title="JP：${esc(jp)}">${esc(zh)}</span></td>
+      <td class="tag">${esc(sec)}</td>
       <td class="count">${r.count}</td>
     </tr>`;
   }).join('\n');
@@ -119,6 +223,10 @@ for(const a of archetypes){
   const skeletonRows = cardRowsHtml(det.skeleton||[], cardImgById);
   const techRows = cardRowsHtml(det.commonTechs||[], cardImgById);
 
+  const guide = GUIDES[a];
+  const flowLis = (guide?.flow||[]).map(x=>`<li>${x}</li>`).join('\n');
+  const matchupLis = (guide?.matchup||[]).map(x=>`<li>${x}</li>`).join('\n');
+
   const deckLinks = (det.deckIDs||[]).map(id=>{
     const url = `https://www.pokemon-card.com/deck/confirm.html/deckID/${id}`;
     return `<li><a href="${url}" target="_blank" rel="noreferrer">${id}</a></li>`;
@@ -138,7 +246,7 @@ for(const a of archetypes){
       <div>
         <h1>${title}</h1>
         <div class="sub">樣本來源：PokecaBook 4 篇彙總文章（只統計「優勝」）｜本牌型優勝次數：<b>${det.winnerCount}</b></div>
-        <div class="note small">提示：而家卡名多數係日文（源自日本官網 deck list）；之後我可以再逐步對照香港官網改成港版正式卡名。</div>
+        <div class="note small">卡名已對照香港訓練家網站（繁中官方譯名）；滑鼠移到卡名會見到日文原名作對照。</div>
       </div>
       <div class="pill"><span style="font-family:var(--mono)">WINS</span> <span style="color:var(--good);font-family:var(--mono)">${det.winnerCount}</span></div>
     </header>
@@ -162,6 +270,20 @@ for(const a of archetypes){
             ${techRows || '<tr><td colspan="3" class="small">（暫無資料）</td></tr>'}
           </tbody>
         </table>
+      </div>
+
+      <div class="box">
+        <h2>起手／前兩回合流程（簡化版）</h2>
+        <ul>
+          ${flowLis || '<li class="small">（整理中）</li>'}
+        </ul>
+      </div>
+
+      <div class="box">
+        <h2>對局要點（方向性）</h2>
+        <ul>
+          ${matchupLis || '<li class="small">（整理中）</li>'}
+        </ul>
       </div>
 
       <div class="box">
