@@ -40,7 +40,8 @@
 
     /* thumbnails */
     td:first-child{display:flex; align-items:center; gap:10px;}
-    .thumb{width:44px; height:61px; border-radius:6px; border:1px solid var(--line); background:rgba(255,255,255,.04); object-fit:cover; flex:0 0 auto;}
+    /* 300% size so the card text is readable */
+    .thumb{width:132px; height:183px; border-radius:8px; border:1px solid var(--line); background:rgba(255,255,255,.04); object-fit:cover; flex:0 0 auto; cursor:zoom-in;}
   </style>
 </head>
 <body>
@@ -204,6 +205,7 @@
           img.loading = 'lazy';
           img.alt = name;
           img.src = url;
+          img.addEventListener('click', () => window.open(url, '_blank', 'noopener'));
           first.prepend(img);
         });
       }
