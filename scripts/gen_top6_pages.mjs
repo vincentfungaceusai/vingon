@@ -153,31 +153,43 @@ function cardRowsHtml(rows, cardImgById){
   }).join('\n');
 }
 
+// Match the existing "Alakazam" page UI (colors, spacing, typography)
 const baseCss = `
-:root{--bg:#0b1020;--muted:#a9b3d1;--text:#eef1ff;--accent:#8de1ff;--line:rgba(255,255,255,.12);--good:#86efac;--mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;}
+:root{
+  --bg:#0b1020; --card:#121a33; --muted:#a9b3d1; --text:#eef1ff;
+  --accent:#8de1ff; --line:rgba(255,255,255,.12);
+  --good:#86efac;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
 *{box-sizing:border-box}
-body{margin:0;background:linear-gradient(180deg,#070a16,var(--bg));color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,"PingFang HK","Noto Sans CJK HK",sans-serif;}
+body{margin:0; background:linear-gradient(180deg,#070a16, var(--bg)); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,"PingFang HK","Noto Sans CJK HK",sans-serif;}
 a{color:var(--accent)}
-.wrap{max-width:1040px;margin:0 auto;padding:28px 18px 60px;}
-header{display:flex;gap:14px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;}
-h1{margin:0;font-size:22px;letter-spacing:.2px}
-.sub{margin-top:6px;color:var(--muted);font-size:14px;line-height:1.35}
-.pill{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid var(--line);background:rgba(255,255,255,.04);border-radius:999px;color:var(--muted);font-size:13px;}
-.grid{display:grid;gap:14px;grid-template-columns:repeat(12,1fr);margin-top:18px;}
-.box{grid-column:span 12;background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:14px;padding:14px;}
-@media(min-width:860px){.box.half{grid-column:span 6;}}
-h2{margin:0 0 10px;font-size:16px;color:#dce3ff}
-table{width:100%;border-collapse:collapse;font-size:14px;}
-th,td{padding:8px 6px;border-bottom:1px solid var(--line);vertical-align:top;}
-th{color:var(--muted);font-weight:600;text-align:left;font-size:12px;letter-spacing:.4px;text-transform:uppercase;}
-.count{width:54px;text-align:right;font-family:var(--mono);color:#dbe4ff;}
-.tag{width:140px;font-size:12px;color:var(--muted)}
-.name{display:flex;align-items:center;gap:10px;}
-.thumb{width:132px;height:183px;border-radius:8px;border:1px solid var(--line);background:rgba(255,255,255,.04);object-fit:cover;flex:0 0 auto;cursor:zoom-in;}
-.note{border-left:3px solid rgba(141,225,255,.55);padding-left:10px;margin-top:10px;}
-ul{margin:10px 0 0 18px;padding:0}
-li{margin:6px 0;color:var(--text)}
-.small{font-size:12px;color:var(--muted)}
+.wrap{max-width:980px; margin:0 auto; padding:28px 18px 60px;}
+header{display:flex; gap:14px; align-items:flex-start; justify-content:space-between; flex-wrap:wrap;}
+h1{margin:0; font-size:22px; letter-spacing:.2px}
+.sub{margin-top:6px; color:var(--muted); font-size:14px; line-height:1.35}
+.pill{display:inline-flex; align-items:center; gap:8px; padding:8px 10px; border:1px solid var(--line); background:rgba(255,255,255,.04); border-radius:999px; color:var(--muted); font-size:13px;}
+.grid{display:grid; gap:14px; grid-template-columns: repeat(12, 1fr); margin-top:18px;}
+.box{grid-column: span 12; background:rgba(255,255,255,.03); border:1px solid var(--line); border-radius:14px; padding:14px;}
+@media(min-width:860px){ .box.half{grid-column: span 6;} }
+h2{margin:0 0 10px; font-size:16px; color:#dce3ff}
+table{width:100%; border-collapse:collapse; font-size:14px;}
+th,td{padding:8px 6px; border-bottom:1px solid var(--line); vertical-align:top;}
+th{color:var(--muted); font-weight:600; text-align:left; font-size:12px; letter-spacing:.4px; text-transform:uppercase;}
+.count{width:54px; text-align:right; font-family:var(--mono); color:#dbe4ff;}
+.tag{width:120px; font-size:12px; color:var(--muted)}
+.note{border-left:3px solid rgba(141,225,255,.55); padding-left:10px; margin-top:10px;}
+ul{margin:10px 0 0 18px; padding:0}
+li{margin:6px 0; color:var(--text)}
+.small{font-size:12px; color:var(--muted)}
+
+/* thumbnails - 300% */
+.name{display:flex; align-items:center; gap:10px;}
+.thumb{width:132px; height:183px; border-radius:8px; border:1px solid var(--line); background:rgba(255,255,255,.04); object-fit:cover; flex:0 0 auto; cursor:zoom-in;}
+
+/* top nav */
+.topnav{display:flex; gap:12px; flex-wrap:wrap; margin-top:10px;}
+.topnav a{display:inline-block; padding:6px 10px; border:1px solid var(--line); border-radius:999px; text-decoration:none; background:rgba(255,255,255,.04); color:var(--accent); font-size:13px;}
 `;
 
 await fs.mkdir(OUT_DIR, {recursive:true});
@@ -246,6 +258,11 @@ for(const a of archetypes){
       <div>
         <h1>${title}</h1>
         <div class="sub">樣本來源：PokecaBook 4 篇彙總文章（只統計「優勝」）｜本牌型優勝次數：<b>${det.winnerCount}</b></div>
+        <div class="topnav">
+          <a href="../../">返回首頁</a>
+          <a href="../">返回 Top 6 總覽</a>
+          <a href="../../decks/">牌組列表</a>
+        </div>
         <div class="note small">卡名已對照香港訓練家網站（繁中官方譯名）；滑鼠移到卡名會見到日文原名作對照。</div>
       </div>
       <div class="pill"><span style="font-family:var(--mono)">WINS</span> <span style="color:var(--good);font-family:var(--mono)">${det.winnerCount}</span></div>
@@ -336,6 +353,10 @@ const idxHtml = `<!doctype html>
       <div>
         <h1>近期優勝 Top 6 牌型（樣本：PokecaBook 4 篇）</h1>
         <div class="sub">我已經把 99 副「優勝」牌組統計成 Top 6；每頁有骨架 + 常見 tech 位 + deckID 來源連結。</div>
+        <div class="topnav">
+          <a href="../">返回首頁</a>
+          <a href="../decks/">牌組列表</a>
+        </div>
       </div>
       <div class="pill"><span style="font-family:var(--mono)">DECKS</span> <span style="color:var(--good);font-family:var(--mono)">${data.winnerDeckCount}</span></div>
     </header>
