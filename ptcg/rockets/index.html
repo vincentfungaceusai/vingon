@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="zh-HK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PTCG｜火箭兵團 烏鴉頭頭 + 多邊獸Z（版本2）</title>
+  <style>
+    :root{
+      --bg:#0b1020; --card:#121a33; --muted:#a9b3d1; --text:#eef1ff;
+      --accent:#8de1ff; --line:rgba(255,255,255,.12);
+      --good:#86efac;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+    *{box-sizing:border-box}
+    body{margin:0; background:linear-gradient(180deg,#070a16, var(--bg)); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,"PingFang HK","Noto Sans CJK HK",sans-serif;}
+    a{color:var(--accent)}
+    .wrap{max-width:980px; margin:0 auto; padding:28px 18px 60px;}
+    header{display:flex; gap:14px; align-items:flex-start; justify-content:space-between; flex-wrap:wrap;}
+    h1{margin:0; font-size:22px; letter-spacing:.2px}
+    .sub{margin-top:6px; color:var(--muted); font-size:14px; line-height:1.35}
+    .pill{display:inline-flex; align-items:center; gap:8px; padding:8px 10px; border:1px solid var(--line); background:rgba(255,255,255,.04); border-radius:999px; color:var(--muted); font-size:13px;}
+    .grid{display:grid; gap:14px; grid-template-columns: repeat(12, 1fr); margin-top:18px;}
+    .box{grid-column: span 12; background:rgba(255,255,255,.03); border:1px solid var(--line); border-radius:14px; padding:14px;}
+    @media(min-width:860px){ .box.half{grid-column: span 6;} }
+    h2{margin:0 0 10px; font-size:16px; color:#dce3ff}
+    table{width:100%; border-collapse:collapse; font-size:14px;}
+    th,td{padding:8px 6px; border-bottom:1px solid var(--line); vertical-align:top;}
+    th{color:var(--muted); font-weight:600; text-align:left; font-size:12px; letter-spacing:.4px; text-transform:uppercase;}
+    td.count{width:54px; text-align:right; font-family:var(--mono); color:#dbe4ff;}
+    td.tag{width:120px; font-size:12px; color:var(--muted)}
+    .mono{font-family:var(--mono)}
+    .totals{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; color:var(--muted); font-size:13px;}
+    .ok{color:var(--good); font-family:var(--mono)}
+    footer{margin-top:22px; color:var(--muted); font-size:12px; line-height:1.5}
+    .note{border-left:3px solid rgba(141,225,255,.55); padding-left:10px; margin-top:10px;}
+    ol,ul{margin:10px 0 0 18px; padding:0}
+    li{margin:6px 0; color:var(--text)}
+
+    /* top nav */
+    .topnav{display:flex; gap:10px; flex-wrap:wrap; margin:10px 0 0;}
+    .topnav a{display:inline-block; padding:6px 10px; border:1px solid var(--line); border-radius:999px; text-decoration:none; background:rgba(255,255,255,.04); color:var(--accent); font-size:13px;}
+
+    /* deck list image (simple placeholder hooks) */
+    .deckshot{margin-top:14px; padding:14px; border:1px solid var(--line); background:rgba(255,255,255,.03); border-radius:14px;}
+    .deckshot h2{margin:0 0 10px; font-size:16px; color:#dce3ff}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>火箭兵團 烏鴉頭頭 + 多邊獸Z（版本2）</h1>
+        <div class="sub">
+          Standard（港版取向）｜重點：<span class="mono">寶可夢齒輪3.0 ×2</span> + <span class="mono">高級球 ×1</span>｜能量：<span class="mono">點火能量 ×3</span>
+          <div class="note">（Page moved）你而家喺 /ptcg/rockets/。首頁 /ptcg/ 係牌組列表。</div>
+        </div>
+        <div class="topnav">
+          <a href="../decks/">返回牌組列表</a>
+          <a href="../recent/">近期優勝 Top 6</a>
+        </div>
+      </div>
+      <div class="pill"><span class="mono">Deck</span> <span class="ok">60</span></div>
+    </header>
+
+    <section class="grid" aria-label="Deck list">
+      <div class="box half">
+        <h2>寶可夢（14）</h2>
+        <table>
+          <thead>
+            <tr><th>卡名</th><th class="tag">屬性/進化</th><th class="count">數量</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>火箭兵團的烏鴉頭頭ex</td><td class="tag">惡｜ex</td><td class="count">3</td></tr>
+            <tr><td>火箭兵團的烏鴉頭頭</td><td class="tag">惡｜2階</td><td class="count">2</td></tr>
+            <tr><td>火箭兵團的黑暗鴉</td><td class="tag">惡｜基礎</td><td class="count">3</td></tr>
+            <tr><td>多邊獸Z</td><td class="tag">無｜2階</td><td class="count">2</td></tr>
+            <tr><td>多邊獸2</td><td class="tag">無｜1階</td><td class="count">2</td></tr>
+            <tr><td>多邊獸</td><td class="tag">無｜基礎</td><td class="count">2</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="box half">
+        <h2>物品（15）</h2>
+        <table>
+          <thead>
+            <tr><th>卡名</th><th class="tag">卡種</th><th class="count">數量</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>火箭兵團的接收器</td><td class="tag">物品</td><td class="count">4</td></tr>
+            <tr><td>寶可夢平板（PokéPad）</td><td class="tag">物品</td><td class="count">4</td></tr>
+            <tr><td>夜之擔架</td><td class="tag">物品</td><td class="count">2</td></tr>
+            <tr><td>道具拆除器</td><td class="tag">物品</td><td class="count">1</td></tr>
+            <tr><td>寶可夢齒輪3.0</td><td class="tag">物品</td><td class="count">2</td></tr>
+            <tr><td>奇蹟收入（ACE SPEC）</td><td class="tag">物品｜ACE SPEC</td><td class="count">1</td></tr>
+            <tr><td>高級球</td><td class="tag">物品</td><td class="count">1</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="box half">
+        <h2>支援者（20）</h2>
+        <table>
+          <thead>
+            <tr><th>卡名</th><th class="tag">卡種</th><th class="count">數量</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>火箭兵團的雅典娜</td><td class="tag">支援者</td><td class="count">4</td></tr>
+            <tr><td>火箭兵團的阿波羅</td><td class="tag">支援者</td><td class="count">4</td></tr>
+            <tr><td>火箭兵團的蘭斯</td><td class="tag">支援者</td><td class="count">4</td></tr>
+            <tr><td>火箭兵團的拉姆達</td><td class="tag">支援者</td><td class="count">4</td></tr>
+            <tr><td>火箭兵團的坂木</td><td class="tag">支援者</td><td class="count">4</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="box half">
+        <h2>場地（1）＋能量（10）</h2>
+        <table>
+          <thead>
+            <tr><th>卡名</th><th class="tag">卡種</th><th class="count">數量</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>火箭兵團的基地</td><td class="tag">場地</td><td class="count">1</td></tr>
+            <tr><td>基本惡能量</td><td class="tag">能量</td><td class="count">7</td></tr>
+            <tr><td>點火能量</td><td class="tag">特殊能量</td><td class="count">3</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer>
+      <div>備註：呢頁係把原本放喺 /ptcg/ 嘅火箭隊牌組移到 /ptcg/rockets/，方便 /ptcg/ 做「牌組列表首頁」。</div>
+    </footer>
+  </div>
+</body>
+</html>
