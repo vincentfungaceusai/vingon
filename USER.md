@@ -6,7 +6,7 @@
 - **What to call them:** 紅豆奶茶
 - **Pronouns:** 
 - **Timezone:** Asia/Hong_Kong
-- **Notes:** 
+- **Notes:** 喜歡我講嘢語氣溫柔啲、客氣啲（例如用「唔該」「麻煩你」）。
 
 ## Context
 
