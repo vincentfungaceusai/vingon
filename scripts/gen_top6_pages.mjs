@@ -17,9 +17,15 @@ function hkName(jpName){
   const v = hkMapRaw?.[jpName]?.hkName;
   return v ? unescapeAngle(v) : jpName;
 }
-function hkImg(jpName){
-  // Hard override: user specified this exact Shaymin art (SV9a 006/063)
+function hkImgFor(archetype, jpName){
+  // Hard overrides (user-specified exact Traditional Chinese card art)
   if (jpName === 'シェイミ') return '../../assets/cards/shaymin_sv9a_006_063.jpg';
+
+  // Marnie archetype: use this exact Froslass art (sv6F 035/101)
+  if (archetype === 'マシマシラ/マリィのベロバー' && jpName === 'ユキメノコ') {
+    return '../../assets/cards/froslass_sv6f_035_101.jpg';
+  }
+
   return hkMapRaw?.[jpName]?.hkImgUrl ?? null;
 }
 
@@ -151,13 +157,13 @@ function esc(s=''){
   return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
 
-function cardRowsHtml(rows, cardImgById, bestCardIdByName = {}){
+function cardRowsHtml(archetype, rows, cardImgById, bestCardIdByName = {}){
   return rows.map(r=>{
     const jp = (r.name||'').trim();
     const zh = hkName(jp);
     const cardID = bestCardIdByName[jp];
     const jpImg = (cardID ? cardImgById[cardID] : '') || '';
-    const hkImgUrl = hkImg(jp) || '';
+    const hkImgUrl = hkImgFor(archetype, jp) || '';
     const img = (IMG_MODE === 'hk' ? (hkImgUrl || jpImg) : (jpImg || hkImgUrl));
     const sec = SECTION_ZH[r.section] || r.section || '';
     return `<tr>
@@ -185,13 +191,13 @@ function groupSkeleton(rows){
   return out;
 }
 
-function deckGridHtml(rows, cardImgById, bestCardIdByName = {}){
+function deckGridHtml(archetype, rows, cardImgById, bestCardIdByName = {}){
   return rows.map(r=>{
     const jp = (r.name||'').trim();
     const zh = hkName(jp);
     const cardID = bestCardIdByName[jp];
     const jpImg = (cardID ? cardImgById[cardID] : '') || '';
-    const hkImgUrl = hkImg(jp) || '';
+    const hkImgUrl = hkImgFor(archetype, jp) || '';
     const img = (IMG_MODE === 'hk' ? (hkImgUrl || jpImg) : (jpImg || hkImgUrl));
     if(!img) return '';
     return `<a class="deckcard" href="${esc(img)}" target="_blank" rel="noreferrer" title="${esc(zh)}｜JP：${esc(jp)}">
@@ -351,7 +357,7 @@ for(const a of archetypes){
 
   // representative thumbnail for the Top6 index: MUST match the archetype headliner
   const coverJp = ARCHETYPE_COVER[a];
-  const thumbUrl = coverJp ? (hkImg(coverJp) || '') : '';
+  const thumbUrl = coverJp ? (hkImgFor(a, coverJp) || '') : '';
 
   links.push({a, title, slug, winnerCount: det.winnerCount, thumbUrl});
 
@@ -360,10 +366,10 @@ for(const a of archetypes){
 
   const bestIds = bestCardIdByArchetype[a] || {};
 
-  const skeletonPokemonRows = cardRowsHtml(grouped.pokemon, cardImgById, bestIds);
-  const skeletonItemsRows = cardRowsHtml(grouped.items, cardImgById, bestIds);
-  const skeletonSupporterRows = cardRowsHtml(grouped.supporters, cardImgById, bestIds);
-  const skeletonStadiumEnergyRows = cardRowsHtml(grouped.stadiumEnergy, cardImgById, bestIds);
+  const skeletonPokemonRows = cardRowsHtml(a, grouped.pokemon, cardImgById, bestIds);
+  const skeletonItemsRows = cardRowsHtml(a, grouped.items, cardImgById, bestIds);
+  const skeletonSupporterRows = cardRowsHtml(a, grouped.supporters, cardImgById, bestIds);
+  const skeletonStadiumEnergyRows = cardRowsHtml(a, grouped.stadiumEnergy, cardImgById, bestIds);
 
   const pokemonTotal = sumCounts(grouped.pokemon);
   const itemsTotal = sumCounts(grouped.items);
@@ -371,8 +377,8 @@ for(const a of archetypes){
   const stadiumEnergyTotal = sumCounts(grouped.stadiumEnergy);
   const skeletonTotal = pokemonTotal + itemsTotal + supporterTotal + stadiumEnergyTotal;
 
-  const techRows = cardRowsHtml(det.commonTechs||[], cardImgById, bestIds);
-  const deckGrid = deckGridHtml(skeleton, cardImgById, bestIds);
+  const techRows = cardRowsHtml(a, det.commonTechs||[], cardImgById, bestIds);
+  const deckGrid = deckGridHtml(a, skeleton, cardImgById, bestIds);
 
   const guide = GUIDES[a];
   const flowLis = (guide?.flow||[]).map(x=>`<li>${x}</li>`).join('\n');
@@ -548,7 +554,7 @@ for(const a of archetypes){
 const listCards = links.map(x=>{
   const coverJp = ARCHETYPE_COVER[x.a];
   const coverZh = coverJp ? hkName(coverJp) : x.title;
-  const coverImg = coverJp ? (x.thumbUrl || hkImg(coverJp)) : (x.thumbUrl || null);
+  const coverImg = coverJp ? (x.thumbUrl || hkImgFor(x.a, coverJp)) : (x.thumbUrl || null);
 
   const img = coverImg
     ? `<img class="cover" loading="lazy" alt="${esc(coverZh)}" src="${esc(coverImg)}" />`
