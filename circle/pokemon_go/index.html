@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Circle｜目錄</title>
+  <title>Pokémon GO｜目錄</title>
   <style>
     :root{--bg:#0b1020;--text:#eef1ff;--muted:#a9b3d1;--accent:#8de1ff;--line:rgba(255,255,255,.12);--good:#86efac;--mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;}
     *{box-sizing:border-box}
@@ -13,12 +13,12 @@
     header{display:flex;gap:14px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;}
     h1{margin:0;font-size:22px;letter-spacing:.2px}
     .sub{margin-top:6px;color:var(--muted);font-size:14px;line-height:1.5}
+    .topnav{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px}
+    .topnav a{display:inline-block;padding:6px 10px;border:1px solid var(--line);border-radius:999px;text-decoration:none;background:rgba(255,255,255,.04);color:var(--accent);font-size:13px;}
     .grid{display:grid;gap:14px;grid-template-columns:repeat(12,1fr);margin-top:18px;}
     .card{grid-column:span 12;display:block;text-decoration:none;background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:14px;padding:14px;}
     .t{font-weight:800;color:var(--text)}
     .s{margin-top:6px;color:var(--muted);font-size:13px;line-height:1.5}
-    .pill{display:inline-flex;align-items:center;gap:8px;padding:7px 10px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.04);color:var(--muted);font-size:12px;}
-    .ok{color:var(--good);font-family:var(--mono)}
     footer{margin-top:22px;color:var(--muted);font-size:12px;line-height:1.5}
   </style>
 </head>
@@ -26,36 +26,23 @@
   <div class="wrap">
     <header>
       <div>
-        <h1>Circle 目錄</h1>
-        <div class="sub">你而家喺 <span class="pill"><span class="mono">/circle/</span></span>。以下係已整理嘅頁面入口。</div>
+        <h1>Pokémon GO 目錄</h1>
+        <div class="sub">活動整理同時間表入口。</div>
+        <div class="topnav">
+          <a href="../">返回 Circle 目錄</a>
+        </div>
       </div>
-      <div class="pill"><span class="mono">UPDATED</span> <span class="ok">2026-02-14</span></div>
     </header>
 
     <section class="grid" aria-label="Directory">
-      <a class="card" href="./kei/">
-        <div class="t">育兒資料（目錄）</div>
-        <div class="s">趴趴追蹤表（內置計時器）等</div>
-      </a>
-
-      <a class="card" href="./pokemon_go/schedule/">
-        <div class="t">Pokémon GO 活動行事曆（3 個月）</div>
-        <div class="s">以行事曆方式整理：大型活動 + Spotlight Hour / Raid Hour</div>
-      </a>
-
-      <a class="card" href="./mock/">
-        <div class="t">Circle UI Mock（原本 UI）</div>
-        <div class="s">保留舊版 mock 介面（如你要再改做真目錄/真內容頁再講）</div>
-      </a>
-
-      <a class="card" href="../ptcg/">
-        <div class="t">PTCG 牌組站</div>
-        <div class="s">火箭隊／胡地／近期優勝 Top6</div>
+      <a class="card" href="./schedule/">
+        <div class="t">未來 3 個月活動行事曆</div>
+        <div class="s">大型活動 + 聚焦時刻（Spotlight Hour）/ 團體戰晚會（Raid Hour）</div>
       </a>
     </section>
 
     <footer>
-      <div>備註：如果你之後想加「幼稚園 Open Day / 校巴 / 學費」欄位，我可以再擴充呢個 PN 頁面。</div>
+      <div>備註：我會按官方公告更新；未公布嘅星期會顯示「待公布」。</div>
     </footer>
   </div>
 </body>
