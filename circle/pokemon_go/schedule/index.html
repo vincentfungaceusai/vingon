@@ -100,7 +100,7 @@
         <div class="note sub">
           參考 pogocalendar.com 風格：用「行事曆 + 篩選 + Timeline」睇未來活動。
           資料來源以官方為主；另外我會用 LeekDuck（資訊站）補齊 Spotlight Hour / Raid Hour 之類每週活動嘅「當週寶可夢」。
-          未公布嘅星期會顯示「待公布」，避免寫錯。
+          未公布（未有具體活動/主角資料）嘅項目我會直接唔顯示，避免干擾。
         </div>
       </div>
       <div class="pill"><span class="mono">WEEK OF</span> <span class="ok" id="updated">—</span></div>
@@ -186,34 +186,10 @@
     {kind:'max', title:'極巨化：超極巨化喵喵 Max Battle Day', when:'14:00–17:00', start:'2026-02-15', end:'2026-02-15', url:'https://leekduck.com/events/gigantamax-meowth-max-battle-day-2026/'},
 
     {kind:'season', title:'新賽季/Season：Precious Paths', when:'3/3 10:00 開始', start:'2026-03-03', end:'2026-03-03', url:'https://leekduck.com/events/'},
-    {kind:'community', title:'3 月社群日（官方未公布主角）', when:'14:00–17:00', start:'2026-03-14', end:'2026-03-14', url:'https://leekduck.com/events/'},
-    {kind:'research', title:'調查日（官方未公布主角）', when:'14:00–17:00', start:'2026-03-21', end:'2026-03-21', url:'https://leekduck.com/events/'},
-    {kind:'max', title:'Max Battle Day（官方未公布主角）', when:'14:00–17:00', start:'2026-03-28', end:'2026-03-28', url:'https://leekduck.com/events/'},
-
-    {kind:'raidday', title:'團體戰日（官方未公布主角）', when:'14:00–17:00', start:'2026-04-04', end:'2026-04-04', url:'https://leekduck.com/events/'},
-    {kind:'community', title:'4 月社群日（官方未公布主角）', when:'14:00–17:00', start:'2026-04-11', end:'2026-04-11', url:'https://leekduck.com/events/'},
-    {kind:'hatch', title:'孵化日（官方未公布主角）', when:'14:00–17:00', start:'2026-04-18', end:'2026-04-18', url:'https://leekduck.com/events/'},
-    {kind:'max', title:'Max Battle Day（官方未公布主角）', when:'14:00–17:00', start:'2026-04-25', end:'2026-04-25', url:'https://leekduck.com/events/'},
-
-    {kind:'raidday', title:'Shadow Raid Day（官方未公布主角）', when:'14:00–17:00', start:'2026-05-02', end:'2026-05-02', url:'https://leekduck.com/events/'},
-    {kind:'community', title:'5 月社群日（官方未公布主角）', when:'14:00–17:00', start:'2026-05-09', end:'2026-05-09', url:'https://leekduck.com/events/'},
-    {kind:'community', title:'5 月社群日 Classic（官方未公布主角）', when:'14:00–17:00', start:'2026-05-16', end:'2026-05-16', url:'https://leekduck.com/events/'},
-    {kind:'raidday', title:'團體戰日（官方未公布主角）', when:'14:00–17:00', start:'2026-05-23', end:'2026-05-23', url:'https://leekduck.com/events/'},
   ];
 
-  // Weekly recurring (typical; may change)
-  function addWeeklyRecurring(startDate, weeks){
-    const out=[];
-    const s = startOfWeekSun(startDate);
-    for(let w=0; w<weeks; w++){
-      const weekStart = new Date(s.getTime() + w*7*MS); // Sunday
-      const tue = new Date(weekStart.getTime() + 2*MS);
-      const wed = new Date(weekStart.getTime() + 3*MS);
-      out.push({kind:'spot', title:'聚焦時刻（待公布）', when:'18:00–19:00', start:fmtISO(tue), end:fmtISO(tue), url:'https://pokemongo.com/events'});
-      out.push({kind:'raid', title:'團體戰晚會（待公布）', when:'18:00–19:00', start:fmtISO(wed), end:fmtISO(wed), url:'https://pokemongo.com/events'});
-    }
-    return out;
-  }
+  // Weekly recurring (typical): we do NOT show unannounced weeks.
+  // When bosses are confirmed, add them to WEEKLY_OVERRIDES.
 
   // Confirmed weekly bosses (source: LeekDuck Events list)
   const WEEKLY_OVERRIDES = [
@@ -230,8 +206,7 @@
   const weeks = 5; // ~1 month (5 weeks view)
   const rangeEnd = new Date(rangeStart.getTime() + (weeks*7-1)*MS);
 
-  const recurring = addWeeklyRecurring(viewBase, weeks);
-  const allEvents = [...EVENTS, ...recurring, ...WEEKLY_OVERRIDES];
+  const allEvents = [...EVENTS, ...WEEKLY_OVERRIDES];
 
   // filters (localStorage)
   function loadFilters(){
