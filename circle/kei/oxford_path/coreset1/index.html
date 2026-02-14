@@ -12,6 +12,7 @@
     .wrap{max-width:980px;margin:0 auto;padding:28px 18px 70px;}
     header{display:flex;gap:14px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;}
     h1{margin:0;font-size:22px;letter-spacing:.2px}
+    h2{margin:18px 0 10px;font-size:15px;letter-spacing:.2px}
     .sub{margin-top:6px;color:var(--muted);font-size:14px;line-height:1.55}
     .topnav{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px}
     .topnav a{display:inline-block;padding:6px 10px;border:1px solid var(--line);border-radius:999px;text-decoration:none;background:rgba(255,255,255,.04);color:var(--accent);font-size:13px;}
@@ -21,6 +22,8 @@
     .box{margin-top:12px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.03);padding:14px;}
     .viewer{margin-top:12px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:rgba(255,255,255,.03)}
     iframe{width:100%;height:75vh;border:0}
+    ul{margin:8px 0 0 18px;color:var(--muted);line-height:1.6}
+    li{margin:4px 0}
     .hint{margin-top:8px;color:var(--muted);font-size:12px;line-height:1.5}
   </style>
 </head>
@@ -28,8 +31,8 @@
   <div class="wrap">
     <header>
       <div>
-        <h1>Core Set 1（教材 PDF）</h1>
-        <div class="sub">呢份 PDF 文字抽取唔完整，我先放 PDF 預覽，方便你快速檢閱。</div>
+        <h1>Core Set 1（教材一覽）</h1>
+        <div class="sub">呢頁會幫你快速檢閱 Core Set 1 呢份 PDF 裡面有咩教材。</div>
         <div class="topnav">
           <a href="../">返回 Oxford Path 目錄</a>
           <a href="../assets/pdfs/coreset1.pdf" target="_blank" rel="noreferrer">下載/開啟 PDF</a>
@@ -39,20 +42,19 @@
     </header>
 
     <div class="box">
-      <div class="sub">
-        提示：如果你想我將呢份 PDF 內容變成「教材清單」文字版，我需要你：
-        <ul>
-          <li>直接打出（或貼出）PDF 入面嘅清單文字，或者</li>
-          <li>將 PDF 每頁轉成清晰圖片再發畀我（我就可以逐項幫你抄出嚟）</li>
-        </ul>
-      </div>
+      <h2>教材清單</h2>
+      <div class="sub">（由 PDF 文字抽取；呢份 PDF 文字好少，所以暫時只抽到標題。）</div>
+      <ul>
+        <li><strong>Core Set Box</strong>（Core Set Box）</li>
+      </ul>
+      <div class="hint">你想我整理得更細（逐項列出有咩書/卡/配件），我可以按 PDF 內容再幫你手動逐頁整理。</div>
     </div>
 
     <div class="viewer" aria-label="PDF preview">
       <iframe src="../assets/pdfs/coreset1.pdf#view=FitH" title="Core Set 1 PDF"></iframe>
     </div>
 
-    <div class="hint">手機上如果 iframe 預覽唔穩定，可以用上面「下載/開啟 PDF」。</div>
+    <div class="hint">提示：手機上如果 iframe 預覽唔穩定，可以用上面「下載/開啟 PDF」。</div>
   </div>
 </body>
 </html>
