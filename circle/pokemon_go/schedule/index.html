@@ -91,7 +91,7 @@
       <div>
         <h1>Pokémon GO｜未來 3 個月活動行事曆</h1>
         <div class="sub">（繁中顯示）</div>
-        <div class="sub">時間區：<span class="mono">Asia/Hong_Kong</span>｜顯示範圍：由今日起計 12 週（約 3 個月）。</div>
+        <div class="sub">時間區：<span class="mono">Asia/Hong_Kong</span>｜顯示範圍：未來約 1 個月（5 週）。</div>
         <div class="topnav">
           <a href="../../">返回 Circle 目錄</a>
           <a href="https://pokemongo.com/events" target="_blank" rel="noreferrer">官方 Events</a>
@@ -103,7 +103,7 @@
           未公布嘅星期會顯示「待公布」，避免寫錯。
         </div>
       </div>
-      <div class="pill"><span class="mono">UPDATED</span> <span class="ok" id="updated">—</span></div>
+      <div class="pill"><span class="mono">WEEK OF</span> <span class="ok" id="updated">—</span></div>
     </header>
 
     <div class="legend" aria-label="Legend">
@@ -223,12 +223,14 @@
     {kind:'raid', title:'團體戰晚會：露奈雅拉（Lunala）', when:'18:00–19:00', start:'2026-02-25', end:'2026-02-25', url:'https://leekduck.com/events/raidhour20260225/'},
   ];
 
-  const today = startOfDay(new Date());
-  const rangeStart = startOfWeekSun(today);
-  const weeks = 12;
+  // View is anchored to the start of this week (Sunday) so the page only changes once per week.
+  const now = startOfDay(new Date());
+  const viewBase = startOfWeekSun(now);
+  const rangeStart = viewBase;
+  const weeks = 5; // ~1 month (5 weeks view)
   const rangeEnd = new Date(rangeStart.getTime() + (weeks*7-1)*MS);
 
-  const recurring = addWeeklyRecurring(today, weeks);
+  const recurring = addWeeklyRecurring(viewBase, weeks);
   const allEvents = [...EVENTS, ...recurring, ...WEEKLY_OVERRIDES];
 
   // filters (localStorage)
@@ -343,7 +345,7 @@
         evt,
         t: new Date(evt.start+'T00:00:00').getTime(),
       }))
-      .filter(x=>x.t >= today.getTime() - 1*MS)
+      .filter(x=>x.t >= viewBase.getTime())
       .sort((a,b)=>a.t-b.t)
       .slice(0,60);
 
@@ -363,7 +365,7 @@
   renderFilters();
   renderAll();
 
-  document.getElementById('updated').textContent = fmtISO(new Date());
+  document.getElementById('updated').textContent = fmtISO(viewBase);
 })();
 </script>
 </body>
