@@ -18,6 +18,8 @@ function hkName(jpName){
   return v ? unescapeAngle(v) : jpName;
 }
 function hkImg(jpName){
+  // Hard override: user specified this exact Shaymin art (SV9a 006/063)
+  if (jpName === 'シェイミ') return '../../assets/cards/shaymin_sv9a_006_063.jpg';
   return hkMapRaw?.[jpName]?.hkImgUrl ?? null;
 }
 
