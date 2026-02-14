@@ -9,7 +9,7 @@
     *{box-sizing:border-box}
     body{margin:0;background:linear-gradient(180deg,#070a16,var(--bg));color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,"PingFang HK","Noto Sans CJK HK",sans-serif;}
     a{color:var(--accent)}
-    .wrap{max-width:1100px;margin:0 auto;padding:22px 14px 60px;}
+    .wrap{max-width:1160px;margin:0 auto;padding:22px 14px 70px;}
     header{display:flex;gap:14px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;}
     h1{margin:0;font-size:20px;letter-spacing:.2px}
     .sub{margin-top:6px;color:var(--muted);font-size:13px;line-height:1.55}
@@ -21,16 +21,23 @@
 
     .note{border-left:3px solid rgba(141,225,255,.55);padding-left:10px;margin-top:10px;}
 
-    /* calendar */
-    .cal{margin-top:14px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:rgba(255,255,255,.03)}
-    .calhead{display:grid;grid-template-columns:repeat(7,1fr);background:rgba(255,255,255,.04);border-bottom:1px solid var(--line)}
-    .calhead div{padding:10px 10px;font-size:12px;color:var(--muted);font-weight:800;letter-spacing:.4px;text-transform:uppercase}
+    /* controls */
+    .panel{margin-top:12px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.03);padding:12px;}
+    .panel h2{margin:0 0 8px;font-size:13px;letter-spacing:.2px;color:#dbe4ff}
+    .filters{display:flex;gap:10px;flex-wrap:wrap}
+    label.f{display:flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.14);border-radius:999px;padding:6px 10px;background:rgba(255,255,255,.03);color:var(--muted);font-size:12px;cursor:pointer;user-select:none}
+    label.f input{accent-color:#8de1ff}
 
-    .weeks{display:grid;grid-template-columns:1fr;}
-    .week{display:grid;grid-template-columns:repeat(7,1fr);min-height:150px;border-bottom:1px solid var(--line)}
+    /* calendar */
+    .cal{margin-top:12px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.03);overflow-x:auto}
+    .calhead{display:grid;grid-template-columns:repeat(7,1fr);background:rgba(255,255,255,.04);border-bottom:1px solid var(--line)}
+    .calhead div{padding:10px 10px;font-size:12px;color:var(--muted);font-weight:800;letter-spacing:.4px}
+
+    .weeks{display:grid;grid-template-columns:1fr;min-width:980px}
+    .week{display:grid;grid-template-columns:repeat(7,1fr);min-height:160px;border-bottom:1px solid var(--line)}
     .week:last-child{border-bottom:0}
 
-    .day{padding:8px 8px 10px;min-height:150px;border-right:1px solid var(--line);position:relative}
+    .day{padding:8px 8px 12px;min-height:160px;border-right:1px solid var(--line);position:relative}
     .day:last-child{border-right:0}
     .dtop{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
     .dnum{font-family:var(--mono);font-weight:900;font-size:12px;color:#dbe4ff}
@@ -40,22 +47,41 @@
     .evt{border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:6px 8px;background:rgba(255,255,255,.04);font-size:12px;line-height:1.25}
     .evt b{font-weight:900}
     .evt .t{color:var(--muted);font-size:11px;margin-top:2px}
+
     .evt.tour{border-color:rgba(141,225,255,.35)}
     .evt.raid{border-color:rgba(134,239,172,.35)}
     .evt.spot{border-color:rgba(251,191,36,.35)}
+    .evt.community{border-color:rgba(244,114,182,.35)}
+    .evt.research{border-color:rgba(167,139,250,.35)}
+    .evt.max{border-color:rgba(45,212,191,.35)}
+    .evt.raidday{border-color:rgba(251,113,133,.35)}
+    .evt.hatch{border-color:rgba(96,165,250,.35)}
+    .evt.season{border-color:rgba(163,230,53,.35)}
+    .evt.event{border-color:rgba(148,163,184,.35)}
 
     .legend{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
     .lg{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted)}
-    .dot{width:10px;height:10px;border-radius:999px;background:#fff;opacity:.8}
+    .dot{width:10px;height:10px;border-radius:999px;opacity:.9}
     .dot.tour{background:#8de1ff}
     .dot.raid{background:#86efac}
     .dot.spot{background:#fbbf24}
+    .dot.community{background:#f472b6}
+    .dot.research{background:#a78bfa}
+    .dot.max{background:#2dd4bf}
+    .dot.raidday{background:#fb7185}
+    .dot.hatch{background:#60a5fa}
 
-    /* Keep 7-day (Mon–Sun) layout always. On small screens, allow horizontal scroll. */
-    .cal{overflow-x:auto}
-    .weeks{min-width:980px}
+    /* timeline */
+    .timeline{margin-top:12px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.03);padding:12px;}
+    .timeline h2{margin:0 0 8px;font-size:13px;letter-spacing:.2px;color:#dbe4ff}
+    .tl{display:grid;grid-template-columns:1fr;gap:8px}
+    .row{display:flex;gap:10px;align-items:flex-start;justify-content:space-between;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:8px 10px;background:rgba(255,255,255,.03)}
+    .row .l{display:flex;flex-direction:column;gap:2px}
+    .row .r{color:var(--muted);font-family:var(--mono);font-size:12px;white-space:nowrap}
+
     @media(max-width:880px){
-      .day{min-height:140px}
+      .day{min-height:150px}
+      .wrap{padding-bottom:90px}
     }
   </style>
 </head>
@@ -69,11 +95,12 @@
         <div class="topnav">
           <a href="../../">返回 Circle 目錄</a>
           <a href="https://pokemongo.com/events" target="_blank" rel="noreferrer">官方 Events</a>
+          <a href="https://pogocalendar.com/" target="_blank" rel="noreferrer">參考：pogocalendar.com</a>
         </div>
         <div class="note sub">
-          我而家先放入「官方 Events 頁面已列出」嘅大型活動。
-          Spotlight Hour / Raid Hour 會先用「通常」時間顯示；一旦有官方/可靠來源公布當週寶可夢，我就會加返去（例如 Horsea/ Solgaleo 等）。
-          其他例如社群日/團體戰日/限時調查等，如果官方未公布，我會先留白。
+          參考 pogocalendar.com 風格：用「行事曆 + 篩選 + Timeline」睇未來活動。
+          資料來源以官方為主；另外我會用 LeekDuck（資訊站）補齊 Spotlight Hour / Raid Hour 之類每週活動嘅「當週寶可夢」。
+          未公布嘅星期會顯示「待公布」，避免寫錯。
         </div>
       </div>
       <div class="pill"><span class="mono">UPDATED</span> <span class="ok" id="updated">—</span></div>
@@ -81,8 +108,18 @@
 
     <div class="legend" aria-label="Legend">
       <div class="lg"><span class="dot tour"></span>大型活動</div>
-      <div class="lg"><span class="dot raid"></span>團體戰晚會（Raid Hour）</div>
-      <div class="lg"><span class="dot spot"></span>聚焦時刻（Spotlight Hour）</div>
+      <div class="lg"><span class="dot community"></span>社群日</div>
+      <div class="lg"><span class="dot research"></span>調查日</div>
+      <div class="lg"><span class="dot max"></span>極巨化/Max</div>
+      <div class="lg"><span class="dot raidday"></span>團體戰日</div>
+      <div class="lg"><span class="dot hatch"></span>孵化日</div>
+      <div class="lg"><span class="dot spot"></span>聚焦時刻</div>
+      <div class="lg"><span class="dot raid"></span>團體戰晚會</div>
+    </div>
+
+    <div class="panel" aria-label="Filters">
+      <h2>顯示篩選（會自動保存喺你部機）</h2>
+      <div class="filters" id="filters"></div>
     </div>
 
     <div class="cal" aria-label="Schedule calendar">
@@ -92,22 +129,38 @@
       <div id="weeks" class="weeks"></div>
     </div>
 
+    <div class="timeline" aria-label="Timeline">
+      <h2>Timeline（由近到遠）</h2>
+      <div class="tl" id="timeline"></div>
+    </div>
+
     <footer style="margin-top:18px;color:var(--muted);font-size:12px;line-height:1.5">
-      <div>備註：固定活動時間可能因官方調整而變更；以遊戲內公告為準。</div>
+      <div>備註：活動時間可能因官方調整而變更；以遊戲內公告為準。</div>
+      <div>資料來源：<a href="https://pokemongo.com/events" target="_blank" rel="noreferrer">Pokémon GO 官方 Events</a>、<a href="https://leekduck.com/events/" target="_blank" rel="noreferrer">LeekDuck Events</a></div>
     </footer>
   </div>
 
 <script>
 (function(){
-  const TZ = 'Asia/Hong_Kong';
   const MS = 24*60*60*1000;
+  const LS_KEY = 'circle_pogo_schedule_filters_v1';
+
+  const KIND_META = {
+    tour:      {label:'大型活動', class:'tour', default:true},
+    community: {label:'社群日', class:'community', default:true},
+    research:  {label:'調查日', class:'research', default:true},
+    max:       {label:'極巨化/Max', class:'max', default:true},
+    raidday:   {label:'團體戰日', class:'raidday', default:true},
+    hatch:     {label:'孵化日', class:'hatch', default:true},
+    event:     {label:'限時活動', class:'event', default:true},
+    spot:      {label:'聚焦時刻', class:'spot', default:true},
+    raid:      {label:'團體戰晚會', class:'raid', default:true},
+    season:    {label:'季節/賽季', class:'season', default:true},
+  };
 
   function fmtISO(d){
     const p = n=>String(n).padStart(2,'0');
     return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())}`;
-  }
-  function fmtMon(d){
-    return d.toLocaleString('en-US',{month:'short', timeZone: TZ});
   }
   function startOfDay(d){
     return new Date(d.getFullYear(), d.getMonth(), d.getDate());
@@ -117,16 +170,36 @@
     const day = (x.getDay()+6)%7; // Mon=0
     return new Date(x.getTime() - day*MS);
   }
+  function fmtMon(d){
+    const mon = d.toLocaleString('zh-HK',{month:'numeric'});
+    return mon.replace('月','月');
+  }
 
-  // --- Events data (confirmed from https://pokemongo.com/events as of 2026-02-14) ---
+  // --- Events data ---
+  // Large events: confirmed from https://pokemongo.com/events (as of 2026-02-14)
+  // Other events: from LeekDuck Events list (as of 2026-02-14)
   const EVENTS = [
-    {kind:'tour', title:'Pokémon GO Tour: Kalos – Tainan', when:'Feb 20–22', start:'2026-02-20', end:'2026-02-22', url:'https://pokemongo.com/gotour/tainan'},
-    {kind:'tour', title:'Pokémon GO Tour: Kalos – Los Angeles', when:'Feb 20–22', start:'2026-02-20', end:'2026-02-22', url:'https://pokemongo.com/gotour/losangeles'},
-    {kind:'tour', title:'Pokémon GO Tour: Kalos – Global', when:'Feb 28–Mar 1', start:'2026-02-28', end:'2026-03-01', url:'https://pokemongo.com/gotour/global'},
+    {kind:'tour', title:'Pokémon GO Tour：卡洛斯 – 台南', when:'2/20–2/22', start:'2026-02-20', end:'2026-02-22', url:'https://pokemongo.com/gotour/tainan'},
+    {kind:'tour', title:'Pokémon GO Tour：卡洛斯 – 洛杉磯', when:'2/20–2/22', start:'2026-02-20', end:'2026-02-22', url:'https://pokemongo.com/gotour/losangeles'},
+    {kind:'tour', title:'Pokémon GO Tour：卡洛斯 – 全球', when:'2/28–3/1', start:'2026-02-28', end:'2026-03-01', url:'https://pokemongo.com/gotour/global'},
+
+    {kind:'season', title:'新賽季/Season：Precious Paths', when:'3/3 10:00 開始', start:'2026-03-03', end:'2026-03-03', url:'https://leekduck.com/events/'},
+    {kind:'community', title:'3 月社群日（官方未公布主角）', when:'14:00–17:00', start:'2026-03-14', end:'2026-03-14', url:'https://leekduck.com/events/'},
+    {kind:'research', title:'調查日（官方未公布主角）', when:'14:00–17:00', start:'2026-03-21', end:'2026-03-21', url:'https://leekduck.com/events/'},
+    {kind:'max', title:'Max Battle Day（官方未公布主角）', when:'14:00–17:00', start:'2026-03-28', end:'2026-03-28', url:'https://leekduck.com/events/'},
+
+    {kind:'raidday', title:'團體戰日（官方未公布主角）', when:'14:00–17:00', start:'2026-04-04', end:'2026-04-04', url:'https://leekduck.com/events/'},
+    {kind:'community', title:'4 月社群日（官方未公布主角）', when:'14:00–17:00', start:'2026-04-11', end:'2026-04-11', url:'https://leekduck.com/events/'},
+    {kind:'hatch', title:'孵化日（官方未公布主角）', when:'14:00–17:00', start:'2026-04-18', end:'2026-04-18', url:'https://leekduck.com/events/'},
+    {kind:'max', title:'Max Battle Day（官方未公布主角）', when:'14:00–17:00', start:'2026-04-25', end:'2026-04-25', url:'https://leekduck.com/events/'},
+
+    {kind:'raidday', title:'Shadow Raid Day（官方未公布主角）', when:'14:00–17:00', start:'2026-05-02', end:'2026-05-02', url:'https://leekduck.com/events/'},
+    {kind:'community', title:'5 月社群日（官方未公布主角）', when:'14:00–17:00', start:'2026-05-09', end:'2026-05-09', url:'https://leekduck.com/events/'},
+    {kind:'community', title:'5 月社群日 Classic（官方未公布主角）', when:'14:00–17:00', start:'2026-05-16', end:'2026-05-16', url:'https://leekduck.com/events/'},
+    {kind:'raidday', title:'團體戰日（官方未公布主角）', when:'14:00–17:00', start:'2026-05-23', end:'2026-05-23', url:'https://leekduck.com/events/'},
   ];
 
   // Weekly recurring (typical; may change)
-  // We will override with confirmed bosses when available.
   function addWeeklyRecurring(startDate, weeks){
     const out=[];
     const s = startOfWeekMon(startDate);
@@ -134,28 +207,67 @@
       const weekStart = new Date(s.getTime() + w*7*MS);
       const tue = new Date(weekStart.getTime() + 1*MS);
       const wed = new Date(weekStart.getTime() + 2*MS);
-      out.push({kind:'spot', title:'Spotlight Hour（通常｜待公布）', when:'18:00–19:00', start:fmtISO(tue), end:fmtISO(tue), url:'https://pokemongo.com/events'});
-      out.push({kind:'raid', title:'Raid Hour（通常｜待公布）', when:'18:00–19:00', start:fmtISO(wed), end:fmtISO(wed), url:'https://pokemongo.com/events'});
+      out.push({kind:'spot', title:'聚焦時刻（待公布）', when:'18:00–19:00', start:fmtISO(tue), end:fmtISO(tue), url:'https://pokemongo.com/events'});
+      out.push({kind:'raid', title:'團體戰晚會（待公布）', when:'18:00–19:00', start:fmtISO(wed), end:fmtISO(wed), url:'https://pokemongo.com/events'});
     }
     return out;
   }
 
   // Confirmed weekly bosses (source: LeekDuck Events list)
-  // https://leekduck.com/events/ (as of 2026-02-14)
   const WEEKLY_OVERRIDES = [
-    {kind:'spot', title:'Spotlight Hour：Horsea', when:'18:00–19:00', start:'2026-02-17', end:'2026-02-17', url:'https://leekduck.com/events/pokemonspotlighthour2026-02-17/'},
-    {kind:'raid', title:'Raid Hour：Solgaleo', when:'18:00–19:00', start:'2026-02-18', end:'2026-02-18', url:'https://leekduck.com/events/raidhour20260218/'},
-    {kind:'spot', title:'Spotlight Hour：Totodile', when:'18:00–19:00', start:'2026-02-24', end:'2026-02-24', url:'https://leekduck.com/events/pokemonspotlighthour2026-02-24/'},
-    {kind:'raid', title:'Raid Hour：Lunala', when:'18:00–19:00', start:'2026-02-25', end:'2026-02-25', url:'https://leekduck.com/events/raidhour20260225/'},
+    {kind:'spot', title:'聚焦時刻：墨海馬（Horsea）', when:'18:00–19:00', start:'2026-02-17', end:'2026-02-17', url:'https://leekduck.com/events/pokemonspotlighthour2026-02-17/'},
+    {kind:'raid', title:'團體戰晚會：索爾迦雷歐（Solgaleo）', when:'18:00–19:00', start:'2026-02-18', end:'2026-02-18', url:'https://leekduck.com/events/raidhour20260218/'},
+    {kind:'spot', title:'聚焦時刻：小鋸鱷（Totodile）', when:'18:00–19:00', start:'2026-02-24', end:'2026-02-24', url:'https://leekduck.com/events/pokemonspotlighthour2026-02-24/'},
+    {kind:'raid', title:'團體戰晚會：露奈雅拉（Lunala）', when:'18:00–19:00', start:'2026-02-25', end:'2026-02-25', url:'https://leekduck.com/events/raidhour20260225/'},
   ];
 
-  const today = new Date();
+  const today = startOfDay(new Date());
   const rangeStart = startOfWeekMon(today);
   const weeks = 12;
   const rangeEnd = new Date(rangeStart.getTime() + (weeks*7-1)*MS);
 
   const recurring = addWeeklyRecurring(today, weeks);
   const allEvents = [...EVENTS, ...recurring, ...WEEKLY_OVERRIDES];
+
+  // filters (localStorage)
+  function loadFilters(){
+    try{
+      const raw = localStorage.getItem(LS_KEY);
+      if(!raw) return null;
+      const obj = JSON.parse(raw);
+      if(!obj || typeof obj!=='object') return null;
+      return obj;
+    }catch{ return null; }
+  }
+  function defaultFilters(){
+    const f={};
+    Object.entries(KIND_META).forEach(([k,v])=>{f[k]=!!v.default});
+    return f;
+  }
+  let filters = loadFilters() || defaultFilters();
+  function saveFilters(){
+    localStorage.setItem(LS_KEY, JSON.stringify(filters));
+  }
+
+  function renderFilters(){
+    const el = document.getElementById('filters');
+    el.innerHTML='';
+    Object.entries(KIND_META).forEach(([k,meta])=>{
+      const lab = document.createElement('label');
+      lab.className='f';
+      lab.innerHTML = `<input type="checkbox" ${filters[k]?'checked':''} data-kind="${k}"> <span>${meta.label}</span>`;
+      el.appendChild(lab);
+    });
+    el.addEventListener('change', (e)=>{
+      const t = e.target;
+      if(!(t instanceof HTMLInputElement)) return;
+      const k = t.getAttribute('data-kind');
+      if(!k) return;
+      filters[k] = t.checked;
+      saveFilters();
+      renderAll();
+    }, {once:true});
+  }
 
   // Map date -> events
   const byDate = new Map();
@@ -174,43 +286,82 @@
   }
   allEvents.forEach(addSpan);
 
+  function visible(evt){
+    return !!filters[evt.kind];
+  }
+
   function evtHtml(evt){
-    const cls = evt.kind;
+    const cls = (KIND_META[evt.kind]?.class) || evt.kind;
     const t = evt.when ? `<div class="t">${evt.when}</div>` : '';
     const link = evt.url ? `<a href="${evt.url}" target="_blank" rel="noreferrer" style="text-decoration:none;color:inherit">` : '';
     const end = evt.url ? `</a>` : '';
     return `${link}<div class="evt ${cls}"><b>${evt.title}</b>${t}</div>${end}`;
   }
 
-  const weeksEl = document.getElementById('weeks');
-  for(let w=0; w<weeks; w++){
-    const weekStart = new Date(rangeStart.getTime() + w*7*MS);
-    const weekEl = document.createElement('div');
-    weekEl.className = 'week';
+  function renderCalendar(){
+    const weeksEl = document.getElementById('weeks');
+    weeksEl.innerHTML='';
 
-    for(let i=0; i<7; i++){
-      const d = new Date(weekStart.getTime() + i*MS);
-      const key = fmtISO(d);
-      const evts = (byDate.get(key) || []).slice(0,6);
+    for(let w=0; w<weeks; w++){
+      const weekStart = new Date(rangeStart.getTime() + w*7*MS);
+      const weekEl = document.createElement('div');
+      weekEl.className = 'week';
 
-      const day = document.createElement('div');
-      day.className = 'day';
-      day.innerHTML = `
-        <div class="dtop">
-          <div class="dnum">${d.getDate()}</div>
-          <div class="dmon">${fmtMon(d)}</div>
-        </div>
-        <div class="events">
-          ${evts.map(evtHtml).join('')}
-        </div>
-      `;
-      weekEl.appendChild(day);
+      for(let i=0; i<7; i++){
+        const d = new Date(weekStart.getTime() + i*MS);
+        const key = fmtISO(d);
+        const evts = (byDate.get(key) || []).filter(visible).slice(0,7);
+
+        const day = document.createElement('div');
+        day.className = 'day';
+        day.innerHTML = `
+          <div class="dtop">
+            <div class="dnum">${d.getDate()}</div>
+            <div class="dmon">${fmtMon(d)}</div>
+          </div>
+          <div class="events">${evts.map(evtHtml).join('')}</div>
+        `;
+        weekEl.appendChild(day);
+      }
+
+      weeksEl.appendChild(weekEl);
     }
-
-    weeksEl.appendChild(weekEl);
   }
 
-  document.getElementById('updated').textContent = fmtISO(today);
+  function renderTimeline(){
+    const tl = document.getElementById('timeline');
+    const uniq = new Map();
+    for(const evt of allEvents){
+      const key = `${evt.kind}|${evt.title}|${evt.start}|${evt.end}`;
+      if(!uniq.has(key)) uniq.set(key, evt);
+    }
+    const list = Array.from(uniq.values())
+      .filter(visible)
+      .map(evt=>({
+        evt,
+        t: new Date(evt.start+'T00:00:00').getTime(),
+      }))
+      .filter(x=>x.t >= today.getTime() - 1*MS)
+      .sort((a,b)=>a.t-b.t)
+      .slice(0,60);
+
+    tl.innerHTML = list.map(({evt})=>{
+      const d = evt.start === evt.end ? evt.start : `${evt.start}–${evt.end}`;
+      const linkS = evt.url ? `<a href="${evt.url}" target="_blank" rel="noreferrer" style="text-decoration:none;color:inherit">` : '';
+      const linkE = evt.url ? `</a>` : '';
+      return `${linkS}<div class="row"><div class="l"><div style="font-weight:900">${evt.title}</div><div style="color:var(--muted);font-size:12px">${evt.when||''}</div></div><div class="r">${d}</div></div>${linkE}`;
+    }).join('') || `<div class="sub">（暫時冇資料）</div>`;
+  }
+
+  function renderAll(){
+    renderCalendar();
+    renderTimeline();
+  }
+
+  renderFilters();
+  renderAll();
+
+  document.getElementById('updated').textContent = fmtISO(new Date());
 })();
 </script>
 </body>
