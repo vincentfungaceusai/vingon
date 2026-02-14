@@ -154,11 +154,12 @@ function cardRowsHtml(rows, cardImgById, bestCardIdByName = {}){
     const jp = (r.name||'').trim();
     const zh = hkName(jp);
     const cardID = bestCardIdByName[jp];
-    // IMPORTANT: use cardID-derived image to avoid same-name different art mismatches (e.g., シェイミ)
-    const img = (cardID ? cardImgById[cardID] : '') || hkImg(jp) || '';
+    const jpImg = (cardID ? cardImgById[cardID] : '') || '';
+    const hkImgUrl = hkImg(jp) || '';
+    const img = (IMG_MODE === 'hk' ? (hkImgUrl || jpImg) : (jpImg || hkImgUrl));
     const sec = SECTION_ZH[r.section] || r.section || '';
     return `<tr>
-      <td class="name">${img?`<img class="thumb" src="${esc(img)}" alt="${esc(zh)}" loading="lazy" />`:''}<span class="card-name" title="JP：${esc(jp)}">${esc(zh)}</span></td>
+      <td class="name">${img?`<img class="thumb deck-img" src="${esc(img)}" data-hk="${esc(hkImgUrl)}" data-jp="${esc(jpImg)}" alt="${esc(zh)}" loading="lazy" />`:''}<span class="card-name" title="JP：${esc(jp)}">${esc(zh)}</span></td>
       <td class="tag">${esc(sec)}</td>
       <td class="count">${r.count}</td>
     </tr>`;
@@ -187,15 +188,19 @@ function deckGridHtml(rows, cardImgById, bestCardIdByName = {}){
     const jp = (r.name||'').trim();
     const zh = hkName(jp);
     const cardID = bestCardIdByName[jp];
-    // IMPORTANT: use cardID-derived image to avoid same-name different art mismatches (e.g., シェイミ)
-    const img = (cardID ? cardImgById[cardID] : '') || hkImg(jp) || '';
+    const jpImg = (cardID ? cardImgById[cardID] : '') || '';
+    const hkImgUrl = hkImg(jp) || '';
+    const img = (IMG_MODE === 'hk' ? (hkImgUrl || jpImg) : (jpImg || hkImgUrl));
     if(!img) return '';
     return `<a class="deckcard" href="${esc(img)}" target="_blank" rel="noreferrer" title="${esc(zh)}｜JP：${esc(jp)}">
-      <img src="${esc(img)}" alt="${esc(zh)}" loading="lazy" />
+      <img class="deck-img" src="${esc(img)}" data-hk="${esc(hkImgUrl)}" data-jp="${esc(jpImg)}" alt="${esc(zh)}" loading="lazy" />
       <div class="badge">${r.count}</div>
     </a>`;
   }).filter(Boolean).join('\n');
 }
+
+// Image preference: 'hk' keeps images from HK official site when available; fallback to JP cardID image when missing.
+const IMG_MODE = 'hk';
 
 // Match the existing "Alakazam" page UI (colors, spacing, typography)
 const baseCss = `
@@ -242,9 +247,13 @@ li{margin:6px 0; color:var(--text)}
 .thumb{width:92px; height:128px; border-radius:8px; border:1px solid var(--line); background:rgba(255,255,255,.04); object-fit:cover; flex:0 0 auto; cursor:zoom-in;}
 
 /* top nav */
-.topnav{display:flex; gap:12px; flex-wrap:wrap; margin-top:10px;}
+.topnav{display:flex; gap:12px; flex-wrap:wrap; margin-top:10px; align-items:center;}
 .topnav a{display:inline-block; padding:6px 10px; border:1px solid var(--line); border-radius:999px; text-decoration:none; background:rgba(255,255,255,.04); color:var(--accent); font-size:13px;}
 
+/* image toggle */
+.imgtoggle{margin-left:auto; display:flex; gap:8px; align-items:center; color:var(--muted); font-size:12px;}
+.imgtoggle button{padding:6px 10px; border-radius:999px; border:1px solid var(--line); background:rgba(255,255,255,.04); color:var(--text); cursor:pointer; font-size:12px;}
+.imgtoggle button.active{border-color:rgba(141,225,255,.55); color:var(--accent);}
 /* full deck list image (visual grid) */
 .deckshot{margin-top:14px; padding:14px; border:1px solid var(--line); background:rgba(255,255,255,.03); border-radius:14px;}
 .deckshot h2{margin:0 0 10px; font-size:16px; color:#dce3ff}
@@ -390,6 +399,11 @@ for(const a of archetypes){
           <a href="../../">返回首頁</a>
           <a href="../">返回 Top 6 總覽</a>
           <a href="../../decks/">牌組列表</a>
+          <div class="imgtoggle" aria-label="Image source toggle">
+            <span>圖片：</span>
+            <button type="button" class="active" data-mode="hk">繁中</button>
+            <button type="button" data-mode="jp">日文</button>
+          </div>
         </div>
         <div class="note small">卡名已對照香港訓練家網站（繁中官方譯名）；滑鼠移到卡名會見到日文原名作對照。</div>
       </div>
@@ -498,6 +512,28 @@ for(const a of archetypes){
       document.querySelectorAll('img.thumb').forEach(img => {
         img.addEventListener('click', () => window.open(img.src, '_blank', 'noopener'));
       });
+
+      // toggle between HK (繁中) and JP images when both are available
+      function setImgMode(mode){
+        document.querySelectorAll('.imgtoggle button').forEach(b => b.classList.toggle('active', b.dataset.mode===mode));
+        document.querySelectorAll('img.deck-img').forEach(img => {
+          const hk = img.dataset.hk || '';
+          const jp = img.dataset.jp || '';
+          const next = (mode==='hk' ? (hk||jp) : (jp||hk));
+          if(next) img.src = next;
+        });
+        // update deckcard links too
+        document.querySelectorAll('a.deckcard').forEach(a => {
+          const img = a.querySelector('img.deck-img');
+          if(!img) return;
+          a.href = img.src;
+        });
+      }
+      document.querySelectorAll('.imgtoggle button').forEach(btn => {
+        btn.addEventListener('click', () => setImgMode(btn.dataset.mode));
+      });
+      // default mode follows generator setting
+      setImgMode('${IMG_MODE}');
     </script>
   </div>
 </body>
