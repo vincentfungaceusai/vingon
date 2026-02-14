@@ -160,8 +160,9 @@
     "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018571.png"
   },
   "ノココッチ": {
-    "hkName": "土龍節節ex",
-    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018328.png"
+    "hkName": "土龍節節",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00014578.png",
+    "note": "避免同名出現多個版本（ex/角色冠名），此處固定對應非ex『土龍節節』。"
   },
   "ノコッチ": {
     "hkName": "土龍弟弟",
@@ -248,8 +249,9 @@
     "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018244.png"
   },
   "ユキメノコ": {
-    "hkName": "超級雪妖女ex",
-    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00014617.png"
+    "hkName": "雪妖女",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00007618.png",
+    "note": "避免同名出現多個版本（ex/超級ex），此處固定對應非ex『雪妖女』。"
   },
   "ユキワラシ": {
     "hkName": "雪童子",
