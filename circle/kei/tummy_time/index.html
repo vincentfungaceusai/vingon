@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="zh-HK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>每日趴趴追蹤表｜3 段清醒時間</title>
+  <style>
+    :root{--bg:#0b1020;--text:#eef1ff;--muted:#a9b3d1;--accent:#8de1ff;--line:rgba(255,255,255,.12);--good:#86efac;--bad:#fb7185;--mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;}
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(180deg,#070a16,var(--bg));color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,"PingFang HK","Noto Sans CJK HK",sans-serif;}
+    a{color:var(--accent)}
+    .wrap{max-width:980px;margin:0 auto;padding:28px 18px 60px;}
+    header{display:flex;gap:14px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;}
+    h1{margin:0;font-size:22px;letter-spacing:.2px}
+    .sub{margin-top:6px;color:var(--muted);font-size:14px;line-height:1.5}
+    .topnav{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px}
+    .topnav a{display:inline-block;padding:6px 10px;border:1px solid var(--line);border-radius:999px;text-decoration:none;background:rgba(255,255,255,.04);color:var(--accent);font-size:13px;}
+    .pill{display:inline-flex;align-items:center;gap:8px;padding:7px 10px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.04);color:var(--muted);font-size:12px;}
+    .ok{color:var(--good);font-family:var(--mono)}
+    .mono{font-family:var(--mono)}
+
+    .grid{display:grid;gap:14px;grid-template-columns:repeat(12,1fr);margin-top:18px;}
+    .box{grid-column:span 12;background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:14px;padding:14px;}
+    @media(min-width:860px){.box.half{grid-column:span 6;}}
+
+    h2{margin:0 0 10px;font-size:16px;color:#dce3ff}
+    label{font-size:12px;color:var(--muted)}
+    input[type="date"], input[type="number"], textarea{
+      width:100%; margin-top:6px; padding:10px 10px; border-radius:12px;
+      border:1px solid var(--line); background:rgba(255,255,255,.04); color:var(--text);
+      font:inherit;
+    }
+    textarea{min-height:90px; resize:vertical}
+
+    table{width:100%; border-collapse:collapse; font-size:14px;}
+    th,td{padding:10px 8px; border-bottom:1px solid var(--line); vertical-align:top;}
+    th{color:var(--muted); font-weight:700; text-align:left; font-size:12px; letter-spacing:.4px; text-transform:uppercase;}
+    .rowtitle{font-weight:800}
+
+    .btns{display:flex; gap:10px; flex-wrap:wrap; align-items:center;}
+    button{padding:10px 12px; border-radius:12px; border:1px solid var(--line); background:rgba(255,255,255,.04); color:var(--text); cursor:pointer; font-weight:700;}
+    button.primary{background:#4527A0; border-color:rgba(255,255,255,.18)}
+    button.danger{border-color:rgba(251,113,133,.45); color:#fecdd3}
+
+    .timer{display:flex; gap:10px; flex-wrap:wrap; align-items:center; justify-content:space-between; padding:12px; border:1px solid var(--line); border-radius:14px; background:rgba(255,255,255,.03);}
+    .timer .big{font-family:var(--mono); font-size:22px; font-weight:900; letter-spacing:.5px}
+    .timer .small{font-size:12px; color:var(--muted)}
+
+    .seg{display:flex; gap:8px; flex-wrap:wrap;}
+    .seg button{padding:8px 10px; border-radius:999px; font-size:12px;}
+    .seg button.active{border-color:rgba(141,225,255,.55); color:var(--accent)}
+
+    .hint{border-left:3px solid rgba(141,225,255,.55); padding-left:10px; margin-top:10px; color:var(--muted); font-size:13px; line-height:1.5}
+
+    .done{display:inline-flex; align-items:center; gap:8px; font-size:12px; color:var(--muted)}
+    .done input{width:14px;height:14px;accent-color:#8de1ff}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>每日趴趴追蹤表（3 段清醒時間版）</h1>
+        <div class="sub">內置計時器＋自動保存（只存在你部機瀏覽器）。</div>
+        <div class="topnav">
+          <a href="../">返回育兒目錄</a>
+          <a href="../../">返回 Circle 目錄</a>
+        </div>
+        <div class="hint">使用方法：先揀「第幾段清醒時間」→ 撳 Start 計時 → Stop 會自動加到該段「地墊趴」次數入面；你亦可以手動改秒數。</div>
+      </div>
+      <div class="pill"><span class="mono">AUTO SAVE</span> <span class="ok">ON</span></div>
+    </header>
+
+    <section class="grid" aria-label="inputs">
+      <div class="box half">
+        <h2>日期</h2>
+        <label>選擇日期（每一日獨立保存）
+          <input id="date" type="date" />
+        </label>
+        <div class="sub" style="margin-top:10px">目標（每段累積秒數）：Day 1–2＝120｜Day 3–4＝180｜Day 5–7＝240</div>
+      </div>
+
+      <div class="box half">
+        <h2>計時器</h2>
+        <div class="timer">
+          <div>
+            <div class="big" id="clock">00:00</div>
+            <div class="small" id="clockNote">未開始</div>
+          </div>
+          <div class="btns">
+            <button id="start" class="primary">Start</button>
+            <button id="stop">Stop</button>
+            <button id="reset">Reset</button>
+          </div>
+        </div>
+        <div class="sub" style="margin-top:10px">記錄到：<b id="targetLabel">清醒段 1</b> · 地墊趴 <span class="mono" id="targetSlot">#1</span></div>
+
+        <div class="seg" style="margin-top:10px" aria-label="segment selector">
+          <button class="segBtn active" data-seg="1">清醒段 1</button>
+          <button class="segBtn" data-seg="2">清醒段 2</button>
+          <button class="segBtn" data-seg="3">清醒段 3</button>
+        </div>
+        <div class="seg" style="margin-top:10px" aria-label="slot selector">
+          <button class="slotBtn active" data-slot="1">地墊趴 #1</button>
+          <button class="slotBtn" data-slot="2">地墊趴 #2</button>
+          <button class="slotBtn" data-slot="3">地墊趴 #3</button>
+        </div>
+      </div>
+
+      <div class="box">
+        <h2>今日記錄（秒）</h2>
+        <table>
+          <thead>
+            <tr><th>段落</th><th>胸口趴</th><th>地墊趴 #1</th><th>地墊趴 #2</th><th>地墊趴 #3</th><th>本段累積</th></tr>
+          </thead>
+          <tbody>
+            ${[1,2,3].map(seg=>`
+              <tr data-seg="${seg}">
+                <td class="rowtitle">清醒段 ${seg}</td>
+                <td><input class="sec" data-k="c" data-seg="${seg}" type="number" min="0" step="1" placeholder="0" /></td>
+                <td><input class="sec" data-k="m1" data-seg="${seg}" type="number" min="0" step="1" placeholder="0" /></td>
+                <td><input class="sec" data-k="m2" data-seg="${seg}" type="number" min="0" step="1" placeholder="0" /></td>
+                <td><input class="sec" data-k="m3" data-seg="${seg}" type="number" min="0" step="1" placeholder="0" /></td>
+                <td class="mono" id="sum${seg}">0</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+        <div class="sub" style="margin-top:10px">全日累積：<span class="mono" id="sumAll">0</span> 秒</div>
+      </div>
+
+      <div class="box half">
+        <h2>今日狀態</h2>
+        <div class="done"><input type="checkbox" id="best1" /> 最順：段 1</div><br/>
+        <div class="done"><input type="checkbox" id="best2" /> 最順：段 2</div><br/>
+        <div class="done"><input type="checkbox" id="best3" /> 最順：段 3</div>
+        <div class="sub" style="margin-top:10px">（你亦可以只揀一個）</div>
+      </div>
+
+      <div class="box half">
+        <h2>備註</h2>
+        <label>例如：幾多秒開始皺眉/推地、今日最好用嘅降難度（墊高/手掌頂腳）
+          <textarea id="notes" placeholder="例如：20 秒開始拱背推地；胸口趴 60 秒最順"></textarea>
+        </label>
+      </div>
+
+      <div class="box">
+        <h2>操作</h2>
+        <div class="btns">
+          <button id="copy">複製今日摘要</button>
+          <button id="clearDay" class="danger">清空今日</button>
+        </div>
+        <div class="sub" style="margin-top:10px">提示：清空只會清空「當日」；其他日期唔會受影響。</div>
+      </div>
+    </section>
+
+    <footer style="margin-top:22px;color:var(--muted);font-size:12px;line-height:1.5">
+      <div>版本：v1｜最後更新：2026-02-14</div>
+    </footer>
+  </div>
+
+<script>
+(function(){
+  const KEY = 'kei_tummy_time_v1';
+  const $ = (s) => document.querySelector(s);
+  const $$ = (s) => Array.from(document.querySelectorAll(s));
+
+  // date
+  const dateEl = $('#date');
+  const today = new Date();
+  const pad = n => String(n).padStart(2,'0');
+  const iso = d => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+  dateEl.value = iso(today);
+
+  function loadAll(){
+    try { return JSON.parse(localStorage.getItem(KEY) || '{}'); }
+    catch { return {}; }
+  }
+  function saveAll(all){ localStorage.setItem(KEY, JSON.stringify(all)); }
+  function getDayKey(){ return dateEl.value || iso(new Date()); }
+
+  function blankDay(){
+    return {
+      seg: {
+        '1': {c:0,m1:0,m2:0,m3:0},
+        '2': {c:0,m1:0,m2:0,m3:0},
+        '3': {c:0,m1:0,m2:0,m3:0},
+      },
+      best: {1:false,2:false,3:false},
+      notes: ''
+    };
+  }
+
+  function loadDay(){
+    const all = loadAll();
+    const k = getDayKey();
+    if(!all[k]) all[k] = blankDay();
+    saveAll(all);
+    return all[k];
+  }
+  function saveDay(day){
+    const all = loadAll();
+    all[getDayKey()] = day;
+    saveAll(all);
+  }
+
+  function updateSums(day){
+    let allSum = 0;
+    for(const seg of ['1','2','3']){
+      const s = day.seg[seg];
+      const segSum = (s.c||0)+(s.m1||0)+(s.m2||0)+(s.m3||0);
+      $('#sum'+seg).textContent = String(segSum);
+      allSum += segSum;
+    }
+    $('#sumAll').textContent = String(allSum);
+  }
+
+  function render(){
+    const day = loadDay();
+    $$('.sec').forEach(inp => {
+      const seg = inp.dataset.seg;
+      const k = inp.dataset.k;
+      inp.value = day.seg?.[seg]?.[k] ?? 0;
+    });
+    $('#best1').checked = !!day.best?.[1];
+    $('#best2').checked = !!day.best?.[2];
+    $('#best3').checked = !!day.best?.[3];
+    $('#notes').value = day.notes || '';
+    updateSums(day);
+  }
+
+  function onChange(){
+    const day = loadDay();
+    $$('.sec').forEach(inp => {
+      const seg = inp.dataset.seg;
+      const k = inp.dataset.k;
+      day.seg[seg][k] = Math.max(0, parseInt(inp.value||'0',10) || 0);
+    });
+    day.best[1] = $('#best1').checked;
+    day.best[2] = $('#best2').checked;
+    day.best[3] = $('#best3').checked;
+    day.notes = $('#notes').value || '';
+    saveDay(day);
+    updateSums(day);
+  }
+
+  // wire inputs
+  $$('.sec').forEach(i => i.addEventListener('input', onChange));
+  ['#best1','#best2','#best3','#notes'].forEach(s => $(s).addEventListener('input', onChange));
+  dateEl.addEventListener('change', () => { render(); });
+
+  // timer
+  let running = false;
+  let startMs = 0;
+  let elapsedMs = 0;
+  let raf = null;
+
+  let currentSeg = '1';
+  let currentSlot = 'm1';
+
+  function fmt(ms){
+    const sec = Math.floor(ms/1000);
+    const m = Math.floor(sec/60);
+    const s = sec%60;
+    return `${pad(m)}:${pad(s)}`;
+  }
+
+  function tick(){
+    if(!running) return;
+    const now = Date.now();
+    const ms = elapsedMs + (now - startMs);
+    $('#clock').textContent = fmt(ms);
+    $('#clockNote').textContent = '計時中…';
+    raf = requestAnimationFrame(tick);
+  }
+
+  function setTargetUI(){
+    $('#targetLabel').textContent = `清醒段 ${currentSeg}`;
+    const slotNum = currentSlot==='m1'?1:currentSlot==='m2'?2:3;
+    $('#targetSlot').textContent = '#'+slotNum;
+    $$('.segBtn').forEach(b=>b.classList.toggle('active', b.dataset.seg===currentSeg));
+    $$('.slotBtn').forEach(b=>b.classList.toggle('active', b.dataset.slot===String(slotNum)));
+  }
+
+  $$('.segBtn').forEach(btn=>btn.addEventListener('click', ()=>{
+    currentSeg = btn.dataset.seg;
+    setTargetUI();
+  }));
+  $$('.slotBtn').forEach(btn=>btn.addEventListener('click', ()=>{
+    const n = btn.dataset.slot;
+    currentSlot = n==='1'?'m1':n==='2'?'m2':'m3';
+    setTargetUI();
+  }));
+
+  $('#start').addEventListener('click', ()=>{
+    if(running) return;
+    running = true;
+    startMs = Date.now();
+    $('#clockNote').textContent = '計時中…';
+    raf = requestAnimationFrame(tick);
+  });
+
+  $('#stop').addEventListener('click', ()=>{
+    if(!running) return;
+    running = false;
+    const now = Date.now();
+    elapsedMs += (now - startMs);
+    if(raf) cancelAnimationFrame(raf);
+    $('#clock').textContent = fmt(elapsedMs);
+    $('#clockNote').textContent = '已停止（已寫入秒數）';
+
+    const addSec = Math.max(0, Math.round(elapsedMs/1000));
+    const day = loadDay();
+    day.seg[currentSeg][currentSlot] = (day.seg[currentSeg][currentSlot]||0) + addSec;
+    saveDay(day);
+
+    // update the input UI
+    const inp = document.querySelector(`input.sec[data-seg="${currentSeg}"][data-k="${currentSlot}"]`);
+    if(inp){ inp.value = day.seg[currentSeg][currentSlot]; }
+    updateSums(day);
+
+    // auto reset timer for next run
+    elapsedMs = 0;
+    $('#clock').textContent = '00:00';
+  });
+
+  $('#reset').addEventListener('click', ()=>{
+    running = false;
+    elapsedMs = 0;
+    if(raf) cancelAnimationFrame(raf);
+    $('#clock').textContent = '00:00';
+    $('#clockNote').textContent = '未開始';
+  });
+
+  $('#clearDay').addEventListener('click', ()=>{
+    if(!confirm('確定清空今日資料？')) return;
+    const all = loadAll();
+    all[getDayKey()] = blankDay();
+    saveAll(all);
+    render();
+  });
+
+  $('#copy').addEventListener('click', async ()=>{
+    const day = loadDay();
+    const d = getDayKey();
+    const sums = ['1','2','3'].map(seg=>{
+      const s = day.seg[seg];
+      const segSum = (s.c||0)+(s.m1||0)+(s.m2||0)+(s.m3||0);
+      return `段${seg}：胸口${s.c}s + 地墊${s.m1}s/${s.m2}s/${s.m3}s = ${segSum}s`;
+    }).join('\n');
+    const best = Object.entries(day.best).filter(([k,v])=>v).map(([k])=>k).join(',') || '（未選）';
+    const text = `趴趴記錄 ${d}\n${sums}\n全日：${$('#sumAll').textContent}s\n最順：${best}\n備註：${(day.notes||'').trim()}`;
+    try{ await navigator.clipboard.writeText(text); alert('已複製'); }
+    catch{ prompt('複製以下文字：', text); }
+  });
+
+  // init
+  setTargetUI();
+  render();
+})();
+</script>
+</body>
+</html>

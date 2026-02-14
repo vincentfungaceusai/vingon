@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Circle｜目錄</title>
+  <title>育兒資料｜目錄</title>
   <style>
     :root{--bg:#0b1020;--text:#eef1ff;--muted:#a9b3d1;--accent:#8de1ff;--line:rgba(255,255,255,.12);--good:#86efac;--mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;}
     *{box-sizing:border-box}
@@ -13,6 +13,8 @@
     header{display:flex;gap:14px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;}
     h1{margin:0;font-size:22px;letter-spacing:.2px}
     .sub{margin-top:6px;color:var(--muted);font-size:14px;line-height:1.5}
+    .topnav{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px}
+    .topnav a{display:inline-block;padding:6px 10px;border:1px solid var(--line);border-radius:999px;text-decoration:none;background:rgba(255,255,255,.04);color:var(--accent);font-size:13px;}
     .grid{display:grid;gap:14px;grid-template-columns:repeat(12,1fr);margin-top:18px;}
     .card{grid-column:span 12;display:block;text-decoration:none;background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:14px;padding:14px;}
     .t{font-weight:800;color:var(--text)}
@@ -26,41 +28,24 @@
   <div class="wrap">
     <header>
       <div>
-        <h1>Circle 目錄</h1>
-        <div class="sub">你而家喺 <span class="pill"><span class="mono">/circle/</span></span>。以下係已整理嘅頁面入口。</div>
+        <h1>育兒資料 目錄</h1>
+        <div class="sub">呢度係你嘅育兒小工具／資料入口。</div>
+        <div class="topnav">
+          <a href="../">返回 Circle 目錄</a>
+        </div>
       </div>
       <div class="pill"><span class="mono">UPDATED</span> <span class="ok">2026-02-14</span></div>
     </header>
 
     <section class="grid" aria-label="Directory">
-      <a class="card" href="./pn/">
-        <div class="t">元朗區 PN 班（幼稚園）資料</div>
-        <div class="s">只收錄「幼稚園本身有明確開 PN／N 班」嘅學校｜附官方來源連結</div>
-      </a>
-
-      <a class="card" href="./kei/">
-        <div class="t">育兒資料（目錄）</div>
-        <div class="s">趴趴追蹤表（內置計時器）等</div>
-      </a>
-
-      <a class="card" href="./pn/schdule/">
-        <div class="t">PN 報名時間表（Schedule）</div>
-        <div class="s">按月份/行動清單整理：2027/28 目標應該幾時開始準備、幾時高峰期</div>
-      </a>
-
-      <a class="card" href="./mock/">
-        <div class="t">Circle UI Mock（原本 UI）</div>
-        <div class="s">保留舊版 mock 介面（如你要再改做真目錄/真內容頁再講）</div>
-      </a>
-
-      <a class="card" href="../ptcg/">
-        <div class="t">PTCG 牌組站</div>
-        <div class="s">火箭隊／胡地／近期優勝 Top6</div>
+      <a class="card" href="./tummy_time/">
+        <div class="t">每日趴趴（Tummy Time）追蹤表</div>
+        <div class="s">3 段清醒時間版｜內置計時器＋自動保存打勾/秒數（只存在你部機）</div>
       </a>
     </section>
 
     <footer>
-      <div>備註：如果你之後想加「幼稚園 Open Day / 校巴 / 學費」欄位，我可以再擴充呢個 PN 頁面。</div>
+      <div>備註：如果你想加「餵奶／換片／睡眠」追蹤，我可以逐個頁面幫你加落去。</div>
     </footer>
   </div>
 </body>
