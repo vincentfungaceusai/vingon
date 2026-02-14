@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="zh-HK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pokémon GO｜未來 3 個月活動行事曆</title>
+  <style>
+    :root{--bg:#0b1020;--text:#eef1ff;--muted:#a9b3d1;--accent:#8de1ff;--line:rgba(255,255,255,.12);--good:#86efac;--mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;}
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(180deg,#070a16,var(--bg));color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,"PingFang HK","Noto Sans CJK HK",sans-serif;}
+    a{color:var(--accent)}
+    .wrap{max-width:1100px;margin:0 auto;padding:22px 14px 60px;}
+    header{display:flex;gap:14px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;}
+    h1{margin:0;font-size:20px;letter-spacing:.2px}
+    .sub{margin-top:6px;color:var(--muted);font-size:13px;line-height:1.55}
+    .topnav{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+    .topnav a{display:inline-block;padding:6px 10px;border:1px solid var(--line);border-radius:999px;text-decoration:none;background:rgba(255,255,255,.04);color:var(--accent);font-size:12px;}
+    .pill{display:inline-flex;align-items:center;gap:8px;padding:7px 10px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.04);color:var(--muted);font-size:12px;}
+    .ok{color:var(--good);font-family:var(--mono)}
+    .mono{font-family:var(--mono)}
+
+    .note{border-left:3px solid rgba(141,225,255,.55);padding-left:10px;margin-top:10px;}
+
+    /* calendar */
+    .cal{margin-top:14px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:rgba(255,255,255,.03)}
+    .calhead{display:grid;grid-template-columns:repeat(7,1fr);background:rgba(255,255,255,.04);border-bottom:1px solid var(--line)}
+    .calhead div{padding:10px 10px;font-size:12px;color:var(--muted);font-weight:800;letter-spacing:.4px;text-transform:uppercase}
+
+    .weeks{display:grid;grid-template-columns:1fr;}
+    .week{display:grid;grid-template-columns:repeat(7,1fr);min-height:150px;border-bottom:1px solid var(--line)}
+    .week:last-child{border-bottom:0}
+
+    .day{padding:8px 8px 10px;min-height:150px;border-right:1px solid var(--line);position:relative}
+    .day:last-child{border-right:0}
+    .dtop{display:flex;align-items:baseline;justify-content:space-between;gap:8px}
+    .dnum{font-family:var(--mono);font-weight:900;font-size:12px;color:#dbe4ff}
+    .dmon{font-size:11px;color:var(--muted)}
+
+    .events{margin-top:8px;display:flex;flex-direction:column;gap:6px}
+    .evt{border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:6px 8px;background:rgba(255,255,255,.04);font-size:12px;line-height:1.25}
+    .evt b{font-weight:900}
+    .evt .t{color:var(--muted);font-size:11px;margin-top:2px}
+    .evt.tour{border-color:rgba(141,225,255,.35)}
+    .evt.raid{border-color:rgba(134,239,172,.35)}
+    .evt.spot{border-color:rgba(251,191,36,.35)}
+
+    .legend{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+    .lg{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--muted)}
+    .dot{width:10px;height:10px;border-radius:999px;background:#fff;opacity:.8}
+    .dot.tour{background:#8de1ff}
+    .dot.raid{background:#86efac}
+    .dot.spot{background:#fbbf24}
+
+    @media(max-width:880px){
+      .week{grid-template-columns:repeat(2,1fr)}
+      .calhead{display:none}
+      .day{min-height:0}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>Pokémon GO｜未來 3 個月活動行事曆</h1>
+        <div class="sub">時間區：<span class="mono">Asia/Hong_Kong</span>｜顯示範圍：由今日起計 12 週（約 3 個月）。</div>
+        <div class="topnav">
+          <a href="../../">返回 Circle 目錄</a>
+          <a href="https://pokemongo.com/events" target="_blank" rel="noreferrer">官方 Events</a>
+        </div>
+        <div class="note sub">
+          我而家先放入「官方 Events 頁面已列出」嘅大型活動 + 每週固定活動（通常每週二/三晚）。
+          其他例如社群日/團體戰日/限時調查等，如果官方未公布，我會先留白；你想我補齊可以再同我講。
+        </div>
+      </div>
+      <div class="pill"><span class="mono">UPDATED</span> <span class="ok" id="updated">—</span></div>
+    </header>
+
+    <div class="legend" aria-label="Legend">
+      <div class="lg"><span class="dot tour"></span>大型活動</div>
+      <div class="lg"><span class="dot raid"></span>Raid Hour（通常）</div>
+      <div class="lg"><span class="dot spot"></span>Spotlight Hour（通常）</div>
+    </div>
+
+    <div class="cal" aria-label="Schedule calendar">
+      <div class="calhead">
+        <div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div><div>Sun</div>
+      </div>
+      <div id="weeks" class="weeks"></div>
+    </div>
+
+    <footer style="margin-top:18px;color:var(--muted);font-size:12px;line-height:1.5">
+      <div>備註：固定活動時間可能因官方調整而變更；以遊戲內公告為準。</div>
+    </footer>
+  </div>
+
+<script>
+(function(){
+  const TZ = 'Asia/Hong_Kong';
+  const MS = 24*60*60*1000;
+
+  function fmtISO(d){
+    const p = n=>String(n).padStart(2,'0');
+    return `${d.getFullYear()}-${p(d.getMonth()+1)}-${p(d.getDate())}`;
+  }
+  function fmtMon(d){
+    return d.toLocaleString('en-US',{month:'short', timeZone: TZ});
+  }
+  function startOfDay(d){
+    return new Date(d.getFullYear(), d.getMonth(), d.getDate());
+  }
+  function startOfWeekMon(d){
+    const x = startOfDay(d);
+    const day = (x.getDay()+6)%7; // Mon=0
+    return new Date(x.getTime() - day*MS);
+  }
+
+  // --- Events data (confirmed from https://pokemongo.com/events as of 2026-02-14) ---
+  const EVENTS = [
+    {kind:'tour', title:'Pokémon GO Tour: Kalos – Tainan', when:'Feb 20–22', start:'2026-02-20', end:'2026-02-22', url:'https://pokemongo.com/gotour/tainan'},
+    {kind:'tour', title:'Pokémon GO Tour: Kalos – Los Angeles', when:'Feb 20–22', start:'2026-02-20', end:'2026-02-22', url:'https://pokemongo.com/gotour/losangeles'},
+    {kind:'tour', title:'Pokémon GO Tour: Kalos – Global', when:'Feb 28–Mar 1', start:'2026-02-28', end:'2026-03-01', url:'https://pokemongo.com/gotour/global'},
+  ];
+
+  // Weekly recurring (typical; may change)
+  function addWeeklyRecurring(startDate, weeks){
+    const out=[];
+    const s = startOfWeekMon(startDate);
+    for(let w=0; w<weeks; w++){
+      const weekStart = new Date(s.getTime() + w*7*MS);
+      const tue = new Date(weekStart.getTime() + 1*MS);
+      const wed = new Date(weekStart.getTime() + 2*MS);
+      out.push({kind:'spot', title:'Spotlight Hour（通常）', when:'18:00–19:00', start:fmtISO(tue), end:fmtISO(tue), url:'https://pokemongo.com/events'});
+      out.push({kind:'raid', title:'Raid Hour（通常）', when:'18:00–19:00', start:fmtISO(wed), end:fmtISO(wed), url:'https://pokemongo.com/events'});
+    }
+    return out;
+  }
+
+  const today = new Date();
+  const rangeStart = startOfWeekMon(today);
+  const weeks = 12;
+  const rangeEnd = new Date(rangeStart.getTime() + (weeks*7-1)*MS);
+
+  const recurring = addWeeklyRecurring(today, weeks);
+  const allEvents = [...EVENTS, ...recurring];
+
+  // Map date -> events
+  const byDate = new Map();
+  function put(date, evt){
+    if(!byDate.has(date)) byDate.set(date, []);
+    byDate.get(date).push(evt);
+  }
+  function addSpan(evt){
+    const s = new Date(evt.start+'T00:00:00');
+    const e = new Date(evt.end+'T00:00:00');
+    for(let t=s.getTime(); t<=e.getTime(); t+=MS){
+      const d = new Date(t);
+      const key = fmtISO(d);
+      put(key, evt);
+    }
+  }
+  allEvents.forEach(addSpan);
+
+  function evtHtml(evt){
+    const cls = evt.kind;
+    const t = evt.when ? `<div class="t">${evt.when}</div>` : '';
+    const link = evt.url ? `<a href="${evt.url}" target="_blank" rel="noreferrer" style="text-decoration:none;color:inherit">` : '';
+    const end = evt.url ? `</a>` : '';
+    return `${link}<div class="evt ${cls}"><b>${evt.title}</b>${t}</div>${end}`;
+  }
+
+  const weeksEl = document.getElementById('weeks');
+  for(let w=0; w<weeks; w++){
+    const weekStart = new Date(rangeStart.getTime() + w*7*MS);
+    const weekEl = document.createElement('div');
+    weekEl.className = 'week';
+
+    for(let i=0; i<7; i++){
+      const d = new Date(weekStart.getTime() + i*MS);
+      const key = fmtISO(d);
+      const evts = (byDate.get(key) || []).slice(0,6);
+
+      const day = document.createElement('div');
+      day.className = 'day';
+      day.innerHTML = `
+        <div class="dtop">
+          <div class="dnum">${d.getDate()}</div>
+          <div class="dmon">${fmtMon(d)}</div>
+        </div>
+        <div class="events">
+          ${evts.map(evtHtml).join('')}
+        </div>
+      `;
+      weekEl.appendChild(day);
+    }
+
+    weeksEl.appendChild(weekEl);
+  }
+
+  document.getElementById('updated').textContent = fmtISO(today);
+})();
+</script>
+</body>
+</html>
