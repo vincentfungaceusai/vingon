@@ -66,7 +66,10 @@
           <a href="../">返回育兒目錄</a>
           <a href="../../">返回 Circle 目錄</a>
         </div>
-        <div class="hint">使用方法：先揀「第幾段清醒時間」→ 撳 Start 計時 → Stop 會自動加到該段「地墊趴」次數入面；你亦可以手動改秒數。</div>
+        <div class="hint">
+          固定流程（建議）：<b>胸口趴 45–60 秒</b> → <b>地墊趴 15–25 秒</b> → 休息 20–30 秒 → 再地墊趴…（未爆就收工）。<br/>
+          使用方法：先揀「清醒段」＋「胸口趴/地墊趴」→ 撳 Start 計時 → Stop 會自動加到相應欄位；你亦可以手動改秒數。
+        </div>
       </div>
       <div class="pill"><span class="mono">AUTO SAVE</span> <span class="ok">ON</span></div>
     </header>
@@ -77,7 +80,10 @@
         <label>選擇日期（每一日獨立保存）
           <input id="date" type="date" />
         </label>
-        <div class="sub" style="margin-top:10px">目標（每段累積秒數）：Day 1–2＝120｜Day 3–4＝180｜Day 5–7＝240</div>
+        <div class="sub" style="margin-top:10px">
+          目標（每段累積秒數）：Day 1–2＝120｜Day 3–4＝180｜Day 5–7＝240
+          <div class="tag" style="margin-top:6px">（你而家可以先用 Day 1–2 做基準，慢慢 +5 秒加上去）</div>
+        </div>
       </div>
 
       <div class="box half">
@@ -93,14 +99,18 @@
             <button id="reset">Reset</button>
           </div>
         </div>
-        <div class="sub" style="margin-top:10px">記錄到：<b id="targetLabel">清醒段 1</b> · 地墊趴 <span class="mono" id="targetSlot">#1</span></div>
+        <div class="sub" style="margin-top:10px">記錄到：<b id="targetLabel">清醒段 1</b> · <b id="targetType">地墊趴</b> <span class="mono" id="targetSlot">#1</span></div>
 
         <div class="seg" style="margin-top:10px" aria-label="segment selector">
           <button class="segBtn active" data-seg="1">清醒段 1</button>
           <button class="segBtn" data-seg="2">清醒段 2</button>
           <button class="segBtn" data-seg="3">清醒段 3</button>
         </div>
-        <div class="seg" style="margin-top:10px" aria-label="slot selector">
+        <div class="seg" style="margin-top:10px" aria-label="type selector">
+          <button class="typeBtn" data-type="c">胸口趴</button>
+          <button class="typeBtn active" data-type="m">地墊趴</button>
+        </div>
+        <div class="seg" style="margin-top:10px" aria-label="slot selector" id="slotRow">
           <button class="slotBtn active" data-slot="1">地墊趴 #1</button>
           <button class="slotBtn" data-slot="2">地墊趴 #2</button>
           <button class="slotBtn" data-slot="3">地墊趴 #3</button>
@@ -256,6 +266,7 @@
   let raf = null;
 
   let currentSeg = '1';
+  let currentType = 'm'; // 'c' chest, 'm' mat
   let currentSlot = 'm1';
 
   function fmt(ms){
@@ -276,14 +287,28 @@
 
   function setTargetUI(){
     $('#targetLabel').textContent = `清醒段 ${currentSeg}`;
+    $('#targetType').textContent = (currentType==='c') ? '胸口趴' : '地墊趴';
+
     const slotNum = currentSlot==='m1'?1:currentSlot==='m2'?2:3;
-    $('#targetSlot').textContent = '#'+slotNum;
+    $('#targetSlot').textContent = (currentType==='c') ? '—' : ('#'+slotNum);
+
     $$('.segBtn').forEach(b=>b.classList.toggle('active', b.dataset.seg===currentSeg));
+    $$('.typeBtn').forEach(b=>b.classList.toggle('active', b.dataset.type===currentType));
     $$('.slotBtn').forEach(b=>b.classList.toggle('active', b.dataset.slot===String(slotNum)));
+
+    // show/hide slot row
+    const slotRow = $('#slotRow');
+    if(slotRow) slotRow.style.display = (currentType==='c') ? 'none' : 'flex';
   }
 
   $$('.segBtn').forEach(btn=>btn.addEventListener('click', ()=>{
     currentSeg = btn.dataset.seg;
+    setTargetUI();
+  }));
+  $$('.typeBtn').forEach(btn=>btn.addEventListener('click', ()=>{
+    currentType = btn.dataset.type;
+    // default to mat slot #1 when switching back
+    if(currentType==='m' && !['m1','m2','m3'].includes(currentSlot)) currentSlot = 'm1';
     setTargetUI();
   }));
   $$('.slotBtn').forEach(btn=>btn.addEventListener('click', ()=>{
@@ -311,12 +336,13 @@
 
     const addSec = Math.max(0, Math.round(elapsedMs/1000));
     const day = loadDay();
-    day.seg[currentSeg][currentSlot] = (day.seg[currentSeg][currentSlot]||0) + addSec;
+    const key = (currentType==='c') ? 'c' : currentSlot;
+    day.seg[currentSeg][key] = (day.seg[currentSeg][key]||0) + addSec;
     saveDay(day);
 
     // update the input UI
-    const inp = document.querySelector(`input.sec[data-seg="${currentSeg}"][data-k="${currentSlot}"]`);
-    if(inp){ inp.value = day.seg[currentSeg][currentSlot]; }
+    const inp = document.querySelector(`input.sec[data-seg="${currentSeg}"][data-k="${key}"]`);
+    if(inp){ inp.value = day.seg[currentSeg][key]; }
     updateSums(day);
 
     // auto reset timer for next run
