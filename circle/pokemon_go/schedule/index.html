@@ -124,7 +124,7 @@
 
     <div class="cal" aria-label="Schedule calendar">
       <div class="calhead">
-        <div>一</div><div>二</div><div>三</div><div>四</div><div>五</div><div>六</div><div>日</div>
+        <div>日</div><div>一</div><div>二</div><div>三</div><div>四</div><div>五</div><div>六</div>
       </div>
       <div id="weeks" class="weeks"></div>
     </div>
@@ -165,9 +165,9 @@
   function startOfDay(d){
     return new Date(d.getFullYear(), d.getMonth(), d.getDate());
   }
-  function startOfWeekMon(d){
+  function startOfWeekSun(d){
     const x = startOfDay(d);
-    const day = (x.getDay()+6)%7; // Mon=0
+    const day = x.getDay(); // Sun=0
     return new Date(x.getTime() - day*MS);
   }
   function fmtMon(d){
@@ -204,11 +204,11 @@
   // Weekly recurring (typical; may change)
   function addWeeklyRecurring(startDate, weeks){
     const out=[];
-    const s = startOfWeekMon(startDate);
+    const s = startOfWeekSun(startDate);
     for(let w=0; w<weeks; w++){
-      const weekStart = new Date(s.getTime() + w*7*MS);
-      const tue = new Date(weekStart.getTime() + 1*MS);
-      const wed = new Date(weekStart.getTime() + 2*MS);
+      const weekStart = new Date(s.getTime() + w*7*MS); // Sunday
+      const tue = new Date(weekStart.getTime() + 2*MS);
+      const wed = new Date(weekStart.getTime() + 3*MS);
       out.push({kind:'spot', title:'聚焦時刻（待公布）', when:'18:00–19:00', start:fmtISO(tue), end:fmtISO(tue), url:'https://pokemongo.com/events'});
       out.push({kind:'raid', title:'團體戰晚會（待公布）', when:'18:00–19:00', start:fmtISO(wed), end:fmtISO(wed), url:'https://pokemongo.com/events'});
     }
@@ -224,7 +224,7 @@
   ];
 
   const today = startOfDay(new Date());
-  const rangeStart = startOfWeekMon(today);
+  const rangeStart = startOfWeekSun(today);
   const weeks = 12;
   const rangeEnd = new Date(rangeStart.getTime() + (weeks*7-1)*MS);
 
