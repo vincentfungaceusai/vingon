@@ -149,11 +149,13 @@ function esc(s=''){
   return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 }
 
-function cardRowsHtml(rows, cardImgById){
+function cardRowsHtml(rows, cardImgById, bestCardIdByName = {}){
   return rows.map(r=>{
     const jp = (r.name||'').trim();
     const zh = hkName(jp);
-    const img = hkImg(jp) || cardImgById[r.cardID] || '';
+    const cardID = bestCardIdByName[jp];
+    // IMPORTANT: use cardID-derived image to avoid same-name different art mismatches (e.g., シェイミ)
+    const img = (cardID ? cardImgById[cardID] : '') || hkImg(jp) || '';
     const sec = SECTION_ZH[r.section] || r.section || '';
     return `<tr>
       <td class="name">${img?`<img class="thumb" src="${esc(img)}" alt="${esc(zh)}" loading="lazy" />`:''}<span class="card-name" title="JP：${esc(jp)}">${esc(zh)}</span></td>
@@ -180,11 +182,13 @@ function groupSkeleton(rows){
   return out;
 }
 
-function deckGridHtml(rows, cardImgById){
+function deckGridHtml(rows, cardImgById, bestCardIdByName = {}){
   return rows.map(r=>{
     const jp = (r.name||'').trim();
     const zh = hkName(jp);
-    const img = hkImg(jp) || cardImgById[r.cardID] || '';
+    const cardID = bestCardIdByName[jp];
+    // IMPORTANT: use cardID-derived image to avoid same-name different art mismatches (e.g., シェイミ)
+    const img = (cardID ? cardImgById[cardID] : '') || hkImg(jp) || '';
     if(!img) return '';
     return `<a class="deckcard" href="${esc(img)}" target="_blank" rel="noreferrer" title="${esc(zh)}｜JP：${esc(jp)}">
       <img src="${esc(img)}" alt="${esc(zh)}" loading="lazy" />
@@ -256,18 +260,62 @@ await fs.mkdir(OUT_DIR, {recursive:true});
 const top6 = data.top6Archetypes;
 const archetypes = top6.map(x=>x.archetype);
 
-// collect cardIDs needed (skeleton + techs for top6)
+// Build deck lookup (contains cardID + name). We'll use cardID to avoid same-name different art mismatches.
+const deckById = new Map((data.decks||[]).map(d => [d.deckID, d]));
+
+function buildBestCardIdMap(deckIDs){
+  const counts = new Map(); // name -> Map(cardID -> freq)
+  for(const id of (deckIDs||[])){
+    const d = deckById.get(id);
+    if(!d) continue;
+    for(const c of (d.cards||[])){
+      const name = (c.name||'').trim();
+      const cardID = String(c.cardID||'').trim();
+      if(!name || !cardID) continue;
+      if(!counts.has(name)) counts.set(name, new Map());
+      const m = counts.get(name);
+      m.set(cardID, (m.get(cardID)||0) + 1);
+    }
+  }
+  const best = {};
+  for(const [name, m] of counts.entries()){
+    let bestId = null;
+    let bestFreq = -1;
+    for(const [cardID, freq] of m.entries()){
+      if(freq > bestFreq){ bestFreq = freq; bestId = cardID; }
+    }
+    if(bestId) best[name] = bestId;
+  }
+  return best;
+}
+
+// Precompute best cardID per archetype+name (for skeleton + tech rendering)
+const bestCardIdByArchetype = {};
+for(const a of archetypes){
+  const det = data.top6Details[a];
+  bestCardIdByArchetype[a] = buildBestCardIdMap(det.deckIDs);
+}
+
+// collect cardIDs needed (resolve from bestCardIdByArchetype)
 let neededCardIDs = [];
 for(const a of archetypes){
   const det = data.top6Details[a];
-  for(const r of (det.skeleton||[])) neededCardIDs.push(r.cardID);
-  for(const r of (det.commonTechs||[])) neededCardIDs.push(r.cardID);
+  const best = bestCardIdByArchetype[a] || {};
+  for(const r of (det.skeleton||[])){
+    const name = (r.name||'').trim();
+    if(best[name]) neededCardIDs.push(best[name]);
+  }
+  for(const r of (det.commonTechs||[])){
+    const name = (r.name||'').trim();
+    if(best[name]) neededCardIDs.push(best[name]);
+  }
+  const coverJp = ARCHETYPE_COVER[a];
+  if(coverJp && best[coverJp]) neededCardIDs.push(best[coverJp]);
 }
 neededCardIDs = uniq(neededCardIDs.filter(Boolean));
 
 // fetch thumbs
 const cardImgById = {};
-// simple concurrency
 const CONC = 8;
 let i = 0;
 async function worker(){
@@ -299,10 +347,12 @@ for(const a of archetypes){
   const skeleton = det.skeleton || [];
   const grouped = groupSkeleton(skeleton);
 
-  const skeletonPokemonRows = cardRowsHtml(grouped.pokemon, cardImgById);
-  const skeletonItemsRows = cardRowsHtml(grouped.items, cardImgById);
-  const skeletonSupporterRows = cardRowsHtml(grouped.supporters, cardImgById);
-  const skeletonStadiumEnergyRows = cardRowsHtml(grouped.stadiumEnergy, cardImgById);
+  const bestIds = bestCardIdByArchetype[a] || {};
+
+  const skeletonPokemonRows = cardRowsHtml(grouped.pokemon, cardImgById, bestIds);
+  const skeletonItemsRows = cardRowsHtml(grouped.items, cardImgById, bestIds);
+  const skeletonSupporterRows = cardRowsHtml(grouped.supporters, cardImgById, bestIds);
+  const skeletonStadiumEnergyRows = cardRowsHtml(grouped.stadiumEnergy, cardImgById, bestIds);
 
   const pokemonTotal = sumCounts(grouped.pokemon);
   const itemsTotal = sumCounts(grouped.items);
@@ -310,8 +360,8 @@ for(const a of archetypes){
   const stadiumEnergyTotal = sumCounts(grouped.stadiumEnergy);
   const skeletonTotal = pokemonTotal + itemsTotal + supporterTotal + stadiumEnergyTotal;
 
-  const techRows = cardRowsHtml(det.commonTechs||[], cardImgById);
-  const deckGrid = deckGridHtml(skeleton, cardImgById);
+  const techRows = cardRowsHtml(det.commonTechs||[], cardImgById, bestIds);
+  const deckGrid = deckGridHtml(skeleton, cardImgById, bestIds);
 
   const guide = GUIDES[a];
   const flowLis = (guide?.flow||[]).map(x=>`<li>${x}</li>`).join('\n');
@@ -460,7 +510,7 @@ for(const a of archetypes){
 const listCards = links.map(x=>{
   const coverJp = ARCHETYPE_COVER[x.a];
   const coverZh = coverJp ? hkName(coverJp) : x.title;
-  const coverImg = coverJp ? hkImg(coverJp) : (x.thumbUrl || null);
+  const coverImg = coverJp ? (x.thumbUrl || hkImg(coverJp)) : (x.thumbUrl || null);
 
   const img = coverImg
     ? `<img class="cover" loading="lazy" alt="${esc(coverZh)}" src="${esc(coverImg)}" />`
