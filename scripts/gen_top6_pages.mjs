@@ -27,8 +27,18 @@ const ARCHETYPE_DISPLAY = {
   'Nのゾロア/Nのゾロアークex': hkName('Nのゾロアークex'),
   'メガルカリオex/リオル': hkName('メガルカリオex'),
   'マシマシラ/マリィのベロバー': `${hkName('マシマシラ')}／瑪俐系`,
-  'ケーシィ/ユンゲラー': `${hkName('フーディン')}系`, 
+  'ケーシィ/ユンゲラー': `${hkName('フーディン')}系`,
   'ロケット団のタマンチュラ/ロケット団のワナイダー': `${hkName('ロケット団のワナイダー')}（火箭隊）系`
+};
+
+// Cover card (image + name) to represent each archetype on the Top6 index page
+const ARCHETYPE_COVER = {
+  'ドラメシヤ/ドロンチ': 'ドラパルトex',
+  'Nのゾロア/Nのゾロアークex': 'Nのゾロアークex',
+  'メガルカリオex/リオル': 'メガルカリオex',
+  'マシマシラ/マリィのベロバー': 'マリィのオーロンゲex',
+  'ケーシィ/ユンゲラー': 'フーディン',
+  'ロケット団のタマンチュラ/ロケット団のワナイダー': 'ロケット団のワナイダー'
 };
 
 const SECTION_ZH = {
@@ -202,6 +212,13 @@ h1{margin:0; font-size:22px; letter-spacing:.2px}
 .grid{display:grid; gap:14px; grid-template-columns: repeat(12, 1fr); margin-top:18px;}
 .box{grid-column: span 12; background:rgba(255,255,255,.03); border:1px solid var(--line); border-radius:14px; padding:14px;}
 @media(min-width:860px){ .box.half{grid-column: span 6;} }
+
+/* top6 index cards */
+.top6card{display:flex; gap:14px; align-items:center; text-decoration:none;}
+.top6card .cover{width:132px; height:183px; border-radius:10px; border:1px solid var(--line); object-fit:cover; background:rgba(255,255,255,.04); flex:0 0 auto;}
+.top6card .meta{min-width:0;}
+.top6card .meta h2{margin:0; font-size:18px;}
+.top6card .meta .sub{margin-top:6px;}
 h2{margin:0 0 10px; font-size:16px; color:#dce3ff}
 table{width:100%; border-collapse:collapse; font-size:14px;}
 th,td{padding:8px 6px; border-bottom:1px solid var(--line); vertical-align:top;}
@@ -272,21 +289,10 @@ for(const a of archetypes){
   await fs.mkdir(dir, {recursive:true});
 
   const title = ARCHETYPE_DISPLAY[a] || a;
-  // representative thumbnail for the archetype list (prefer a Pokémon from skeleton)
-  let thumbUrl = '';
-  for (const r of (det.skeleton||[])) {
-    if (r.section !== 'ポケモン') continue;
-    const jp = (r.name||'').trim();
-    thumbUrl = hkImg(jp) || cardImgById[r.cardID] || '';
-    if (thumbUrl) break;
-  }
-  if (!thumbUrl) {
-    for (const r of (det.skeleton||[])) {
-      const jp = (r.name||'').trim();
-      thumbUrl = hkImg(jp) || cardImgById[r.cardID] || '';
-      if (thumbUrl) break;
-    }
-  }
+
+  // representative thumbnail for the Top6 index: MUST match the archetype headliner
+  const coverJp = ARCHETYPE_COVER[a];
+  const thumbUrl = coverJp ? (hkImg(coverJp) || '') : '';
 
   links.push({a, title, slug, winnerCount: det.winnerCount, thumbUrl});
 
@@ -452,14 +458,20 @@ for(const a of archetypes){
 
 // write index page
 const listCards = links.map(x=>{
-  const img = x.thumbUrl ? `<img class="thumb" loading="lazy" alt="${esc(x.title)}" src="${esc(x.thumbUrl)}" />` : `<div class="thumb" aria-hidden="true" style="display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:800;font-size:12px;letter-spacing:.6px;">Top6</div>`;
-  return `<a class="box" href="./${x.slug}/" style="display:block;text-decoration:none">
-    <div style="display:flex;gap:12px;align-items:flex-start">
-      ${img}
-      <div style="min-width:0">
-        <h2 style="margin:0">${x.title}</h2>
-        <div class="sub" style="margin-top:6px">優勝次數：<b>${x.winnerCount}</b></div>
-      </div>
+  const coverJp = ARCHETYPE_COVER[x.a];
+  const coverZh = coverJp ? hkName(coverJp) : x.title;
+  const coverImg = coverJp ? hkImg(coverJp) : (x.thumbUrl || null);
+
+  const img = coverImg
+    ? `<img class="cover" loading="lazy" alt="${esc(coverZh)}" src="${esc(coverImg)}" />`
+    : `<div class="cover" aria-hidden="true" style="display:flex;align-items:center;justify-content:center;color:var(--muted);font-weight:800;font-size:12px;letter-spacing:.6px;">Top6</div>`;
+
+  return `<a class="box top6card" href="./${x.slug}/">
+    ${img}
+    <div class="meta">
+      <h2>${x.title}</h2>
+      <div class="sub">優勝次數：<b>${x.winnerCount}</b></div>
+      ${coverJp ? `<div class="small" title="JP：${esc(coverJp)}">代表卡：${esc(coverZh)}</div>` : ''}
     </div>
   </a>`;
 }).join('\n');
