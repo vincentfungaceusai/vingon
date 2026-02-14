@@ -51,10 +51,11 @@
     .dot.raid{background:#86efac}
     .dot.spot{background:#fbbf24}
 
+    /* Keep 7-day (Mon–Sun) layout always. On small screens, allow horizontal scroll. */
+    .cal{overflow-x:auto}
+    .weeks{min-width:980px}
     @media(max-width:880px){
-      .week{grid-template-columns:repeat(2,1fr)}
-      .calhead{display:none}
-      .day{min-height:0}
+      .day{min-height:140px}
     }
   </style>
 </head>
