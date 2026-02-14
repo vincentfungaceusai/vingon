@@ -28,6 +28,12 @@
     ul{margin:10px 0 0 18px;padding:0}
     li{margin:6px 0;color:var(--text)}
     footer{margin-top:22px;color:var(--muted);font-size:12px;line-height:1.5}
+
+    /* checklist */
+    .cl{display:grid;grid-template-columns:repeat(2, minmax(0,1fr));gap:6px 10px;}
+    .cl label{display:flex;align-items:center;gap:6px;color:var(--text);font-size:12px;line-height:1.2}
+    .cl input{width:14px;height:14px;accent-color:#8de1ff}
+    @media(min-width:860px){.cl{grid-template-columns:repeat(3, minmax(0,1fr));}}
   </style>
 </head>
 <body>
@@ -55,7 +61,8 @@
             <th>地區</th>
             <th>PN/N 班</th>
             <th>最近一次已公布報名安排（作參考）</th>
-            <th>學費（如未能核實會附連結）</th>
+            <th>學費（全費＋扣資助後）</th>
+            <th>Check list</th>
             <th>官方來源</th>
           </tr>
         </thead>
@@ -74,6 +81,16 @@
               <div class="tag">如要 PN 具體學費：建議直接致電學校核實。</div>
             </td>
             <td>
+              <div class="cl" data-school="anchors">
+                <label><input type="checkbox" data-k="view"/>已睇資料</label>
+                <label><input type="checkbox" data-k="call"/>已致電</label>
+                <label><input type="checkbox" data-k="apply"/>已報名</label>
+                <label><input type="checkbox" data-k="visit"/>已參觀</label>
+                <label><input type="checkbox" data-k="interview"/>已面試</label>
+                <label><input type="checkbox" data-k="result"/>已出結果</label>
+              </div>
+            </td>
+            <td>
               <a href="https://www.anchorsacademy.edu.hk/tc/content.php?wid=165" target="_blank" rel="noreferrer">收生頁</a>｜
               <a href="https://www.anchorsacademy.edu.hk/tc/content.php?wid=171" target="_blank" rel="noreferrer">學費頁</a>
             </td>
@@ -90,6 +107,16 @@
             <td>
               <div><b>收費水平（全年）</b>：半日約 <span class="mono">$47,988</span></div>
               <div class="tag">扣減政府資助後（2025/26）：上午/下午班顯示「免費」（以收費證明書為準）</div>
+            </td>
+            <td>
+              <div class="cl" data-school="gigamind">
+                <label><input type="checkbox" data-k="view"/>已睇資料</label>
+                <label><input type="checkbox" data-k="call"/>已致電</label>
+                <label><input type="checkbox" data-k="apply"/>已報名</label>
+                <label><input type="checkbox" data-k="visit"/>已參觀</label>
+                <label><input type="checkbox" data-k="interview"/>已面試</label>
+                <label><input type="checkbox" data-k="result"/>已出結果</label>
+              </div>
             </td>
             <td>
               <a href="https://www.gigamind.edu.hk/zh/kindergarten/admissions/how-to-apply" target="_blank" rel="noreferrer">收生頁</a><br/>
@@ -111,6 +138,16 @@
               <div class="tag">扣減政府資助後（2025/26）：全日 <span class="mono">$11,688</span>（12期）；半日顯示「免費」（以收費證明書為準）</div>
             </td>
             <td>
+              <div class="cl" data-school="agnes">
+                <label><input type="checkbox" data-k="view"/>已睇資料</label>
+                <label><input type="checkbox" data-k="call"/>已致電</label>
+                <label><input type="checkbox" data-k="apply"/>已報名</label>
+                <label><input type="checkbox" data-k="visit"/>已參觀</label>
+                <label><input type="checkbox" data-k="interview"/>已面試</label>
+                <label><input type="checkbox" data-k="result"/>已出結果</label>
+              </div>
+            </td>
+            <td>
               <a href="https://www.agneskg.edu.hk/agnestalent/index.php/section/page/3242__17661" target="_blank" rel="noreferrer">收生頁</a><br/>
               <a href="https://kgp2025.azurewebsites.net/edb/schoolinfo.php?schid=6764" target="_blank" rel="noreferrer">CHSC/教育局概覽（學費）</a>
             </td>
@@ -127,6 +164,16 @@
             <td>
               <div><b>收費水平（全年）</b>：全日約 <span class="mono">$53,472</span></div>
               <div class="tag">扣減政府資助後（2025/26）：全日 <span class="mono">$19,560</span>（12期）（以收費證明書為準）</div>
+            </td>
+            <td>
+              <div class="cl" data-school="tinheng">
+                <label><input type="checkbox" data-k="view"/>已睇資料</label>
+                <label><input type="checkbox" data-k="call"/>已致電</label>
+                <label><input type="checkbox" data-k="apply"/>已報名</label>
+                <label><input type="checkbox" data-k="visit"/>已參觀</label>
+                <label><input type="checkbox" data-k="interview"/>已面試</label>
+                <label><input type="checkbox" data-k="result"/>已出結果</label>
+              </div>
             </td>
             <td>
               <a href="https://thns.hkcschild.edu.hk/?page_id=2517" target="_blank" rel="noreferrer">收生頁</a><br/>
@@ -147,6 +194,16 @@
               <div class="tag">扣減政府資助後（2025/26）：全日 <span class="mono">$18,000</span>（12期）（以收費證明書為準）</div>
             </td>
             <td>
+              <div class="cl" data-school="tintyan">
+                <label><input type="checkbox" data-k="view"/>已睇資料</label>
+                <label><input type="checkbox" data-k="call"/>已致電</label>
+                <label><input type="checkbox" data-k="apply"/>已報名</label>
+                <label><input type="checkbox" data-k="visit"/>已參觀</label>
+                <label><input type="checkbox" data-k="interview"/>已面試</label>
+                <label><input type="checkbox" data-k="result"/>已出結果</label>
+              </div>
+            </td>
+            <td>
               <a href="https://www.tyns.edu.hk/%e5%a0%b1%e5%90%8d%e9%a0%88%e7%9f%a5/" target="_blank" rel="noreferrer">報名須知</a><br/>
               <a href="https://www.tyns.edu.hk/%e6%94%b6%e7%94%9f%e6%b5%81%e7%a8%8b/" target="_blank" rel="noreferrer">收生流程</a><br/>
               <a href="https://kgp2025.azurewebsites.net/edb/schoolinfo.php?schid=6767" target="_blank" rel="noreferrer">CHSC/教育局概覽（學費）</a>
@@ -165,6 +222,42 @@
       </ul>
       <div class="note sub">我會繼續補齊到 10 間（元朗市中心優先），並把新增學校直接加到呢頁。</div>
     </div>
+
+    <div class="box">
+      <h2>Check list 使用方法</h2>
+      <ul>
+        <li>你喺每間學校右邊打勾嘅狀態會<strong>自動儲存喺你部機嘅瀏覽器</strong>（LocalStorage），唔會上載到伺服器。</li>
+        <li>如果你換咗電話/瀏覽器，就要重新打勾一次。</li>
+      </ul>
+      <button id="resetChecks" style="margin-top:10px" class="pill">重設所有 check list</button>
+    </div>
+
+    <script>
+      const KEY = 'circle_pn_checks_v1';
+      const state = JSON.parse(localStorage.getItem(KEY) || '{}');
+
+      function save(){ localStorage.setItem(KEY, JSON.stringify(state)); }
+
+      document.querySelectorAll('.cl[data-school]').forEach(box => {
+        const sid = box.getAttribute('data-school');
+        state[sid] ||= {};
+        box.querySelectorAll('input[type="checkbox"][data-k]').forEach(cb => {
+          const k = cb.getAttribute('data-k');
+          cb.checked = !!state[sid][k];
+          cb.addEventListener('change', () => {
+            state[sid][k] = cb.checked;
+            save();
+          });
+        });
+      });
+
+      document.getElementById('resetChecks')?.addEventListener('click', () => {
+        if(!confirm('確定要重設所有 check list？')) return;
+        for(const sid of Object.keys(state)) delete state[sid];
+        save();
+        document.querySelectorAll('.cl input[type="checkbox"]').forEach(cb => cb.checked = false);
+      });
+    </script>
 
     <footer>
       <div>最後更新：2026-02-14</div>
