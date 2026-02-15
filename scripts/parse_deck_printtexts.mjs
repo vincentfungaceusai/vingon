@@ -63,11 +63,12 @@ function summarize(parsedByDeck){
 }
 
 const inPath = process.argv[2];
-if (!inPath) throw new Error('Usage: node scripts/parse_deck_printtexts.mjs <jsonPath>');
+const outPath = process.argv[3];
+if (!inPath || !outPath) throw new Error('Usage: node scripts/parse_deck_printtexts.mjs <inJsonPath> <outJsonPath>');
 
 const raw = JSON.parse(await fs.readFile(inPath,'utf8'));
 const parsedByDeck = {};
 for (const [deckId, text] of Object.entries(raw)) parsedByDeck[deckId] = parsePrintText(text);
 const out = summarize(parsedByDeck);
-await fs.writeFile('tmp/nidangir_5deck_summary.json', JSON.stringify({parsedByDeck, ...out}, null, 2), 'utf8');
-console.log('wrote tmp/nidangir_5deck_summary.json');
+await fs.writeFile(outPath, JSON.stringify({parsedByDeck, ...out}, null, 2), 'utf8');
+console.log('wrote ' + outPath);
