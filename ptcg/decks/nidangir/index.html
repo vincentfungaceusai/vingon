@@ -43,6 +43,18 @@ li{margin:6px 0; color:var(--text)}
 
 .topnav{display:flex; gap:12px; flex-wrap:wrap; margin-top:10px; align-items:center;}
 .topnav a{display:inline-block; padding:6px 10px; border:1px solid var(--line); border-radius:999px; text-decoration:none; background:rgba(255,255,255,.04); color:var(--accent); font-size:13px;}
+
+.imgtoggle{margin-left:auto; display:flex; gap:8px; align-items:center; color:var(--muted); font-size:12px;}
+.imgtoggle button{padding:6px 10px; border-radius:999px; border:1px solid var(--line); background:rgba(255,255,255,.04); color:var(--text); cursor:pointer; font-size:12px;}
+.imgtoggle button.active{border-color:rgba(141,225,255,.55); color:var(--accent);}
+
+.deckshot{margin-top:14px; padding:14px; border:1px solid var(--line); background:rgba(255,255,255,.03); border-radius:14px;}
+.deckshot h2{margin:0 0 10px; font-size:16px; color:#dce3ff}
+.deckgrid{display:grid; grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); gap:10px;}
+.deckcard{position:relative; border-radius:10px; overflow:hidden; border:1px solid var(--line); background:rgba(255,255,255,.04);}
+.deckcard img{width:100%; height:auto; display:block;}
+.badge{position:absolute; left:8px; bottom:8px; min-width:28px; padding:4px 8px; border-radius:999px; background:rgba(0,0,0,.65); border:1px solid rgba(255,255,255,.22); color:#fff; font-family:var(--mono); font-weight:800; font-size:14px; text-align:center;}
+.deckcard:hover{border-color:rgba(141,225,255,.55);}
   </style>
 </head>
 <body>
@@ -55,11 +67,95 @@ li{margin:6px 0; color:var(--text)}
           <a href="../../decks/">返回牌組列表</a>
           <a href="../../">返回 PTCG 首頁</a>
           <a href="https://pokecabook.com/archives/285295" target="_blank" rel="noreferrer">PokecaBook 原文</a>
+          <div class="imgtoggle" aria-label="Image source toggle">
+            <span>圖片：</span>
+            <button type="button" class="active" data-mode="hk">繁中</button>
+            <button type="button" data-mode="jp">日文</button>
+          </div>
         </div>
-        <div class="note small">暫時先用日文卡名（官方 deck print）；之後我可以再補：香港官方譯名 + 卡圖（同 Top6 一樣可切繁中/日文）。</div>
+        <div class="note small">卡名目前以日文為主；圖片已接入 deck confirm 取得嘅 cardId（避免同名錯圖）。繁中（HK）卡圖/譯名我下一步再補齊。</div>
       </div>
       <div class="pill"><span style="font-family:var(--mono)">SAMPLE</span> <span style="color:var(--good);font-family:var(--mono)">5</span></div>
     </header>
+
+    <section class="deckshot" aria-label="Full deck list image">
+      <h2>完整 Deck List 圖片（骨架視覺化）</h2>
+      <div class="deckgrid">
+        <a class="deckcard" href="https://www.pokemon-card.com/assets/images/card_images/large/M3/049690_P_GIRUGARUDO.jpg" target="_blank" rel="noreferrer" title="ギルガルド">
+      <img class="deck-img" src="https://www.pokemon-card.com/assets/images/card_images/large/M3/049690_P_GIRUGARUDO.jpg" data-hk="https://www.pokemon-card.com/assets/images/card_images/large/M3/049690_P_GIRUGARUDO.jpg" data-jp="https://www.pokemon-card.com/assets/images/card_images/large/M3/049690_P_GIRUGARUDO.jpg" alt="ギルガルド" loading="lazy" />
+      <div class="badge">4</div>
+    </a>
+<a class="deckcard" href="https://www.pokemon-card.com/assets/images/card_images/large/M3/049689_P_NIDANGIRU.jpg" target="_blank" rel="noreferrer" title="ニダンギル">
+      <img class="deck-img" src="https://www.pokemon-card.com/assets/images/card_images/large/M3/049689_P_NIDANGIRU.jpg" data-hk="https://www.pokemon-card.com/assets/images/card_images/large/M3/049689_P_NIDANGIRU.jpg" data-jp="https://www.pokemon-card.com/assets/images/card_images/large/M3/049689_P_NIDANGIRU.jpg" alt="ニダンギル" loading="lazy" />
+      <div class="badge">4</div>
+    </a>
+<a class="deckcard" href="https://www.pokemon-card.com/assets/images/card_images/large/M3/049688_P_HITOTSUKI.jpg" target="_blank" rel="noreferrer" title="ヒトツキ">
+      <img class="deck-img" src="https://www.pokemon-card.com/assets/images/card_images/large/M3/049688_P_HITOTSUKI.jpg" data-hk="https://www.pokemon-card.com/assets/images/card_images/large/M3/049688_P_HITOTSUKI.jpg" data-jp="https://www.pokemon-card.com/assets/images/card_images/large/M3/049688_P_HITOTSUKI.jpg" alt="ヒトツキ" loading="lazy" />
+      <div class="badge">4</div>
+    </a>
+<a class="deckcard" href="https://www.pokemon-card.com/assets/images/card_images/large/MC/049546_P_GENOSEKUTOEX.jpg" target="_blank" rel="noreferrer" title="ゲノセクトex">
+      <img class="deck-img" src="https://www.pokemon-card.com/assets/images/card_images/large/MC/049546_P_GENOSEKUTOEX.jpg" data-hk="https://www.pokemon-card.com/assets/images/card_images/large/MC/049546_P_GENOSEKUTOEX.jpg" data-jp="https://www.pokemon-card.com/assets/images/card_images/large/MC/049546_P_GENOSEKUTOEX.jpg" alt="ゲノセクトex" loading="lazy" />
+      <div class="badge">2</div>
+    </a>
+<a class="deckcard" href="https://www.pokemon-card.com/assets/images/card_images/large/MC/049205_P_KICHIKIGISUEX.jpg" target="_blank" rel="noreferrer" title="キチキギスex">
+      <img class="deck-img" src="https://www.pokemon-card.com/assets/images/card_images/large/MC/049205_P_KICHIKIGISUEX.jpg" data-hk="https://www.pokemon-card.com/assets/images/card_images/large/MC/049205_P_KICHIKIGISUEX.jpg" data-jp="https://www.pokemon-card.com/assets/images/card_images/large/MC/049205_P_KICHIKIGISUEX.jpg" alt="キチキギスex" loading="lazy" />
+      <div class="badge">1</div>
+    </a>
+<a class="deckcard" href="https://www.pokemon-card.com/assets/images/card_images/large/M2a/048534_P_SHIEIMI.jpg" target="_blank" rel="noreferrer" title="シェイミ">
+      <img class="deck-img" src="https://www.pokemon-card.com/assets/images/card_images/large/M2a/048534_P_SHIEIMI.jpg" data-hk="https://www.pokemon-card.com/assets/images/card_images/large/M2a/048534_P_SHIEIMI.jpg" data-jp="https://www.pokemon-card.com/assets/images/card_images/large/M2a/048534_P_SHIEIMI.jpg" alt="シェイミ" loading="lazy" />
+      <div class="badge">1</div>
+    </a>
+<a class="deckcard" href="https://www.pokemon-card.com/assets/images/card_images/large/M-P/049601_T_POKEPADDO.jpg" target="_blank" rel="noreferrer" title="ポケパッド">
+      <img class="deck-img" src="https://www.pokemon-card.com/assets/images/card_images/large/M-P/049601_T_POKEPADDO.jpg" data-hk="https://www.pokemon-card.com/assets/images/card_images/large/M-P/049601_T_POKEPADDO.jpg" data-jp="https://www.pokemon-card.com/assets/images/card_images/large/M-P/049601_T_POKEPADDO.jpg" alt="ポケパッド" loading="lazy" />
+      <div class="badge">4</div>
+    </a>
+<a class="deckcard" href="https://www.pokemon-card.com/assets/images/card_images/large/SVN/047191_T_NAKAYOSHIPOFUIN.jpg" target="_blank" rel="noreferrer" title="なかよしポフィン">
+      <img class="deck-img" src="https://www.pokemon-card.com/assets/images/card_images/large/SVN/047191_T_NAKAYOSHIPOFUIN.jpg" data-hk="https://www.pokemon-card.com/assets/images/card_images/large/SVN/047191_T_NAKAYOSHIPOFUIN.jpg" data-jp="https://www.pokemon-card.com/assets/images/card_images/large/SVN/047191_T_NAKAYOSHIPOFUIN.jpg" alt="なかよしポフィン" loading="lazy" />
+      <div class="badge">3</div>
+    </a>
+<a class="deckcard" href="https://www.pokemon-card.com/assets/images/card_images/large/MC/049386_T_YORUNOTANKA.jpg" target="_blank" rel="noreferrer" title="夜のタンカ">
+      <img class="deck-img" src="https://www.pokemon-card.com/assets/images/card_images/large/MC/049386_T_YORUNOTANKA.jpg" data-hk="https://www.pokemon-card.com/assets/images/card_images/large/MC/049386_T_YORUNOTANKA.jpg" data-jp="https://www.pokemon-card.com/assets/images/card_images/large/MC/049386_T_YORUNOTANKA.jpg" alt="夜のタンカ" loading="lazy" />
+      <div class="badge">2</div>
+    </a>
+<a class="deckcard" href="#" target="_blank" rel="noreferrer" title="せいなるはい">
+      <img class="deck-img" src="" data-hk="" data-jp="" alt="せいなるはい" loading="lazy" />
+      <div class="badge">1</div>
+    </a>
+<a class="deckcard" href="https://www.pokemon-card.com/assets/images/card_images/large/MC/049376_T_POKEGIA30.jpg" target="_blank" rel="noreferrer" title="ポケギア3.0">
+      <img class="deck-img" src="https://www.pokemon-card.com/assets/images/card_images/large/MC/049376_T_POKEGIA30.jpg" data-hk="https://www.pokemon-card.com/assets/images/card_images/large/MC/049376_T_POKEGIA30.jpg" data-jp="https://www.pokemon-card.com/assets/images/card_images/large/MC/049376_T_POKEGIA30.jpg" alt="ポケギア3.0" loading="lazy" />
+      <div class="badge">1</div>
+    </a>
+<a class="deckcard" href="#" target="_blank" rel="noreferrer" title="ふうせん">
+      <img class="deck-img" src="" data-hk="" data-jp="" alt="ふうせん" loading="lazy" />
+      <div class="badge">1</div>
+    </a>
+<a class="deckcard" href="https://www.pokemon-card.com/assets/images/card_images/large/MC/049434_T_TOUKO.jpg" target="_blank" rel="noreferrer" title="トウコ">
+      <img class="deck-img" src="https://www.pokemon-card.com/assets/images/card_images/large/MC/049434_T_TOUKO.jpg" data-hk="https://www.pokemon-card.com/assets/images/card_images/large/MC/049434_T_TOUKO.jpg" data-jp="https://www.pokemon-card.com/assets/images/card_images/large/MC/049434_T_TOUKO.jpg" alt="トウコ" loading="lazy" />
+      <div class="badge">2</div>
+    </a>
+<a class="deckcard" href="https://www.pokemon-card.com/assets/images/card_images/large/M2/048417_T_HIKARI.jpg" target="_blank" rel="noreferrer" title="ヒカリ">
+      <img class="deck-img" src="https://www.pokemon-card.com/assets/images/card_images/large/M2/048417_T_HIKARI.jpg" data-hk="https://www.pokemon-card.com/assets/images/card_images/large/M2/048417_T_HIKARI.jpg" data-jp="https://www.pokemon-card.com/assets/images/card_images/large/M2/048417_T_HIKARI.jpg" alt="ヒカリ" loading="lazy" />
+      <div class="badge">2</div>
+    </a>
+<a class="deckcard" href="#" target="_blank" rel="noreferrer" title="リーリエの決心">
+      <img class="deck-img" src="" data-hk="" data-jp="" alt="リーリエの決心" loading="lazy" />
+      <div class="badge">2</div>
+    </a>
+<a class="deckcard" href="https://www.pokemon-card.com/assets/images/card_images/large/SVB/042810_T_BOSUNOSHIREIAKAGI.jpg" target="_blank" rel="noreferrer" title="ボスの指令">
+      <img class="deck-img" src="https://www.pokemon-card.com/assets/images/card_images/large/SVB/042810_T_BOSUNOSHIREIAKAGI.jpg" data-hk="https://www.pokemon-card.com/assets/images/card_images/large/SVB/042810_T_BOSUNOSHIREIAKAGI.jpg" data-jp="https://www.pokemon-card.com/assets/images/card_images/large/SVB/042810_T_BOSUNOSHIREIAKAGI.jpg" alt="ボスの指令" loading="lazy" />
+      <div class="badge">1</div>
+    </a>
+<a class="deckcard" href="#" target="_blank" rel="noreferrer" title="タケシのスカウト">
+      <img class="deck-img" src="" data-hk="" data-jp="" alt="タケシのスカウト" loading="lazy" />
+      <div class="badge">1</div>
+    </a>
+<a class="deckcard" href="https://www.pokemon-card.com/assets/images/card_images/large/MC/049452_E_IGUNISSHIXYONENERUGI.jpg" target="_blank" rel="noreferrer" title="イグニッションエネルギー">
+      <img class="deck-img" src="https://www.pokemon-card.com/assets/images/card_images/large/MC/049452_E_IGUNISSHIXYONENERUGI.jpg" data-hk="https://www.pokemon-card.com/assets/images/card_images/large/MC/049452_E_IGUNISSHIXYONENERUGI.jpg" data-jp="https://www.pokemon-card.com/assets/images/card_images/large/MC/049452_E_IGUNISSHIXYONENERUGI.jpg" alt="イグニッションエネルギー" loading="lazy" />
+      <div class="badge">4</div>
+    </a>
+      </div>
+      <div class="sub" style="margin-top:8px">提示：撳卡圖會開原圖（可再放大）。</div>
+    </section>
 
     <section class="grid" aria-label="Skeleton">
       <div class="box">
@@ -87,7 +183,7 @@ li{margin:6px 0; color:var(--text)}
           <tbody>
             <tr>
       <td class="name">
-        <div class="thumb ph" aria-hidden="true">—</div>
+        <img class="thumb deck-img" src="https://www.pokemon-card.com/assets/images/card_images/large/M3/049690_P_GIRUGARUDO.jpg" data-hk="https://www.pokemon-card.com/assets/images/card_images/large/M3/049690_P_GIRUGARUDO.jpg" data-jp="https://www.pokemon-card.com/assets/images/card_images/large/M3/049690_P_GIRUGARUDO.jpg" alt="ギルガルド" loading="lazy" />
         <span class="card-name" title="出現：5/5｜平均：4">ギルガルド</span>
       </td>
       <td class="tag">寶可夢</td>
@@ -95,7 +191,7 @@ li{margin:6px 0; color:var(--text)}
     </tr>
 <tr>
       <td class="name">
-        <div class="thumb ph" aria-hidden="true">—</div>
+        <img class="thumb deck-img" src="https://www.pokemon-card.com/assets/images/card_images/large/M3/049689_P_NIDANGIRU.jpg" data-hk="https://www.pokemon-card.com/assets/images/card_images/large/M3/049689_P_NIDANGIRU.jpg" data-jp="https://www.pokemon-card.com/assets/images/card_images/large/M3/049689_P_NIDANGIRU.jpg" alt="ニダンギル" loading="lazy" />
         <span class="card-name" title="出現：5/5｜平均：4">ニダンギル</span>
       </td>
       <td class="tag">寶可夢</td>
@@ -103,7 +199,7 @@ li{margin:6px 0; color:var(--text)}
     </tr>
 <tr>
       <td class="name">
-        <div class="thumb ph" aria-hidden="true">—</div>
+        <img class="thumb deck-img" src="https://www.pokemon-card.com/assets/images/card_images/large/M3/049688_P_HITOTSUKI.jpg" data-hk="https://www.pokemon-card.com/assets/images/card_images/large/M3/049688_P_HITOTSUKI.jpg" data-jp="https://www.pokemon-card.com/assets/images/card_images/large/M3/049688_P_HITOTSUKI.jpg" alt="ヒトツキ" loading="lazy" />
         <span class="card-name" title="出現：5/5｜平均：4">ヒトツキ</span>
       </td>
       <td class="tag">寶可夢</td>
@@ -111,7 +207,7 @@ li{margin:6px 0; color:var(--text)}
     </tr>
 <tr>
       <td class="name">
-        <div class="thumb ph" aria-hidden="true">—</div>
+        <img class="thumb deck-img" src="https://www.pokemon-card.com/assets/images/card_images/large/MC/049546_P_GENOSEKUTOEX.jpg" data-hk="https://www.pokemon-card.com/assets/images/card_images/large/MC/049546_P_GENOSEKUTOEX.jpg" data-jp="https://www.pokemon-card.com/assets/images/card_images/large/MC/049546_P_GENOSEKUTOEX.jpg" alt="ゲノセクトex" loading="lazy" />
         <span class="card-name" title="出現：5/5｜平均：2.4">ゲノセクトex</span>
       </td>
       <td class="tag">寶可夢</td>
@@ -119,7 +215,7 @@ li{margin:6px 0; color:var(--text)}
     </tr>
 <tr>
       <td class="name">
-        <div class="thumb ph" aria-hidden="true">—</div>
+        <img class="thumb deck-img" src="https://www.pokemon-card.com/assets/images/card_images/large/MC/049205_P_KICHIKIGISUEX.jpg" data-hk="https://www.pokemon-card.com/assets/images/card_images/large/MC/049205_P_KICHIKIGISUEX.jpg" data-jp="https://www.pokemon-card.com/assets/images/card_images/large/MC/049205_P_KICHIKIGISUEX.jpg" alt="キチキギスex" loading="lazy" />
         <span class="card-name" title="出現：3/5｜平均：0.6">キチキギスex</span>
       </td>
       <td class="tag">寶可夢</td>
@@ -127,7 +223,7 @@ li{margin:6px 0; color:var(--text)}
     </tr>
 <tr>
       <td class="name">
-        <div class="thumb ph" aria-hidden="true">—</div>
+        <img class="thumb deck-img" src="https://www.pokemon-card.com/assets/images/card_images/large/M2a/048534_P_SHIEIMI.jpg" data-hk="https://www.pokemon-card.com/assets/images/card_images/large/M2a/048534_P_SHIEIMI.jpg" data-jp="https://www.pokemon-card.com/assets/images/card_images/large/M2a/048534_P_SHIEIMI.jpg" alt="シェイミ" loading="lazy" />
         <span class="card-name" title="出現：3/5｜平均：0.6">シェイミ</span>
       </td>
       <td class="tag">寶可夢</td>
@@ -144,7 +240,7 @@ li{margin:6px 0; color:var(--text)}
           <tbody>
             <tr>
       <td class="name">
-        <div class="thumb ph" aria-hidden="true">—</div>
+        <img class="thumb deck-img" src="https://www.pokemon-card.com/assets/images/card_images/large/M-P/049601_T_POKEPADDO.jpg" data-hk="https://www.pokemon-card.com/assets/images/card_images/large/M-P/049601_T_POKEPADDO.jpg" data-jp="https://www.pokemon-card.com/assets/images/card_images/large/M-P/049601_T_POKEPADDO.jpg" alt="ポケパッド" loading="lazy" />
         <span class="card-name" title="出現：5/5｜平均：4">ポケパッド</span>
       </td>
       <td class="tag">物品</td>
@@ -152,7 +248,7 @@ li{margin:6px 0; color:var(--text)}
     </tr>
 <tr>
       <td class="name">
-        <div class="thumb ph" aria-hidden="true">—</div>
+        <img class="thumb deck-img" src="https://www.pokemon-card.com/assets/images/card_images/large/SVN/047191_T_NAKAYOSHIPOFUIN.jpg" data-hk="https://www.pokemon-card.com/assets/images/card_images/large/SVN/047191_T_NAKAYOSHIPOFUIN.jpg" data-jp="https://www.pokemon-card.com/assets/images/card_images/large/SVN/047191_T_NAKAYOSHIPOFUIN.jpg" alt="なかよしポフィン" loading="lazy" />
         <span class="card-name" title="出現：4/5｜平均：2.6">なかよしポフィン</span>
       </td>
       <td class="tag">物品</td>
@@ -160,7 +256,7 @@ li{margin:6px 0; color:var(--text)}
     </tr>
 <tr>
       <td class="name">
-        <div class="thumb ph" aria-hidden="true">—</div>
+        <img class="thumb deck-img" src="https://www.pokemon-card.com/assets/images/card_images/large/MC/049386_T_YORUNOTANKA.jpg" data-hk="https://www.pokemon-card.com/assets/images/card_images/large/MC/049386_T_YORUNOTANKA.jpg" data-jp="https://www.pokemon-card.com/assets/images/card_images/large/MC/049386_T_YORUNOTANKA.jpg" alt="夜のタンカ" loading="lazy" />
         <span class="card-name" title="出現：4/5｜平均：1.6">夜のタンカ</span>
       </td>
       <td class="tag">物品</td>
@@ -176,7 +272,7 @@ li{margin:6px 0; color:var(--text)}
     </tr>
 <tr>
       <td class="name">
-        <div class="thumb ph" aria-hidden="true">—</div>
+        <img class="thumb deck-img" src="https://www.pokemon-card.com/assets/images/card_images/large/MC/049376_T_POKEGIA30.jpg" data-hk="https://www.pokemon-card.com/assets/images/card_images/large/MC/049376_T_POKEGIA30.jpg" data-jp="https://www.pokemon-card.com/assets/images/card_images/large/MC/049376_T_POKEGIA30.jpg" alt="ポケギア3.0" loading="lazy" />
         <span class="card-name" title="出現：3/5｜平均：1.4">ポケギア3.0</span>
       </td>
       <td class="tag">物品</td>
@@ -201,7 +297,7 @@ li{margin:6px 0; color:var(--text)}
           <tbody>
             <tr>
       <td class="name">
-        <div class="thumb ph" aria-hidden="true">—</div>
+        <img class="thumb deck-img" src="https://www.pokemon-card.com/assets/images/card_images/large/MC/049434_T_TOUKO.jpg" data-hk="https://www.pokemon-card.com/assets/images/card_images/large/MC/049434_T_TOUKO.jpg" data-jp="https://www.pokemon-card.com/assets/images/card_images/large/MC/049434_T_TOUKO.jpg" alt="トウコ" loading="lazy" />
         <span class="card-name" title="出現：4/5｜平均：2">トウコ</span>
       </td>
       <td class="tag">支援者</td>
@@ -209,7 +305,7 @@ li{margin:6px 0; color:var(--text)}
     </tr>
 <tr>
       <td class="name">
-        <div class="thumb ph" aria-hidden="true">—</div>
+        <img class="thumb deck-img" src="https://www.pokemon-card.com/assets/images/card_images/large/M2/048417_T_HIKARI.jpg" data-hk="https://www.pokemon-card.com/assets/images/card_images/large/M2/048417_T_HIKARI.jpg" data-jp="https://www.pokemon-card.com/assets/images/card_images/large/M2/048417_T_HIKARI.jpg" alt="ヒカリ" loading="lazy" />
         <span class="card-name" title="出現：4/5｜平均：2.2">ヒカリ</span>
       </td>
       <td class="tag">支援者</td>
@@ -225,7 +321,7 @@ li{margin:6px 0; color:var(--text)}
     </tr>
 <tr>
       <td class="name">
-        <div class="thumb ph" aria-hidden="true">—</div>
+        <img class="thumb deck-img" src="https://www.pokemon-card.com/assets/images/card_images/large/SVB/042810_T_BOSUNOSHIREIAKAGI.jpg" data-hk="https://www.pokemon-card.com/assets/images/card_images/large/SVB/042810_T_BOSUNOSHIREIAKAGI.jpg" data-jp="https://www.pokemon-card.com/assets/images/card_images/large/SVB/042810_T_BOSUNOSHIREIAKAGI.jpg" alt="ボスの指令" loading="lazy" />
         <span class="card-name" title="出現：4/5｜平均：1">ボスの指令</span>
       </td>
       <td class="tag">支援者</td>
@@ -251,7 +347,7 @@ li{margin:6px 0; color:var(--text)}
             
             <tr>
       <td class="name">
-        <div class="thumb ph" aria-hidden="true">—</div>
+        <img class="thumb deck-img" src="https://www.pokemon-card.com/assets/images/card_images/large/MC/049452_E_IGUNISSHIXYONENERUGI.jpg" data-hk="https://www.pokemon-card.com/assets/images/card_images/large/MC/049452_E_IGUNISSHIXYONENERUGI.jpg" data-jp="https://www.pokemon-card.com/assets/images/card_images/large/MC/049452_E_IGUNISSHIXYONENERUGI.jpg" alt="イグニッションエネルギー" loading="lazy" />
         <span class="card-name" title="出現：5/5｜平均：3.8">イグニッションエネルギー</span>
       </td>
       <td class="tag">能量</td>
@@ -264,12 +360,40 @@ li{margin:6px 0; color:var(--text)}
       <div class="box">
         <h2>總結（點樣解讀呢個「5副平均骨架」）</h2>
         <ul>
-          <li><b>骨架</b> = 5副入面「至少 3 副都有」嘅卡，再用平均數四捨五入做成一份「接近主流」嘅 60 概念表。</li>
-          <li>想睇分歧位：請留意每張卡嘅 tooltip（出現幾多副／平均數），出現 3/5 通常就係 tech / meta slot。</li>
-          <li>如果你想我再做得同 Top6 一模一樣（有卡圖、繁中/日文切換、完整 deck grid），我需要再加一步「卡名 → cardID/卡圖」對照（避免同名錯圖）。</li>
+          <li><b>骨架</b> = 5副入面「至少 3 副都有」嘅卡，再用平均數四捨五入，整成一份「接近主流」嘅參考 60。</li>
+          <li>想搵 <b>tech 位</b>：通常就係 <b>只出現 3/5</b> 或者 <b>平均數好低（0.x～1.x）</b> 嗰啲。</li>
+          <li>想做得更貼實戰：你可以用呢份骨架做底，再按你本地 meta 把 2–6 個 slot 換成針對卡。</li>
         </ul>
       </div>
     </section>
+
+    <script>
+      // click-to-open full image
+      document.querySelectorAll('img.thumb').forEach(img => {
+        img.addEventListener('click', () => window.open(img.src, '_blank', 'noopener'));
+      });
+
+      // toggle between HK (繁中) and JP images when both are available
+      function setImgMode(mode){
+        document.querySelectorAll('.imgtoggle button').forEach(b => b.classList.toggle('active', b.dataset.mode===mode));
+        document.querySelectorAll('img.deck-img').forEach(img => {
+          const hk = img.dataset.hk || '';
+          const jp = img.dataset.jp || '';
+          const next = (mode==='hk' ? (hk||jp) : (jp||hk));
+          if(next) img.src = next;
+        });
+        // update deckcard links too
+        document.querySelectorAll('a.deckcard').forEach(a => {
+          const img = a.querySelector('img.deck-img');
+          if(!img) return;
+          a.href = img.src;
+        });
+      }
+      document.querySelectorAll('.imgtoggle button').forEach(btn => {
+        btn.addEventListener('click', () => setImgMode(btn.dataset.mode));
+      });
+      setImgMode('hk');
+    </script>
   </div>
 </body>
 </html>

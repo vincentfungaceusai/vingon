@@ -13,17 +13,24 @@ function coreCards(sectionArr){
   return sectionArr.filter(x => x.present >= 3);
 }
 
-function buildRows(sectionArr, tag){
+function buildRows(sectionArr, tag, imgMap){
   const rows = coreCards(sectionArr)
     .map(x => ({ name: x.name, qty: roundInt(x.avg), present: x.present, avg: x.avg }))
     .filter(x => x.qty > 0)
     .sort((a,b)=> b.qty - a.qty || b.present - a.present || a.name.localeCompare(b.name,'ja'));
 
   return rows.map(r=>{
-    // no image mapping yet → placeholder block
+    const m = imgMap[r.name] || null;
+    const jp = m?.jpImg || '';
+    const hk = ''; // TODO: HK mapping
+    const src = jp || hk;
+    const img = src
+      ? `<img class="thumb deck-img" src="${esc(src)}" data-hk="${esc(hk||src)}" data-jp="${esc(jp||src)}" alt="${esc(r.name)}" loading="lazy" />`
+      : `<div class="thumb ph" aria-hidden="true">—</div>`;
+
     return `<tr>
       <td class="name">
-        <div class="thumb ph" aria-hidden="true">—</div>
+        ${img}
         <span class="card-name" title="出現：${r.present}/5｜平均：${r.avg}">${esc(r.name)}</span>
       </td>
       <td class="tag">${esc(tag)}</td>
@@ -32,23 +39,51 @@ function buildRows(sectionArr, tag){
   }).join('\n');
 }
 
-function sumQty(rowsHtml){
-  // not robust parse; caller already has computed sums
-  return rowsHtml;
+function skeletonListBySection(sectionArr, imgMap){
+  return coreCards(sectionArr)
+    .map(x => ({ name: x.name, qty: roundInt(x.avg), present: x.present, avg: x.avg }))
+    .filter(x => x.qty > 0)
+    .map(x => ({
+      ...x,
+      jpImg: imgMap[x.name]?.jpImg || '',
+      cardId: imgMap[x.name]?.cardId || '',
+    }))
+    .sort((a,b)=> b.qty - a.qty || b.present - a.present || a.name.localeCompare(b.name,'ja'));
+}
+
+function buildDeckGrid(allCards){
+  // flatten qty into repeated cards (like Top6 deckshot)
+  const items = [];
+  for (const c of allCards){
+    items.push({ ...c });
+  }
+  return items.map(c=>{
+    const src = c.jpImg || '';
+    const hk = src; // placeholder
+    const jp = src;
+    const href = src || '#';
+    const title = c.name;
+    return `<a class="deckcard" href="${esc(href)}" target="_blank" rel="noreferrer" title="${esc(title)}">
+      <img class="deck-img" src="${esc(src)}" data-hk="${esc(hk)}" data-jp="${esc(jp)}" alt="${esc(c.name)}" loading="lazy" />
+      <div class="badge">${c.qty}</div>
+    </a>`;
+  }).join('\n');
 }
 
 async function main(){
   const inPath = process.argv[2];
   const outDir = process.argv[3];
   const titleZh = process.argv[4];
-  const pokecabook = process.argv[5];
+  const mapPath = process.argv[5];
+  const pokecabook = process.argv[6];
 
-  if (!inPath || !outDir || !titleZh) {
-    console.error('Usage: node scripts/gen_5deck_average_page.mjs <summaryJson> <outDir> <titleZh> [pokecabookUrl]');
+  if (!inPath || !outDir || !titleZh || !mapPath) {
+    console.error('Usage: node scripts/gen_5deck_average_page.mjs <summaryJson> <outDir> <titleZh> <cardImgMapJson> [pokecabookUrl]');
     process.exit(1);
   }
 
   const data = JSON.parse(await fs.readFile(inPath,'utf8'));
+  const imgMap = JSON.parse(await fs.readFile(mapPath,'utf8'));
   const deckIds = data.deckIds;
 
   const sec = (k)=> data.summary[k] || [];
@@ -63,6 +98,14 @@ async function main(){
   const itemsTools = goodsRows + toolRows;
   const stadEnergy = stadiumRows + energyRows;
   const total = pokemonRows + itemsTools + supportRows + stadEnergy;
+
+  const skPokemon = skeletonListBySection(sec('ポケモン'), imgMap);
+  const skGoods = skeletonListBySection(sec('グッズ'), imgMap);
+  const skTools = skeletonListBySection(sec('ポケモンのどうぐ'), imgMap);
+  const skSupport = skeletonListBySection(sec('サポート'), imgMap);
+  const skStadium = skeletonListBySection(sec('スタジアム'), imgMap);
+  const skEnergy = skeletonListBySection(sec('エネルギー'), imgMap);
+  const skAll = [...skPokemon, ...skGoods, ...skTools, ...skSupport, ...skStadium, ...skEnergy];
 
   const deckLinks = deckIds.map(id=>{
     const printUrl = `https://www.pokemon-card.com/deck/print.html/deckID/${id}/`;
@@ -115,6 +158,18 @@ li{margin:6px 0; color:var(--text)}
 
 .topnav{display:flex; gap:12px; flex-wrap:wrap; margin-top:10px; align-items:center;}
 .topnav a{display:inline-block; padding:6px 10px; border:1px solid var(--line); border-radius:999px; text-decoration:none; background:rgba(255,255,255,.04); color:var(--accent); font-size:13px;}
+
+.imgtoggle{margin-left:auto; display:flex; gap:8px; align-items:center; color:var(--muted); font-size:12px;}
+.imgtoggle button{padding:6px 10px; border-radius:999px; border:1px solid var(--line); background:rgba(255,255,255,.04); color:var(--text); cursor:pointer; font-size:12px;}
+.imgtoggle button.active{border-color:rgba(141,225,255,.55); color:var(--accent);}
+
+.deckshot{margin-top:14px; padding:14px; border:1px solid var(--line); background:rgba(255,255,255,.03); border-radius:14px;}
+.deckshot h2{margin:0 0 10px; font-size:16px; color:#dce3ff}
+.deckgrid{display:grid; grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); gap:10px;}
+.deckcard{position:relative; border-radius:10px; overflow:hidden; border:1px solid var(--line); background:rgba(255,255,255,.04);}
+.deckcard img{width:100%; height:auto; display:block;}
+.badge{position:absolute; left:8px; bottom:8px; min-width:28px; padding:4px 8px; border-radius:999px; background:rgba(0,0,0,.65); border:1px solid rgba(255,255,255,.22); color:#fff; font-family:var(--mono); font-weight:800; font-size:14px; text-align:center;}
+.deckcard:hover{border-color:rgba(141,225,255,.55);}
   </style>
 </head>
 <body>
@@ -127,11 +182,24 @@ li{margin:6px 0; color:var(--text)}
           <a href="../../decks/">返回牌組列表</a>
           <a href="../../">返回 PTCG 首頁</a>
           ${pokecabook ? `<a href="${esc(pokecabook)}" target="_blank" rel="noreferrer">PokecaBook 原文</a>` : ''}
+          <div class="imgtoggle" aria-label="Image source toggle">
+            <span>圖片：</span>
+            <button type="button" class="active" data-mode="hk">繁中</button>
+            <button type="button" data-mode="jp">日文</button>
+          </div>
         </div>
-        <div class="note small">暫時先用日文卡名（官方 deck print）；之後我可以再補：香港官方譯名 + 卡圖（同 Top6 一樣可切繁中/日文）。</div>
+        <div class="note small">卡名目前以日文為主；圖片已接入 deck confirm 取得嘅 cardId（避免同名錯圖）。繁中（HK）卡圖/譯名我下一步再補齊。</div>
       </div>
       <div class="pill"><span style="font-family:var(--mono)">SAMPLE</span> <span style="color:var(--good);font-family:var(--mono)">5</span></div>
     </header>
+
+    <section class="deckshot" aria-label="Full deck list image">
+      <h2>完整 Deck List 圖片（骨架視覺化）</h2>
+      <div class="deckgrid">
+        ${buildDeckGrid(skAll)}
+      </div>
+      <div class="sub" style="margin-top:8px">提示：撳卡圖會開原圖（可再放大）。</div>
+    </section>
 
     <section class="grid" aria-label="Skeleton">
       <div class="box">
@@ -153,7 +221,7 @@ li{margin:6px 0; color:var(--text)}
         <table>
           <thead><tr><th>卡名</th><th class="tag">分類</th><th class="count">數量</th></tr></thead>
           <tbody>
-            ${buildRows(sec('ポケモン'), '寶可夢') || `<tr><td colspan="3" class="small">（無）</td></tr>`}
+            ${buildRows(sec('ポケモン'), '寶可夢', imgMap) || `<tr><td colspan="3" class="small">（無）</td></tr>`}
           </tbody>
         </table>
       </div>
@@ -163,8 +231,8 @@ li{margin:6px 0; color:var(--text)}
         <table>
           <thead><tr><th>卡名</th><th class="tag">分類</th><th class="count">數量</th></tr></thead>
           <tbody>
-            ${buildRows(sec('グッズ'), '物品')}
-            ${buildRows(sec('ポケモンのどうぐ'), '道具')}
+            ${buildRows(sec('グッズ'), '物品', imgMap)}
+            ${buildRows(sec('ポケモンのどうぐ'), '道具', imgMap)}
           </tbody>
         </table>
       </div>
@@ -174,7 +242,7 @@ li{margin:6px 0; color:var(--text)}
         <table>
           <thead><tr><th>卡名</th><th class="tag">分類</th><th class="count">數量</th></tr></thead>
           <tbody>
-            ${buildRows(sec('サポート'), '支援者') || `<tr><td colspan="3" class="small">（無）</td></tr>`}
+            ${buildRows(sec('サポート'), '支援者', imgMap) || `<tr><td colspan="3" class="small">（無）</td></tr>`}
           </tbody>
         </table>
       </div>
@@ -184,8 +252,8 @@ li{margin:6px 0; color:var(--text)}
         <table>
           <thead><tr><th>卡名</th><th class="tag">分類</th><th class="count">數量</th></tr></thead>
           <tbody>
-            ${buildRows(sec('スタジアム'), '競技場')}
-            ${buildRows(sec('エネルギー'), '能量')}
+            ${buildRows(sec('スタジアム'), '競技場', imgMap)}
+            ${buildRows(sec('エネルギー'), '能量', imgMap)}
           </tbody>
         </table>
       </div>
@@ -193,12 +261,40 @@ li{margin:6px 0; color:var(--text)}
       <div class="box">
         <h2>總結（點樣解讀呢個「5副平均骨架」）</h2>
         <ul>
-          <li><b>骨架</b> = 5副入面「至少 3 副都有」嘅卡，再用平均數四捨五入做成一份「接近主流」嘅 60 概念表。</li>
-          <li>想睇分歧位：請留意每張卡嘅 tooltip（出現幾多副／平均數），出現 3/5 通常就係 tech / meta slot。</li>
-          <li>如果你想我再做得同 Top6 一模一樣（有卡圖、繁中/日文切換、完整 deck grid），我需要再加一步「卡名 → cardID/卡圖」對照（避免同名錯圖）。</li>
+          <li><b>骨架</b> = 5副入面「至少 3 副都有」嘅卡，再用平均數四捨五入，整成一份「接近主流」嘅參考 60。</li>
+          <li>想搵 <b>tech 位</b>：通常就係 <b>只出現 3/5</b> 或者 <b>平均數好低（0.x～1.x）</b> 嗰啲。</li>
+          <li>想做得更貼實戰：你可以用呢份骨架做底，再按你本地 meta 把 2–6 個 slot 換成針對卡。</li>
         </ul>
       </div>
     </section>
+
+    <script>
+      // click-to-open full image
+      document.querySelectorAll('img.thumb').forEach(img => {
+        img.addEventListener('click', () => window.open(img.src, '_blank', 'noopener'));
+      });
+
+      // toggle between HK (繁中) and JP images when both are available
+      function setImgMode(mode){
+        document.querySelectorAll('.imgtoggle button').forEach(b => b.classList.toggle('active', b.dataset.mode===mode));
+        document.querySelectorAll('img.deck-img').forEach(img => {
+          const hk = img.dataset.hk || '';
+          const jp = img.dataset.jp || '';
+          const next = (mode==='hk' ? (hk||jp) : (jp||hk));
+          if(next) img.src = next;
+        });
+        // update deckcard links too
+        document.querySelectorAll('a.deckcard').forEach(a => {
+          const img = a.querySelector('img.deck-img');
+          if(!img) return;
+          a.href = img.src;
+        });
+      }
+      document.querySelectorAll('.imgtoggle button').forEach(btn => {
+        btn.addEventListener('click', () => setImgMode(btn.dataset.mode));
+      });
+      setImgMode('hk');
+    </script>
   </div>
 </body>
 </html>`;
