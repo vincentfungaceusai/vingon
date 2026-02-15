@@ -468,5 +468,22 @@
   "レガシーエネルギー": {
     "hkName": "古舊能量",
     "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018494.png"
+  },
+
+  "ヒトデマン": {
+    "hkName": "海星星",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018530.png"
+  },
+  "メガスターミーex": {
+    "hkName": "超級寶石海星ex",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018531.png"
+  },
+  "メガユキメノコex": {
+    "hkName": "超級雪妖女ex",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00014617.png"
+  },
+  "基本水エネルギー": {
+    "hkName": "基本水能量",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00008539.png"
   }
 }

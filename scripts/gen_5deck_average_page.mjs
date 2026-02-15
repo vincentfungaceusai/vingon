@@ -75,9 +75,10 @@ async function main(){
   const titleZh = process.argv[4];
   const mapPath = process.argv[5];
   const pokecabook = process.argv[6];
+  const archeKey = process.argv[7] || '';
 
   if (!inPath || !outDir || !titleZh || !mapPath) {
-    console.error('Usage: node scripts/gen_5deck_average_page.mjs <summaryJson> <outDir> <titleZh> <cardImgMapJson> [pokecabookUrl]');
+    console.error('Usage: node scripts/gen_5deck_average_page.mjs <summaryJson> <outDir> <titleZh> <cardImgMapJson> [pokecabookUrl] [archeKey]');
     process.exit(1);
   }
 
@@ -112,6 +113,88 @@ async function main(){
     const confirmUrl = `https://www.pokemon-card.com/deck/confirm.html/deckID/${id}`;
     return `<li class="mono"><a href="${printUrl}" target="_blank" rel="noreferrer">${esc(id)}</a> <span class="small">(print)</span>｜<a href="${confirmUrl}" target="_blank" rel="noreferrer">confirm</a></li>`;
   }).join('\n');
+
+  function analysisBlocks(key){
+    if(key==='nidangir'){
+      return `
+      <div class="box">
+        <h2>常見 tech 位</h2>
+        <ul>
+          <li><b>シェイミ（謝米）</b>、<b>キチキギスex（吉雉雞ex）</b>：3/5 出現，屬於抽濾/節奏位（視乎你想加速鋪場定係補手）。</li>
+          <li><b>せいなるはい（聖灰）</b>：3/5 出現，偏向長局資源回收位。</li>
+          <li><b>ACE SPEC</b> 同引擎（ノココッチ線 vs ソルロック/ルナトーン）會分歧，建議跟你手上卡池/本地 meta 揀一派。</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h2>起手／前兩回合流程（簡化版）</h2>
+        <ul>
+          <li><b>T1</b>：優先鋪 <b>ヒトツキ</b>（至少 2–3 隻）→ 用 <b>ポフィン/球</b> 補齊；同時準備下一回合上 <b>ニダンギル</b>。</li>
+          <li><b>T2</b>：開始進化（ヒトツキ→ニダンギル→ギルガルド）→ 視局勢用 <b>ヒカリ/トウコ</b> 做節奏；必要時先用 <b>ゲノセクトex</b> 撐場。</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h2>對局要點（方向性）</h2>
+        <ul>
+          <li>你係「逐步成型」嘅 deck：唔好貪快硬換獎賞，優先確保每回合都可以穩定進化同維持場面。</li>
+          <li>對面有強干擾時，記住留資源（夜のタンカ/聖灰）做回收，避免一波斷線。</li>
+        </ul>
+      </div>`;
+    }
+
+    if(key==='okidogi'){
+      return `
+      <div class="box">
+        <h2>常見 tech 位</h2>
+        <ul>
+          <li><b>オーガポン いしずえのめんex（厄鬼椪 礎石面具ex）</b>：4/5 出現但平均低（0.8），屬典型 meta slot。</li>
+          <li><b>マシマシラ（願增猿）</b>：5/5 出現但多數 1–2，屬於節奏/解場位。</li>
+          <li>支援者分歧通常落喺：<b>ボスの指令</b> 份量（2–4）同其他 1-of tech。</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h2>起手／前兩回合流程（簡化版）</h2>
+        <ul>
+          <li><b>T1</b>：鋪 <b>イイネイヌ</b> + <b>ソルロック/ルナトーン</b> 套件，確保下回合可以持續出招；同時用 <b>ポケギア/ポケパッド</b> 砌到支援者線。</li>
+          <li><b>T2</b>：開始用 <b>ファイトゴング</b> 提升輸出/交換節奏；需要時用 <b>ボスの指令</b> 拉要點。</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h2>對局要點（方向性）</h2>
+        <ul>
+          <li>呢套好多時係「用節奏迫對面失誤」：你要計好每回合嘅打點同交換獎賞。</li>
+          <li>留意你嘅能量結構（闘 + 稜鏡 + 古舊）：唔好太早用晒稜鏡，避免中後段卡招式需求。</li>
+        </ul>
+      </div>`;
+    }
+
+    if(key==='mega_starmie'){
+      return `
+      <div class="box">
+        <h2>常見 tech 位</h2>
+        <ul>
+          <li><b>ニャースex（喵喵ex）</b>：3/5 出現，屬於抽濾/補手型 tech。</li>
+          <li>工具位多數只見 <b>ふうせん（氣球）</b>（3/5），其餘工具多屬自由位。</li>
+          <li>ACE SPEC 會分歧（例：プライムキャッチャー / アンフェアスタンプ），屬於你最主要嘅調整位之一。</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h2>起手／前兩回合流程（簡化版）</h2>
+        <ul>
+          <li><b>T1</b>：優先鋪 <b>海星星</b>（至少 2）+ <b>ユキワラシ</b> 線；用 <b>ポフィン/球</b> 補齊基礎，確保 T2 可以上 <b>超級寶石海星ex</b>。</li>
+          <li><b>T2</b>：進化出主攻，配合大量 <b>リーリエの決心</b>／<b>トウコ</b> 保持手牌質量；同時鋪好第二隻主攻避免被一換一打斷。</li>
+        </ul>
+      </div>
+      <div class="box">
+        <h2>對局要點（方向性）</h2>
+        <ul>
+          <li>你係中速連續出招 deck：重點係「每回合都有攻擊 + 保持後備有下一隻」。</li>
+          <li>對住高爆發 deck：優先保護你嘅進化鏈（ユキワラシ→ユキメノコ/メガユキメノコex），避免一回合被清場。</li>
+        </ul>
+      </div>`;
+    }
+
+    return '';
+  }
 
   const html = `<!doctype html>
 <html lang="zh-HK">
@@ -266,6 +349,8 @@ li{margin:6px 0; color:var(--text)}
           <li>想做得更貼實戰：你可以用呢份骨架做底，再按你本地 meta 把 2–6 個 slot 換成針對卡。</li>
         </ul>
       </div>
+
+      ${analysisBlocks(archeKey)}
     </section>
 
     <script>
