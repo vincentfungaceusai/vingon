@@ -3,148 +3,304 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>夠讚狗（イイネイヌ）｜優勝/上位 Deck（5副平均）</title>
+  <title>PTCG｜夠讚狗（イイネイヌ）｜5副平均</title>
   <style>
-    :root{--bg:#0b1020;--text:#eef1ff;--muted:#a9b3d1;--accent:#8de1ff;--line:rgba(255,255,255,.12);--good:#86efac;--mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;}
-    *{box-sizing:border-box}
-    body{margin:0;background:linear-gradient(180deg,#070a16,var(--bg));color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,"PingFang HK","Noto Sans CJK HK",sans-serif;}
-    a{color:var(--accent)}
-    .wrap{max-width:1080px;margin:0 auto;padding:28px 18px 70px;}
-    header{display:flex;gap:14px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;}
-    h1{margin:0;font-size:22px;letter-spacing:.2px}
-    h2{margin:18px 0 10px;font-size:16px;color:#dce3ff}
-    .sub{margin-top:6px;color:var(--muted);font-size:14px;line-height:1.55}
-    .topnav{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px}
-    .topnav a{display:inline-block;padding:6px 10px;border:1px solid var(--line);border-radius:999px;text-decoration:none;background:rgba(255,255,255,.04);color:var(--accent);font-size:13px;}
-    .pill{display:inline-flex;align-items:center;gap:8px;padding:7px 10px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.04);color:var(--muted);font-size:12px;}
-    .ok{color:var(--good);font-family:var(--mono)}
-    .mono{font-family:var(--mono)}
-    .muted{color:var(--muted)}
+:root{
+  --bg:#0b1020; --card:#121a33; --muted:#a9b3d1; --text:#eef1ff;
+  --accent:#8de1ff; --line:rgba(255,255,255,.12);
+  --good:#86efac;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+*{box-sizing:border-box}
+body{margin:0; background:linear-gradient(180deg,#070a16, var(--bg)); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,"PingFang HK","Noto Sans CJK HK",sans-serif;}
+a{color:var(--accent)}
+.wrap{max-width:980px; margin:0 auto; padding:28px 18px 60px;}
+header{display:flex; gap:14px; align-items:flex-start; justify-content:space-between; flex-wrap:wrap;}
+h1{margin:0; font-size:22px; letter-spacing:.2px}
+.sub{margin-top:6px; color:var(--muted); font-size:14px; line-height:1.35}
+.pill{display:inline-flex; align-items:center; gap:8px; padding:8px 10px; border:1px solid var(--line); background:rgba(255,255,255,.04); border-radius:999px; color:var(--muted); font-size:13px;}
+.grid{display:grid; gap:14px; grid-template-columns: repeat(12, 1fr); margin-top:18px;}
+.box{grid-column: span 12; background:rgba(255,255,255,.03); border:1px solid var(--line); border-radius:14px; padding:14px;}
+@media(min-width:860px){ .box.half{grid-column: span 6;} }
 
-    .box{margin-top:12px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.03);padding:14px;overflow:auto}
-    table{width:100%;border-collapse:collapse;font-size:14px;}
-    th,td{padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:top;}
-    th{color:var(--muted);font-weight:700;text-align:left;font-size:12px;letter-spacing:.4px;text-transform:uppercase;}
-    .hint{margin-top:8px;color:var(--muted);font-size:12px;line-height:1.5}
-    ul{margin:8px 0 0 18px;color:var(--text);line-height:1.7}
+h2{margin:0 0 10px; font-size:16px; color:#dce3ff}
+table{width:100%; border-collapse:collapse; font-size:14px;}
+th,td{padding:8px 6px; border-bottom:1px solid var(--line); vertical-align:top;}
+th{color:var(--muted); font-weight:600; text-align:left; font-size:12px; letter-spacing:.4px; text-transform:uppercase;}
+.count{width:54px; text-align:right; font-family:var(--mono); color:#dbe4ff;}
+.tag{width:120px; font-size:12px; color:var(--muted)}
+.note{border-left:3px solid rgba(141,225,255,.55); padding-left:10px; margin-top:10px;}
+ul{margin:10px 0 0 18px; padding:0}
+li{margin:6px 0; color:var(--text)}
+.small{font-size:12px; color:var(--muted)}
+
+.totals{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; color:var(--muted); font-size:13px;}
+.ok{color:var(--good); font-family:var(--mono)}
+
+.name{display:flex; align-items:center; gap:10px;}
+.thumb{width:92px; height:128px; border-radius:8px; border:1px solid var(--line); background:rgba(255,255,255,.04); object-fit:cover; flex:0 0 auto; cursor:zoom-in;}
+.thumb.ph{display:flex; align-items:center; justify-content:center; color:var(--muted); font-weight:800; font-size:12px; letter-spacing:.6px; cursor:default;}
+
+.topnav{display:flex; gap:12px; flex-wrap:wrap; margin-top:10px; align-items:center;}
+.topnav a{display:inline-block; padding:6px 10px; border:1px solid var(--line); border-radius:999px; text-decoration:none; background:rgba(255,255,255,.04); color:var(--accent); font-size:13px;}
   </style>
 </head>
 <body>
   <div class="wrap">
     <header>
       <div>
-        <h1>夠讚狗（イイネイヌ）｜優勝/上位 Deck（5副平均）</h1>
-        <div class="sub">根據 PokecaBook 文章內嘅上位 deck link，抽 5 副官方 deck list 做平均／骨架統計（出現 ≥ 3/5）。</div>
+        <h1>夠讚狗（イイネイヌ）（5副平均）</h1>
+        <div class="sub">樣本來源：PokecaBook 上位 deck（抽 5 副官方 deck list）｜骨架以「出現 ≥ 3/5」+「平均數四捨五入」整合</div>
         <div class="topnav">
-          <a href="../">返回 Decks</a>
+          <a href="../../decks/">返回牌組列表</a>
           <a href="../../">返回 PTCG 首頁</a>
           <a href="https://pokecabook.com/archives/149284" target="_blank" rel="noreferrer">PokecaBook 原文</a>
         </div>
+        <div class="note small">暫時先用日文卡名（官方 deck print）；之後我可以再補：香港官方譯名 + 卡圖（同 Top6 一樣可切繁中/日文）。</div>
       </div>
-      <div class="pill"><span class="mono">SAMPLE</span> <span class="ok">5</span></div>
+      <div class="pill"><span style="font-family:var(--mono)">SAMPLE</span> <span style="color:var(--good);font-family:var(--mono)">5</span></div>
     </header>
 
-    <div class="box">
-      <div class="sub"><b>本次抽樣 deckID：</b></div>
-      <ul><li class="mono"><a href="https://www.pokemon-card.com/deck/print.html/deckID/8xcx4x-3GWo7x-K88Gc4/" target="_blank" rel="noreferrer">8xcx4x-3GWo7x-K88Gc4</a> <span class="muted">(print)</span>｜<a href="https://www.pokemon-card.com/deck/confirm.html/deckID/8xcx4x-3GWo7x-K88Gc4" target="_blank" rel="noreferrer">confirm</a></li>
-<li class="mono"><a href="https://www.pokemon-card.com/deck/print.html/deckID/Gc8x8c-FonRy5-G8Y8xD/" target="_blank" rel="noreferrer">Gc8x8c-FonRy5-G8Y8xD</a> <span class="muted">(print)</span>｜<a href="https://www.pokemon-card.com/deck/confirm.html/deckID/Gc8x8c-FonRy5-G8Y8xD" target="_blank" rel="noreferrer">confirm</a></li>
-<li class="mono"><a href="https://www.pokemon-card.com/deck/print.html/deckID/2ppMUy-FFvHCT-yRypSp/" target="_blank" rel="noreferrer">2ppMUy-FFvHCT-yRypSp</a> <span class="muted">(print)</span>｜<a href="https://www.pokemon-card.com/deck/confirm.html/deckID/2ppMUy-FFvHCT-yRypSp" target="_blank" rel="noreferrer">confirm</a></li>
-<li class="mono"><a href="https://www.pokemon-card.com/deck/print.html/deckID/8D88cx-dG8bdm-Gx448Y/" target="_blank" rel="noreferrer">8D88cx-dG8bdm-Gx448Y</a> <span class="muted">(print)</span>｜<a href="https://www.pokemon-card.com/deck/confirm.html/deckID/8D88cx-dG8bdm-Gx448Y" target="_blank" rel="noreferrer">confirm</a></li>
-<li class="mono"><a href="https://www.pokemon-card.com/deck/print.html/deckID/xc8c8x-I9UxEk-D8xDG8/" target="_blank" rel="noreferrer">xc8c8x-I9UxEk-D8xDG8</a> <span class="muted">(print)</span>｜<a href="https://www.pokemon-card.com/deck/confirm.html/deckID/xc8c8x-I9UxEk-D8xDG8" target="_blank" rel="noreferrer">confirm</a></li></ul>
-      <div class="hint">提示：夠讚狗呢套通常係「闘能量 + 稜鏡/傳承」嘅混能量配置；分歧位多數落喺支援者（手牌干擾/換位）同 1-of tech。</div>
-    </div>
+    <section class="grid" aria-label="Skeleton">
+      <div class="box">
+        <h2>骨架（統計整合）</h2>
+        <div class="sub">骨架總卡數（合計）：<b>59</b>（平均四捨五入，出現&lt;3/5不納入）</div>
+        <div class="totals">
+          <span class="pill">寶可夢 <span class="ok">15</span></span>
+          <span class="pill">物品/道具 <span class="ok">15</span></span>
+          <span class="pill">支援者 <span class="ok">11</span></span>
+          <span class="pill">競技場/能量 <span class="ok">18</span></span>
+          <span class="pill">合計 <span class="ok">59</span></span>
+        </div>
+        <div class="sub" style="margin-top:10px"><b>本次抽樣 deckID：</b></div>
+        <ul><li class="mono"><a href="https://www.pokemon-card.com/deck/print.html/deckID/8xcx4x-3GWo7x-K88Gc4/" target="_blank" rel="noreferrer">8xcx4x-3GWo7x-K88Gc4</a> <span class="small">(print)</span>｜<a href="https://www.pokemon-card.com/deck/confirm.html/deckID/8xcx4x-3GWo7x-K88Gc4" target="_blank" rel="noreferrer">confirm</a></li>
+<li class="mono"><a href="https://www.pokemon-card.com/deck/print.html/deckID/Gc8x8c-FonRy5-G8Y8xD/" target="_blank" rel="noreferrer">Gc8x8c-FonRy5-G8Y8xD</a> <span class="small">(print)</span>｜<a href="https://www.pokemon-card.com/deck/confirm.html/deckID/Gc8x8c-FonRy5-G8Y8xD" target="_blank" rel="noreferrer">confirm</a></li>
+<li class="mono"><a href="https://www.pokemon-card.com/deck/print.html/deckID/2ppMUy-FFvHCT-yRypSp/" target="_blank" rel="noreferrer">2ppMUy-FFvHCT-yRypSp</a> <span class="small">(print)</span>｜<a href="https://www.pokemon-card.com/deck/confirm.html/deckID/2ppMUy-FFvHCT-yRypSp" target="_blank" rel="noreferrer">confirm</a></li>
+<li class="mono"><a href="https://www.pokemon-card.com/deck/print.html/deckID/8D88cx-dG8bdm-Gx448Y/" target="_blank" rel="noreferrer">8D88cx-dG8bdm-Gx448Y</a> <span class="small">(print)</span>｜<a href="https://www.pokemon-card.com/deck/confirm.html/deckID/8D88cx-dG8bdm-Gx448Y" target="_blank" rel="noreferrer">confirm</a></li>
+<li class="mono"><a href="https://www.pokemon-card.com/deck/print.html/deckID/xc8c8x-I9UxEk-D8xDG8/" target="_blank" rel="noreferrer">xc8c8x-I9UxEk-D8xDG8</a> <span class="small">(print)</span>｜<a href="https://www.pokemon-card.com/deck/confirm.html/deckID/xc8c8x-I9UxEk-D8xDG8" target="_blank" rel="noreferrer">confirm</a></li></ul>
+      </div>
 
-    
-  <h2>ポケモン（出現 ≥ 3/5）</h2>
-  <div class="box">
-    <table>
-      <thead><tr><th>卡</th><th>出現</th><th>平均</th><th>各副數量</th></tr></thead>
-      <tbody>
-        <tr><td><b>イイネイヌ</b></td><td class="mono">5/5</td><td class="mono">3.2</td><td class="mono">3, 3, 3, 4, 3</td></tr>
-<tr><td><b>カメテテ</b></td><td class="mono">5/5</td><td class="mono">2</td><td class="mono">2, 2, 2, 2, 2</td></tr>
-<tr><td><b>ガメノデス</b></td><td class="mono">5/5</td><td class="mono">2</td><td class="mono">2, 2, 2, 2, 2</td></tr>
-<tr><td><b>ソルロック</b></td><td class="mono">5/5</td><td class="mono">2</td><td class="mono">2, 2, 2, 2, 2</td></tr>
-<tr><td><b>ルナトーン</b></td><td class="mono">5/5</td><td class="mono">2</td><td class="mono">2, 2, 2, 2, 2</td></tr>
-<tr><td><b>マシマシラ</b></td><td class="mono">5/5</td><td class="mono">1.6</td><td class="mono">2, 2, 2, 1, 1</td></tr>
-<tr><td><b>ガチグマ アカツキ</b></td><td class="mono">5/5</td><td class="mono">1</td><td class="mono">1, 1, 1, 1, 1</td></tr>
-<tr><td><b>オーガポン いしずえのめんex</b></td><td class="mono">4/5</td><td class="mono">0.8</td><td class="mono">1, 1, 1, 1</td></tr>
-      </tbody>
-    </table>
-    <div class="hint">平均 = 5副總和 ÷ 5（冇出現當 0）。</div>
-  </div>
-    
-  <h2>グッズ（出現 ≥ 3/5）</h2>
-  <div class="box">
-    <table>
-      <thead><tr><th>卡</th><th>出現</th><th>平均</th><th>各副數量</th></tr></thead>
-      <tbody>
-        <tr><td><b>ファイトゴング</b></td><td class="mono">5/5</td><td class="mono">4</td><td class="mono">4, 4, 4, 4, 4</td></tr>
-<tr><td><b>ポケパッド</b></td><td class="mono">5/5</td><td class="mono">4</td><td class="mono">4, 4, 4, 4, 4</td></tr>
-<tr><td><b>夜のタンカ</b></td><td class="mono">5/5</td><td class="mono">2.8</td><td class="mono">3, 2, 3, 3, 3</td></tr>
-<tr><td><b>ポケギア3.0</b></td><td class="mono">5/5</td><td class="mono">2.4</td><td class="mono">3, 2, 3, 3, 1</td></tr>
-      </tbody>
-    </table>
-    <div class="hint">平均 = 5副總和 ÷ 5（冇出現當 0）。</div>
-  </div>
-    
-  <h2>ポケモンのどうぐ（出現 ≥ 3/5）</h2>
-  <div class="box">
-    <table>
-      <thead><tr><th>卡</th><th>出現</th><th>平均</th><th>各副數量</th></tr></thead>
-      <tbody>
-        <tr><td><b>ふうせん</b></td><td class="mono">5/5</td><td class="mono">2</td><td class="mono">2, 2, 2, 2, 2</td></tr>
-      </tbody>
-    </table>
-    <div class="hint">平均 = 5副總和 ÷ 5（冇出現當 0）。</div>
-  </div>
-    
-  <h2>サポート（出現 ≥ 3/5）</h2>
-  <div class="box">
-    <table>
-      <thead><tr><th>卡</th><th>出現</th><th>平均</th><th>各副數量</th></tr></thead>
-      <tbody>
-        <tr><td><b>リーリエの決心</b></td><td class="mono">5/5</td><td class="mono">4</td><td class="mono">4, 4, 4, 4, 4</td></tr>
-<tr><td><b>ボスの指令</b></td><td class="mono">5/5</td><td class="mono">2.6</td><td class="mono">2, 3, 2, 2, 4</td></tr>
-<tr><td><b>タラゴン</b></td><td class="mono">5/5</td><td class="mono">2.2</td><td class="mono">2, 2, 2, 2, 3</td></tr>
-<tr><td><b>マツバの確信</b></td><td class="mono">4/5</td><td class="mono">2</td><td class="mono">3, 3, 2, 2</td></tr>
-      </tbody>
-    </table>
-    <div class="hint">平均 = 5副總和 ÷ 5（冇出現當 0）。</div>
-  </div>
-    
-  <h2>スタジアム（出現 ≥ 3/5）</h2>
-  <div class="box">
-    <table>
-      <thead><tr><th>卡</th><th>出現</th><th>平均</th><th>各副數量</th></tr></thead>
-      <tbody>
-        <tr><td><b>バトルコロシアム</b></td><td class="mono">5/5</td><td class="mono">3</td><td class="mono">3, 3, 3, 3, 3</td></tr>
-      </tbody>
-    </table>
-    <div class="hint">平均 = 5副總和 ÷ 5（冇出現當 0）。</div>
-  </div>
-    
-  <h2>エネルギー（出現 ≥ 3/5）</h2>
-  <div class="box">
-    <table>
-      <thead><tr><th>卡</th><th>出現</th><th>平均</th><th>各副數量</th></tr></thead>
-      <tbody>
-        <tr><td><b>基本闘エネルギー</b></td><td class="mono">5/5</td><td class="mono">8.8</td><td class="mono">8, 9, 9, 9, 9</td></tr>
-<tr><td><b>プリズムエネルギー</b></td><td class="mono">5/5</td><td class="mono">4</td><td class="mono">4, 4, 4, 4, 4</td></tr>
-<tr><td><b>レガシーエネルギー</b></td><td class="mono">5/5</td><td class="mono">1</td><td class="mono">1, 1, 1, 1, 1</td></tr>
-<tr><td><b>基本悪エネルギー</b></td><td class="mono">5/5</td><td class="mono">1</td><td class="mono">1, 1, 1, 1, 1</td></tr>
-      </tbody>
-    </table>
-    <div class="hint">平均 = 5副總和 ÷ 5（冇出現當 0）。</div>
-  </div>
+      <div class="box half">
+        <h2>寶可夢（15）</h2>
+        <table>
+          <thead><tr><th>卡名</th><th class="tag">分類</th><th class="count">數量</th></tr></thead>
+          <tbody>
+            <tr>
+      <td class="name">
+        <div class="thumb ph" aria-hidden="true">—</div>
+        <span class="card-name" title="出現：5/5｜平均：3.2">イイネイヌ</span>
+      </td>
+      <td class="tag">寶可夢</td>
+      <td class="count">3</td>
+    </tr>
+<tr>
+      <td class="name">
+        <div class="thumb ph" aria-hidden="true">—</div>
+        <span class="card-name" title="出現：5/5｜平均：2">カメテテ</span>
+      </td>
+      <td class="tag">寶可夢</td>
+      <td class="count">2</td>
+    </tr>
+<tr>
+      <td class="name">
+        <div class="thumb ph" aria-hidden="true">—</div>
+        <span class="card-name" title="出現：5/5｜平均：2">ガメノデス</span>
+      </td>
+      <td class="tag">寶可夢</td>
+      <td class="count">2</td>
+    </tr>
+<tr>
+      <td class="name">
+        <div class="thumb ph" aria-hidden="true">—</div>
+        <span class="card-name" title="出現：5/5｜平均：2">ソルロック</span>
+      </td>
+      <td class="tag">寶可夢</td>
+      <td class="count">2</td>
+    </tr>
+<tr>
+      <td class="name">
+        <div class="thumb ph" aria-hidden="true">—</div>
+        <span class="card-name" title="出現：5/5｜平均：1.6">マシマシラ</span>
+      </td>
+      <td class="tag">寶可夢</td>
+      <td class="count">2</td>
+    </tr>
+<tr>
+      <td class="name">
+        <div class="thumb ph" aria-hidden="true">—</div>
+        <span class="card-name" title="出現：5/5｜平均：2">ルナトーン</span>
+      </td>
+      <td class="tag">寶可夢</td>
+      <td class="count">2</td>
+    </tr>
+<tr>
+      <td class="name">
+        <div class="thumb ph" aria-hidden="true">—</div>
+        <span class="card-name" title="出現：5/5｜平均：1">ガチグマ アカツキ</span>
+      </td>
+      <td class="tag">寶可夢</td>
+      <td class="count">1</td>
+    </tr>
+<tr>
+      <td class="name">
+        <div class="thumb ph" aria-hidden="true">—</div>
+        <span class="card-name" title="出現：4/5｜平均：0.8">オーガポン いしずえのめんex</span>
+      </td>
+      <td class="tag">寶可夢</td>
+      <td class="count">1</td>
+    </tr>
+          </tbody>
+        </table>
+      </div>
 
-    <h2>一句總結（我讀完5副後嘅感覺）</h2>
-    <div class="box">
-      <ul>
-        <li>核心一定係：<b>イイネイヌ</b>（5/5 出現，通常 3–4）。</li>
-        <li>固定配套幾乎係：<b>ソルロック / ルナトーン</b>（5/5 出現，各 2）。</li>
-        <li>打點+節奏位通常係：<b>ファイトゴング</b>、<b>ポケパッド</b>、同大量 <b>リーリエの決心</b>。</li>
-      </ul>
-    </div>
+      <div class="box half">
+        <h2>物品/道具（15）</h2>
+        <table>
+          <thead><tr><th>卡名</th><th class="tag">分類</th><th class="count">數量</th></tr></thead>
+          <tbody>
+            <tr>
+      <td class="name">
+        <div class="thumb ph" aria-hidden="true">—</div>
+        <span class="card-name" title="出現：5/5｜平均：4">ファイトゴング</span>
+      </td>
+      <td class="tag">物品</td>
+      <td class="count">4</td>
+    </tr>
+<tr>
+      <td class="name">
+        <div class="thumb ph" aria-hidden="true">—</div>
+        <span class="card-name" title="出現：5/5｜平均：4">ポケパッド</span>
+      </td>
+      <td class="tag">物品</td>
+      <td class="count">4</td>
+    </tr>
+<tr>
+      <td class="name">
+        <div class="thumb ph" aria-hidden="true">—</div>
+        <span class="card-name" title="出現：5/5｜平均：2.8">夜のタンカ</span>
+      </td>
+      <td class="tag">物品</td>
+      <td class="count">3</td>
+    </tr>
+<tr>
+      <td class="name">
+        <div class="thumb ph" aria-hidden="true">—</div>
+        <span class="card-name" title="出現：5/5｜平均：2.4">ポケギア3.0</span>
+      </td>
+      <td class="tag">物品</td>
+      <td class="count">2</td>
+    </tr>
+            <tr>
+      <td class="name">
+        <div class="thumb ph" aria-hidden="true">—</div>
+        <span class="card-name" title="出現：5/5｜平均：2">ふうせん</span>
+      </td>
+      <td class="tag">道具</td>
+      <td class="count">2</td>
+    </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="box half">
+        <h2>支援者（11）</h2>
+        <table>
+          <thead><tr><th>卡名</th><th class="tag">分類</th><th class="count">數量</th></tr></thead>
+          <tbody>
+            <tr>
+      <td class="name">
+        <div class="thumb ph" aria-hidden="true">—</div>
+        <span class="card-name" title="出現：5/5｜平均：4">リーリエの決心</span>
+      </td>
+      <td class="tag">支援者</td>
+      <td class="count">4</td>
+    </tr>
+<tr>
+      <td class="name">
+        <div class="thumb ph" aria-hidden="true">—</div>
+        <span class="card-name" title="出現：5/5｜平均：2.6">ボスの指令</span>
+      </td>
+      <td class="tag">支援者</td>
+      <td class="count">3</td>
+    </tr>
+<tr>
+      <td class="name">
+        <div class="thumb ph" aria-hidden="true">—</div>
+        <span class="card-name" title="出現：5/5｜平均：2.2">タラゴン</span>
+      </td>
+      <td class="tag">支援者</td>
+      <td class="count">2</td>
+    </tr>
+<tr>
+      <td class="name">
+        <div class="thumb ph" aria-hidden="true">—</div>
+        <span class="card-name" title="出現：4/5｜平均：2">マツバの確信</span>
+      </td>
+      <td class="tag">支援者</td>
+      <td class="count">2</td>
+    </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="box half">
+        <h2>競技場/能量（18）</h2>
+        <table>
+          <thead><tr><th>卡名</th><th class="tag">分類</th><th class="count">數量</th></tr></thead>
+          <tbody>
+            <tr>
+      <td class="name">
+        <div class="thumb ph" aria-hidden="true">—</div>
+        <span class="card-name" title="出現：5/5｜平均：3">バトルコロシアム</span>
+      </td>
+      <td class="tag">競技場</td>
+      <td class="count">3</td>
+    </tr>
+            <tr>
+      <td class="name">
+        <div class="thumb ph" aria-hidden="true">—</div>
+        <span class="card-name" title="出現：5/5｜平均：8.8">基本闘エネルギー</span>
+      </td>
+      <td class="tag">能量</td>
+      <td class="count">9</td>
+    </tr>
+<tr>
+      <td class="name">
+        <div class="thumb ph" aria-hidden="true">—</div>
+        <span class="card-name" title="出現：5/5｜平均：4">プリズムエネルギー</span>
+      </td>
+      <td class="tag">能量</td>
+      <td class="count">4</td>
+    </tr>
+<tr>
+      <td class="name">
+        <div class="thumb ph" aria-hidden="true">—</div>
+        <span class="card-name" title="出現：5/5｜平均：1">レガシーエネルギー</span>
+      </td>
+      <td class="tag">能量</td>
+      <td class="count">1</td>
+    </tr>
+<tr>
+      <td class="name">
+        <div class="thumb ph" aria-hidden="true">—</div>
+        <span class="card-name" title="出現：5/5｜平均：1">基本悪エネルギー</span>
+      </td>
+      <td class="tag">能量</td>
+      <td class="count">1</td>
+    </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="box">
+        <h2>總結（點樣解讀呢個「5副平均骨架」）</h2>
+        <ul>
+          <li><b>骨架</b> = 5副入面「至少 3 副都有」嘅卡，再用平均數四捨五入做成一份「接近主流」嘅 60 概念表。</li>
+          <li>想睇分歧位：請留意每張卡嘅 tooltip（出現幾多副／平均數），出現 3/5 通常就係 tech / meta slot。</li>
+          <li>如果你想我再做得同 Top6 一模一樣（有卡圖、繁中/日文切換、完整 deck grid），我需要再加一步「卡名 → cardID/卡圖」對照（避免同名錯圖）。</li>
+        </ul>
+      </div>
+    </section>
   </div>
 </body>
 </html>
