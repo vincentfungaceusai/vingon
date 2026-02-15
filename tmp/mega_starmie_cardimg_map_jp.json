@@ -1,0 +1,162 @@
+{
+  "ユキメノコ": {
+    "cardId": "45846",
+    "jpImg": "https://www.pokemon-card.com/assets/images/card_images/large/SV6/045846_P_YUKIMENOKO.jpg"
+  },
+  "マシマシラ": {
+    "cardId": "45849",
+    "jpImg": "https://www.pokemon-card.com/assets/images/card_images/large/SV6/045849_P_MASHIMASHIRA.jpg"
+  },
+  "メガユキメノコex": {
+    "cardId": "49993",
+    "jpImg": "https://www.pokemon-card.com/assets/images/card_images/large/M2a/049993_P_MYUKIMENOKOEX.jpg"
+  },
+  "ユキワラシ": {
+    "cardId": "49960",
+    "jpImg": "https://www.pokemon-card.com/assets/images/card_images/large/M2a/049960_P_YUKIWARASHI.jpg"
+  },
+  "ヒトデマン": {
+    "cardId": "49653",
+    "jpImg": "https://www.pokemon-card.com/assets/images/card_images/large/M3/049653_P_HITODEMAN.jpg"
+  },
+  "メガスターミーex": {
+    "cardId": "49654",
+    "jpImg": "https://www.pokemon-card.com/assets/images/card_images/large/M3/049654_P_MSUTAMIEX.jpg"
+  },
+  "スボミー": {
+    "cardId": "49956",
+    "jpImg": "https://www.pokemon-card.com/assets/images/card_images/large/M2a/049956_P_SUBOMI.jpg"
+  },
+  "イベルタル": {
+    "cardId": "47773",
+    "jpImg": "https://www.pokemon-card.com/assets/images/card_images/large/M1L/047773_P_IBERUTARU.jpg"
+  },
+  "モモワロウex": {
+    "cardId": "46067",
+    "jpImg": "https://www.pokemon-card.com/assets/images/card_images/large/SV6a/046067_P_MOMOWAROUEX.jpg"
+  },
+  "なかよしポフィン": {
+    "cardId": "48467",
+    "jpImg": "https://www.pokemon-card.com/assets/images/card_images/large/M1S/048467_T_NAKAYOSHIPOFUIN.jpg"
+  },
+  "夜のタンカ": {
+    "cardId": "48440",
+    "jpImg": "https://www.pokemon-card.com/assets/images/card_images/large/M1L/048440_T_YORUNOTANKA.jpg"
+  },
+  "ポケパッド": {
+    "cardId": "49703",
+    "jpImg": "https://www.pokemon-card.com/assets/images/card_images/large/M3/049703_T_POKEPADDO.jpg"
+  },
+  "ハイパーボール": {
+    "cardId": "49976",
+    "jpImg": "https://www.pokemon-card.com/assets/images/card_images/large/M2a/049976_T_HAIPABORU.jpg"
+  },
+  "プライムキャッチャー(ACE SPEC)": {
+    "cardId": "48274",
+    "jpImg": "https://www.pokemon-card.com/assets/images/card_images/large/MBG/048274_T_PURAIMUKIXYATCHIXYA.jpg"
+  },
+  "ボスの指令": {
+    "cardId": "43300",
+    "jpImg": "https://www.pokemon-card.com/assets/images/card_images/large/SV1a/043300_T_BOSUNOSHIREIGECHISU.jpg"
+  },
+  "アカマツ": {
+    "cardId": "46171",
+    "jpImg": "https://www.pokemon-card.com/assets/images/card_images/large/SV7/046171_T_AKAMATSU.jpg"
+  },
+  "リーリエの決心": {
+    "cardId": "48443",
+    "jpImg": "https://www.pokemon-card.com/assets/images/card_images/large/M1L/048443_T_RIRIENOKESSHIN.jpg"
+  },
+  "スイレンのお世話": {
+    "cardId": "45683",
+    "jpImg": "https://www.pokemon-card.com/assets/images/card_images/large/SV5a/045683_T_SUIRENNOOSEWA.jpg"
+  },
+  "トウコ": {
+    "cardId": "48078",
+    "jpImg": "https://www.pokemon-card.com/assets/images/card_images/large/SV11W/048078_T_TOUKO.jpg"
+  },
+  "ジャッジマン": {
+    "cardId": "41090",
+    "jpImg": "https://www.pokemon-card.com/assets/images/card_images/large/S8b/041090_T_JIXYAJJIMAN.jpg"
+  },
+  "ロケット団の監視塔": {
+    "cardId": "47489",
+    "jpImg": "https://www.pokemon-card.com/assets/images/card_images/large/SV10/047489_T_ROKETTODANNOKANSHITOU.jpg"
+  },
+  "基本悪エネルギー": {
+    "cardId": "25303",
+    "jpImg": "https://www.pokemon-card.com/assets/images/card_images/large/ENE/025303_E_KIHONAKUENERUGI.jpg"
+  },
+  "基本水エネルギー": {
+    "cardId": "25299",
+    "jpImg": "https://www.pokemon-card.com/assets/images/card_images/large/ENE/025299_E_KIHONMIZUENERUGI.jpg"
+  },
+  "シャリタツ": {
+    "cardId": "48657",
+    "jpImg": "https://www.pokemon-card.com/assets/images/card_images/large/M2a/048657_P_SHIXYARITATSU.jpg"
+  },
+  "ポケギア3.0": {
+    "cardId": "49376",
+    "jpImg": "https://www.pokemon-card.com/assets/images/card_images/large/MC/049376_T_POKEGIA30.jpg"
+  },
+  "ふうせん": {
+    "cardId": "49404",
+    "jpImg": "https://www.pokemon-card.com/assets/images/card_images/large/MC/049404_T_FUUSEN.jpg"
+  },
+  "アクロマの執念": {
+    "cardId": "46825",
+    "jpImg": "https://www.pokemon-card.com/assets/images/card_images/large/SV8a/046825_T_AKUROMANOSHIXYUUNEN.jpg"
+  },
+  "なみのりビーチ": {
+    "cardId": "47858",
+    "jpImg": "https://www.pokemon-card.com/assets/images/card_images/large/M1S/047858_T_NAMINORIBICHI.jpg"
+  },
+  "レガシーエネルギー": {
+    "cardId": "49457",
+    "jpImg": "https://www.pokemon-card.com/assets/images/card_images/large/MC/049457_E_REGASHIENERUGI.jpg"
+  },
+  "ニャースex": {
+    "cardId": "49694",
+    "jpImg": "https://www.pokemon-card.com/assets/images/card_images/large/M3/049694_P_NIXYASUEX.jpg"
+  },
+  "ミツルの思いやり": {
+    "cardId": "47899",
+    "jpImg": "https://www.pokemon-card.com/assets/images/card_images/large/MA/047899_T_MITSURUNOOMOIYARI.jpg"
+  },
+  "危ない廃墟": {
+    "cardId": "47796",
+    "jpImg": "https://www.pokemon-card.com/assets/images/card_images/large/M1L/047796_T_ABUNAIHAIKIXYO.jpg"
+  },
+  "シェイミ": {
+    "cardId": "47367",
+    "jpImg": "https://www.pokemon-card.com/assets/images/card_images/large/SV9a/047367_P_SHIEIMI.jpg"
+  },
+  "コダック": {
+    "cardId": "49959",
+    "jpImg": "https://www.pokemon-card.com/assets/images/card_images/large/M2a/049959_P_KODAKKU.jpg"
+  },
+  "ポケモンいれかえ": {
+    "cardId": "48508",
+    "jpImg": "https://www.pokemon-card.com/assets/images/card_images/large/M2/048508_T_POKEMONIREKAE.jpg"
+  },
+  "ツールスクラッパー": {
+    "cardId": "48240",
+    "jpImg": "https://www.pokemon-card.com/assets/images/card_images/large/SV11W/048240_T_TSURUSUKURAPPA.jpg"
+  },
+  "エネルギー転送": {
+    "cardId": "42243",
+    "jpImg": "https://www.pokemon-card.com/assets/images/card_images/large/SO/042243_T_ENERUGITENSOU.jpg"
+  },
+  "アンフェアスタンプ(ACE SPEC)": {
+    "cardId": "47870",
+    "jpImg": "https://www.pokemon-card.com/assets/images/card_images/large/MA/047870_T_ANFUEASUTANPU.jpg"
+  },
+  "マツバの確信": {
+    "cardId": "45535",
+    "jpImg": "https://www.pokemon-card.com/assets/images/card_images/large/SV5K/045535_T_MATSUBANOKAKUSHIN.jpg"
+  },
+  "イグニッションエネルギー": {
+    "cardId": "48515",
+    "jpImg": "https://www.pokemon-card.com/assets/images/card_images/large/M2/048515_E_IGUNISSHIXYONENERUGI.jpg"
+  }
+}
