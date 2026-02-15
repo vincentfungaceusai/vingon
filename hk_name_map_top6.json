@@ -410,5 +410,34 @@
     "hkName": "テレパス超エネルギー",
     "hkImgUrl": null,
     "note": "HK官網未搜到（可能未發售/未收錄）；fallback=jpName"
+  },
+
+  "ギルガルド": {
+    "hkName": "堅盾劍怪",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018567.png"
+  },
+  "ニダンギル": {
+    "hkName": "雙劍鞘",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018566.png"
+  },
+  "ヒトツキ": {
+    "hkName": "獨劍鞘",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018565.png"
+  },
+  "ゲノセクトex": {
+    "hkName": "蓋諾賽克特ex",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018265.png"
+  },
+  "イグニッションエネルギー": {
+    "hkName": "燃火能量",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018489.png"
+  },
+  "リッチエネルギー": {
+    "hkName": "富裕能量",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018493.png"
+  },
+  "基本鋼エネルギー": {
+    "hkName": "基本鋼能量",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00008544.png"
   }
 }

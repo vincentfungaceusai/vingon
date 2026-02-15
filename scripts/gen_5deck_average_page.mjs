@@ -13,7 +13,7 @@ function coreCards(sectionArr){
   return sectionArr.filter(x => x.present >= 3);
 }
 
-function buildRows(sectionArr, tag, imgMap){
+function buildRows(sectionArr, tag, imgMap, hkNameMap){
   const rows = coreCards(sectionArr)
     .map(x => ({ name: x.name, qty: roundInt(x.avg), present: x.present, avg: x.avg }))
     .filter(x => x.qty > 0)
@@ -22,16 +22,18 @@ function buildRows(sectionArr, tag, imgMap){
   return rows.map(r=>{
     const m = imgMap[r.name] || null;
     const jp = m?.jpImg || '';
-    const hk = ''; // TODO: HK mapping
-    const src = jp || hk;
+    const hk = hkNameMap?.[r.name]?.hkImgUrl || '';
+    const hkName = hkNameMap?.[r.name]?.hkName || r.name;
+
+    const src = hk || jp;
     const img = src
-      ? `<img class="thumb deck-img" src="${esc(src)}" data-hk="${esc(hk||src)}" data-jp="${esc(jp||src)}" alt="${esc(r.name)}" loading="lazy" />`
+      ? `<img class="thumb deck-img" src="${esc(src)}" data-hk="${esc(hk||src)}" data-jp="${esc(jp||src)}" alt="${esc(hkName)}" loading="lazy" />`
       : `<div class="thumb ph" aria-hidden="true">—</div>`;
 
     return `<tr>
       <td class="name">
         ${img}
-        <span class="card-name" title="出現：${r.present}/5｜平均：${r.avg}">${esc(r.name)}</span>
+        <span class="card-name" title="JP：${esc(r.name)}｜出現：${r.present}/5｜平均：${r.avg}">${esc(hkName)}</span>
       </td>
       <td class="tag">${esc(tag)}</td>
       <td class="count">${r.qty}</td>
@@ -39,32 +41,29 @@ function buildRows(sectionArr, tag, imgMap){
   }).join('\n');
 }
 
-function skeletonListBySection(sectionArr, imgMap){
+function skeletonListBySection(sectionArr, imgMap, hkNameMap){
   return coreCards(sectionArr)
     .map(x => ({ name: x.name, qty: roundInt(x.avg), present: x.present, avg: x.avg }))
     .filter(x => x.qty > 0)
     .map(x => ({
       ...x,
       jpImg: imgMap[x.name]?.jpImg || '',
+      hkImg: hkNameMap?.[x.name]?.hkImgUrl || '',
+      hkName: hkNameMap?.[x.name]?.hkName || x.name,
       cardId: imgMap[x.name]?.cardId || '',
     }))
     .sort((a,b)=> b.qty - a.qty || b.present - a.present || a.name.localeCompare(b.name,'ja'));
 }
 
 function buildDeckGrid(allCards){
-  // flatten qty into repeated cards (like Top6 deckshot)
-  const items = [];
-  for (const c of allCards){
-    items.push({ ...c });
-  }
-  return items.map(c=>{
-    const src = c.jpImg || '';
-    const hk = src; // placeholder
-    const jp = src;
+  return allCards.map(c=>{
+    const hk = c.hkImg || '';
+    const jp = c.jpImg || '';
+    const src = hk || jp;
     const href = src || '#';
-    const title = c.name;
+    const title = `${c.hkName || c.name}｜JP：${c.name}`;
     return `<a class="deckcard" href="${esc(href)}" target="_blank" rel="noreferrer" title="${esc(title)}">
-      <img class="deck-img" src="${esc(src)}" data-hk="${esc(hk)}" data-jp="${esc(jp)}" alt="${esc(c.name)}" loading="lazy" />
+      <img class="deck-img" src="${esc(src)}" data-hk="${esc(hk||src)}" data-jp="${esc(jp||src)}" alt="${esc(c.hkName || c.name)}" loading="lazy" />
       <div class="badge">${c.qty}</div>
     </a>`;
   }).join('\n');
@@ -84,6 +83,7 @@ async function main(){
 
   const data = JSON.parse(await fs.readFile(inPath,'utf8'));
   const imgMap = JSON.parse(await fs.readFile(mapPath,'utf8'));
+  const hkNameMap = JSON.parse(await fs.readFile('hk_name_map_top6.json','utf8'));
   const deckIds = data.deckIds;
 
   const sec = (k)=> data.summary[k] || [];
@@ -99,12 +99,12 @@ async function main(){
   const stadEnergy = stadiumRows + energyRows;
   const total = pokemonRows + itemsTools + supportRows + stadEnergy;
 
-  const skPokemon = skeletonListBySection(sec('ポケモン'), imgMap);
-  const skGoods = skeletonListBySection(sec('グッズ'), imgMap);
-  const skTools = skeletonListBySection(sec('ポケモンのどうぐ'), imgMap);
-  const skSupport = skeletonListBySection(sec('サポート'), imgMap);
-  const skStadium = skeletonListBySection(sec('スタジアム'), imgMap);
-  const skEnergy = skeletonListBySection(sec('エネルギー'), imgMap);
+  const skPokemon = skeletonListBySection(sec('ポケモン'), imgMap, hkNameMap);
+  const skGoods = skeletonListBySection(sec('グッズ'), imgMap, hkNameMap);
+  const skTools = skeletonListBySection(sec('ポケモンのどうぐ'), imgMap, hkNameMap);
+  const skSupport = skeletonListBySection(sec('サポート'), imgMap, hkNameMap);
+  const skStadium = skeletonListBySection(sec('スタジアム'), imgMap, hkNameMap);
+  const skEnergy = skeletonListBySection(sec('エネルギー'), imgMap, hkNameMap);
   const skAll = [...skPokemon, ...skGoods, ...skTools, ...skSupport, ...skStadium, ...skEnergy];
 
   const deckLinks = deckIds.map(id=>{
@@ -221,7 +221,7 @@ li{margin:6px 0; color:var(--text)}
         <table>
           <thead><tr><th>卡名</th><th class="tag">分類</th><th class="count">數量</th></tr></thead>
           <tbody>
-            ${buildRows(sec('ポケモン'), '寶可夢', imgMap) || `<tr><td colspan="3" class="small">（無）</td></tr>`}
+            ${buildRows(sec('ポケモン'), '寶可夢', imgMap, hkNameMap) || `<tr><td colspan="3" class="small">（無）</td></tr>`}
           </tbody>
         </table>
       </div>
@@ -231,8 +231,8 @@ li{margin:6px 0; color:var(--text)}
         <table>
           <thead><tr><th>卡名</th><th class="tag">分類</th><th class="count">數量</th></tr></thead>
           <tbody>
-            ${buildRows(sec('グッズ'), '物品', imgMap)}
-            ${buildRows(sec('ポケモンのどうぐ'), '道具', imgMap)}
+            ${buildRows(sec('グッズ'), '物品', imgMap, hkNameMap)}
+            ${buildRows(sec('ポケモンのどうぐ'), '道具', imgMap, hkNameMap)}
           </tbody>
         </table>
       </div>
@@ -242,7 +242,7 @@ li{margin:6px 0; color:var(--text)}
         <table>
           <thead><tr><th>卡名</th><th class="tag">分類</th><th class="count">數量</th></tr></thead>
           <tbody>
-            ${buildRows(sec('サポート'), '支援者', imgMap) || `<tr><td colspan="3" class="small">（無）</td></tr>`}
+            ${buildRows(sec('サポート'), '支援者', imgMap, hkNameMap) || `<tr><td colspan="3" class="small">（無）</td></tr>`}
           </tbody>
         </table>
       </div>
@@ -252,8 +252,8 @@ li{margin:6px 0; color:var(--text)}
         <table>
           <thead><tr><th>卡名</th><th class="tag">分類</th><th class="count">數量</th></tr></thead>
           <tbody>
-            ${buildRows(sec('スタジアム'), '競技場', imgMap)}
-            ${buildRows(sec('エネルギー'), '能量', imgMap)}
+            ${buildRows(sec('スタジアム'), '競技場', imgMap, hkNameMap)}
+            ${buildRows(sec('エネルギー'), '能量', imgMap, hkNameMap)}
           </tbody>
         </table>
       </div>
