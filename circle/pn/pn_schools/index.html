@@ -3,15 +3,16 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>元朗區｜有 PN（或同等級）提供嘅學校清單</title>
+  <title>元朗區｜PN（或同等級）學校清單（市中心優先排序）</title>
   <style>
-    :root{--bg:#0b1020;--text:#eef1ff;--muted:#a9b3d1;--accent:#8de1ff;--line:rgba(255,255,255,.12);--good:#86efac;--mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;}
+    :root{--bg:#0b1020;--text:#eef1ff;--muted:#a9b3d1;--accent:#8de1ff;--line:rgba(255,255,255,.12);--good:#86efac;--warn:#fbbf24;--mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;}
     *{box-sizing:border-box}
     body{margin:0;background:linear-gradient(180deg,#070a16,var(--bg));color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,"PingFang HK","Noto Sans CJK HK",sans-serif;}
     a{color:var(--accent)}
-    .wrap{max-width:980px;margin:0 auto;padding:28px 18px 60px;}
+    .wrap{max-width:1080px;margin:0 auto;padding:28px 18px 60px;}
     header{display:flex;gap:14px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;}
     h1{margin:0;font-size:22px;letter-spacing:.2px}
+    h2{margin:18px 0 10px;font-size:16px;color:#dce3ff}
     .sub{margin-top:6px;color:var(--muted);font-size:14px;line-height:1.5}
     .topnav{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px}
     .topnav a{display:inline-block;padding:6px 10px;border:1px solid var(--line);border-radius:999px;text-decoration:none;background:rgba(255,255,255,.04);color:var(--accent);font-size:13px;}
@@ -19,28 +20,40 @@
     .ok{color:var(--good);font-family:var(--mono)}
     .mono{font-family:var(--mono)}
 
-    .box{margin-top:16px;background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:14px;padding:14px;}
+    .box{margin-top:14px;background:rgba(255,255,255,.03);border:1px solid var(--line);border-radius:14px;padding:14px;}
     table{width:100%;border-collapse:collapse;font-size:14px;}
     th,td{padding:10px 8px;border-bottom:1px solid var(--line);vertical-align:top;}
     th{color:var(--muted);font-weight:700;text-align:left;font-size:12px;letter-spacing:.4px;text-transform:uppercase;}
     .tag{white-space:nowrap;color:var(--muted);font-size:12px}
+    .note{border-left:3px solid rgba(141,225,255,.55);padding-left:10px;margin-top:10px;}
+    .small{font-size:12px;color:var(--muted);line-height:1.5}
+    .pill2{display:inline-flex;align-items:center;gap:6px;padding:3px 8px;border:1px solid rgba(255,255,255,.14);border-radius:999px;background:rgba(255,255,255,.03);font-size:12px;color:var(--muted)}
+    .pill2.warn{border-color:rgba(251,191,36,.35);color:#ffe08a}
+    .addr{max-width:340px}
   </style>
 </head>
 <body>
   <div class="wrap">
     <header>
       <div>
-        <h1>有 PN（或同等級）提供嘅學校清單</h1>
-        <div class="sub">範圍：元朗區（含天水圍/錦田等）｜定義：<b>PN + 同等級</b>（N/N1/幼初班/2’s）。</div>
+        <h1>PN（或同等級）學校清單（元朗市中心優先排序）</h1>
+        <div class="sub">定義：<b>PN + 同等級</b>（N / N1 / 幼初班 / 2’s）｜範圍：元朗區（含天水圍/錦田等）</div>
         <div class="topnav">
           <a href="../">返回 PN 主頁</a>
           <a href="../schdule/">報名時間表</a>
           <a href="../../kei/">返回 育兒資料目錄</a>
         </div>
+        <div class="note sub">排序：會將「元朗市中心」相關學校放最頂；而家呢批已核實學校暫時主要集中天水圍/錦田，之後補到市中心學校就會自動排前。</div>
       </div>
       <div class="pill"><span class="mono">UPDATED</span> <span class="ok">2026-02-15</span></div>
     </header>
 
+    <h2>元朗市中心（優先）</h2>
+    <div class="box">
+      <div class="small"><span class="pill2 warn">暫時 0 間</span> 你如果畀我「市中心學校名單」我可以逐間核實加落嚟。</div>
+    </div>
+
+    <h2>其他地區（已核實）</h2>
     <div class="box">
       <table aria-label="PN schools list">
         <thead>
@@ -48,6 +61,10 @@
             <th>學校</th>
             <th>地區</th>
             <th>PN/同等級</th>
+            <th class="addr">地址</th>
+            <th>電話</th>
+            <th>地圖</th>
+            <th>Open Day / 參觀</th>
             <th>官方來源</th>
           </tr>
         </thead>
@@ -56,46 +73,62 @@
             <td><b>Anchors Academy Affiliated International Kindergarten</b><div class="tag">安基司學校 幼稚園部</div></td>
             <td>錦田</td>
             <td>PN（Pre‑Nursery）</td>
-            <td>
-              <a href="https://www.anchorsacademy.edu.hk/tc/content.php?wid=165" target="_blank" rel="noreferrer">收生頁</a>
-            </td>
+            <td class="addr">新界元朗錦田北高埔徑1號</td>
+            <td class="small">（待補）</td>
+            <td><a href="https://www.google.com/maps/search/?api=1&query=%E6%96%B0%E7%95%8C%E5%85%83%E6%9C%97%E9%8C%A6%E7%94%B0%E5%8C%97%E9%AB%98%E5%9F%94%E5%BE%911%E8%99%9F" target="_blank" rel="noreferrer">Google Maps</a></td>
+            <td class="small">以「Get to know you」會面為主（需預約）；以官網公布為準。</td>
+            <td><a href="https://www.anchorsacademy.edu.hk/tc/content.php?wid=165" target="_blank" rel="noreferrer">收生頁</a></td>
           </tr>
+
           <tr>
             <td><b>Gigamind Kindergarten and Children’s House</b><div class="tag">激活幼稚園暨幼兒園</div></td>
             <td>天水圍</td>
             <td>2’s（兩歲級；等同 PN）</td>
+            <td class="addr">新界天水圍天龍路9號嘉湖山莊美湖居B座</td>
+            <td class="mono">2446 9210</td>
+            <td><a href="https://www.google.com/maps/search/?api=1&query=%E6%96%B0%E7%95%8C%E5%A4%A9%E6%B0%B4%E5%9C%8D%E5%A4%A9%E9%BE%8D%E8%B7%AF9%E8%99%9F%E5%98%89%E6%B9%96%E5%B1%B1%E8%8E%8A%E7%BE%8E%E6%B9%96%E5%B1%85B%E5%BA%A7" target="_blank" rel="noreferrer">Google Maps</a></td>
+            <td class="small">未見固定 Open Day；請留意官網/收生公告。</td>
             <td>
               <a href="https://www.gigamind.edu.hk/zh/kindergarten/admissions/how-to-apply" target="_blank" rel="noreferrer">收生頁</a>
             </td>
           </tr>
+
           <tr>
             <td><b>Agnes Kindergarten & Nursery（嘉湖山莊景湖居校舍）</b><div class="tag">天樂幼稚園暨幼兒園</div></td>
             <td>天水圍</td>
             <td>N（基礎班）</td>
-            <td>
-              <a href="https://www.agneskg.edu.hk/agnestalent/index.php/section/page/3242__17661" target="_blank" rel="noreferrer">收生頁</a>
-            </td>
+            <td class="addr">新界元朗天水圍天龍路2號嘉湖山莊景湖居幼稚園校舍</td>
+            <td class="mono">3152 2600</td>
+            <td><a href="https://www.google.com/maps/search/?api=1&query=%E6%96%B0%E7%95%8C%E5%85%83%E6%9C%97%E5%A4%A9%E6%B0%B4%E5%9C%8D%E5%A4%A9%E9%BE%8D%E8%B7%AF2%E8%99%9F%E5%98%89%E6%B9%96%E5%B1%B1%E8%8E%8A%E6%99%AF%E6%B9%96%E5%B1%85%E5%B9%BC%E7%A8%9A%E5%9C%92%E6%A0%A1%E8%88%8D" target="_blank" rel="noreferrer">Google Maps</a></td>
+            <td class="small">未見固定 Open Day；以學校通知/官網為準。</td>
+            <td><a href="https://www.agneskg.edu.hk/agnestalent/index.php/section/page/3242__17661" target="_blank" rel="noreferrer">收生頁</a></td>
           </tr>
+
           <tr>
             <td><b>Hong Kong Christian Service Tin Heng Nursery School</b><div class="tag">香港基督教服務處天恒幼兒學校</div></td>
             <td>天水圍</td>
             <td>幼初班（2–3歲）</td>
-            <td>
-              <a href="https://thns.hkcschild.edu.hk/?page_id=2517" target="_blank" rel="noreferrer">收生頁</a>
-            </td>
+            <td class="addr">新界天水圍天恒邨恒貴樓B及C翼地下</td>
+            <td class="mono">2486 5007</td>
+            <td><a href="https://www.google.com/maps/search/?api=1&query=%E6%96%B0%E7%95%8C%E5%A4%A9%E6%B0%B4%E5%9C%8D%E5%A4%A9%E6%81%92%E9%82%A8%E6%81%92%E8%B2%B4%E6%A8%93B%E5%8F%8AC%E7%BF%BC%E5%9C%B0%E4%B8%8B" target="_blank" rel="noreferrer">Google Maps</a></td>
+            <td class="small">有提及「新生家長參觀日暨服務簡介會」（日期以官網為準；曾見：10/25）。</td>
+            <td><a href="https://thns.hkcschild.edu.hk/?page_id=2517" target="_blank" rel="noreferrer">收生頁</a></td>
           </tr>
+
           <tr>
             <td><b>EFCC Tin Yan Nursery School</b><div class="tag">中國基督教播道會天恩幼兒學校</div></td>
             <td>天水圍</td>
             <td>N1（入學須滿2歲）</td>
-            <td>
-              <a href="https://www.tyns.edu.hk/%e5%a0%b1%e5%90%8d%e9%a0%88%e7%9f%a5/" target="_blank" rel="noreferrer">報名須知</a>
-            </td>
+            <td class="addr">新界天水圍天恩邨天恩商場1樓122號舖</td>
+            <td class="mono">2146 7891</td>
+            <td><a href="https://www.google.com/maps/search/?api=1&query=%E6%96%B0%E7%95%8C%E5%A4%A9%E6%B0%B4%E5%9C%8D%E5%A4%A9%E6%81%A9%E9%82%A8%E5%A4%A9%E6%81%A9%E5%95%86%E5%A0%B41%E6%A8%93122%E8%99%9F%E8%88%96" target="_blank" rel="noreferrer">Google Maps</a></td>
+            <td class="small">全年接受申請；Open Day/參觀安排以官網/學校通知為準。</td>
+            <td><a href="https://kgp2025.azurewebsites.net/edb/schoolinfo.php?schid=6767&lang=tc" target="_blank" rel="noreferrer">CHSC/教育局概覽</a></td>
           </tr>
         </tbody>
       </table>
 
-      <div class="sub" style="margin-top:10px">呢頁係「只睇有 PN/同等級」嘅清單；詳細報名日期/學費/備註請返 PN 主頁睇。</div>
+      <div class="small" style="margin-top:10px">註：如你想，我可以再幫你把「（待補）電話」嗰啲逐間補齊；同時加埋「一鍵複製地址／一鍵WhatsApp致電」呢類小功能。</div>
     </div>
   </div>
 </body>
