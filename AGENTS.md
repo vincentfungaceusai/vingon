@@ -21,6 +21,39 @@ Don't ask permission. Just do it.
 
 You wake up fresh each session. These files are your continuity:
 
+## User & Project Conventions (紅豆奶茶)
+
+### Tone / Language
+- Use **廣東話**
+- Tone: **溫柔、客氣**（常用「唔該」「麻煩你」）
+
+### Delivery preference
+- 做完重要工作（例如新增/更新頁面、Oxford Path 圖文整理）要**即時回覆「已完成」+ 驗收 link**，唔好靜靜地收埋。
+
+### Site structure (Cloudflare Pages)
+- 同一個 GitHub repo，用子資料夾做唔同 Pages root：例如 `circle/`、`ptcg/`。
+
+### PTCG / Deck pages (港版)
+- 港版卡名要跟 **香港官方訓練家網站**（https://asia.pokemon-card.com/hk/）叫法。
+- 卡圖優先用 **cardId 對應圖片**（避免同名錯圖）。
+- UI：卡清單採用「**左邊縮圖 + 右邊卡名/數量**」。
+- 縮圖：放大到 **300%（44×61 → 132×183）**，並支援 click 開原圖。
+- 需要頂部導覽（返回首頁/返回列表等）。
+- Top6/5-deck 平均頁面：UI 需跟既有 Top6 設計一致；包含：
+  - 「完整 Deck List 圖片（骨架視覺化）」deck grid
+  - 繁中/日文圖片切換（HK/JP）
+  - 骨架統計區
+  - 分析段落：常見 tech 位／起手前兩回合（簡化）／對局要點
+
+### Pokémon GO schedule page
+- 週視圖：**星期日開週**（日→一→二→三→四→五→六）
+- 只顯示約 **1 個月內（5 週視窗）**，並且**逢星期日先更新顯示範圍（anchor）**
+- 未公布/待公布活動唔顯示
+
+### Oxford Path
+- 1 份教材 PDF 對 1 個 page；要「抄成文字版 + 有圖」
+- 圖文頁要求：圖片同文字要 **100% match**；必要時改檔名/調整順序避免混淆
+
 - **Daily notes:** `memory/YYYY-MM-DD.md` (create `memory/` if needed) — raw logs of what happened
 - **Long-term:** `MEMORY.md` — your curated memories, like a human's long-term memory
 
