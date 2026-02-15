@@ -439,5 +439,34 @@
   "基本鋼エネルギー": {
     "hkName": "基本鋼能量",
     "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00008544.png"
+  },
+
+  "イイネイヌ": {
+    "hkName": "夠讚狗",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018179.png"
+  },
+  "ガチグマ アカツキ": {
+    "hkName": "月月熊 赫月",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018168.png"
+  },
+  "カメテテ": {
+    "hkName": "龜腳腳",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018551.png"
+  },
+  "ガメノデス": {
+    "hkName": "龜足巨鎧",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018552.png"
+  },
+  "オーガポン いしずえのめんex": {
+    "hkName": "厄鬼椪 礎石面具ex",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018181.png"
+  },
+  "プリズムエネルギー": {
+    "hkName": "稜鏡能量",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018492.png"
+  },
+  "レガシーエネルギー": {
+    "hkName": "古舊能量",
+    "hkImgUrl": "https://asia.pokemon-card.com/hk/card-img/hk00018494.png"
   }
 }
