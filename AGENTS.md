@@ -45,6 +45,13 @@ You wake up fresh each session. These files are your continuity:
   - 骨架統計區
   - 分析段落：常見 tech 位／起手前兩回合（簡化）／對局要點
 
+#### Tag trigger
+- 只要你喺需求入面加上 **`#ptcg_upload`**：即表示「做完牌組分析後，要我同步幫你上站」——
+  - 產出獨立頁：`/ptcg/decks/<slug>/index.html`
+  - 更新列表入口：`/ptcg/decks/index.html`
+  - 套用統一 UI + 統一分析段落
+  - 完成後必須回覆「已完成」+ 驗收 link
+
 ### Pokémon GO schedule page
 - 週視圖：**星期日開週**（日→一→二→三→四→五→六）
 - 只顯示約 **1 個月內（5 週視窗）**，並且**逢星期日先更新顯示範圍（anchor）**
