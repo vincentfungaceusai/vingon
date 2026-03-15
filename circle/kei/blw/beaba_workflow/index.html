@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="zh-HK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>輔食機比較｜BEABA 一次煮三餐 workflow</title>
+  <style>
+    :root{--bg:#0b1020;--text:#eef1ff;--muted:#a9b3d1;--accent:#8de1ff;--line:rgba(255,255,255,.12);--good:#86efac;--warn:#fbbf24;--mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;}
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(180deg,#070a16,var(--bg));color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,"PingFang HK","Noto Sans CJK HK",sans-serif;}
+    a{color:var(--accent)}
+    .wrap{max-width:980px;margin:0 auto;padding:28px 18px 60px;}
+    header{display:flex;gap:14px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;}
+    h1{margin:0;font-size:22px;letter-spacing:.2px}
+    h2{margin:18px 0 10px;font-size:15px;letter-spacing:.2px}
+    .sub{margin-top:8px;color:var(--muted);font-size:14px;line-height:1.6}
+    .topnav{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px}
+    .topnav a{display:inline-block;padding:6px 10px;border:1px solid var(--line);border-radius:999px;text-decoration:none;background:rgba(255,255,255,.04);color:var(--accent);font-size:13px;}
+    .pill{display:inline-flex;align-items:center;gap:8px;padding:7px 10px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.04);color:var(--muted);font-size:12px;}
+    .ok{color:var(--good);font-family:var(--mono)}
+    .mono{font-family:var(--mono)}
+
+    .box{margin-top:12px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.03);padding:14px;}
+    .tag{display:inline-flex;align-items:center;gap:6px;padding:3px 8px;border:1px solid rgba(255,255,255,.14);border-radius:999px;background:rgba(255,255,255,.03);font-size:12px;color:var(--muted)}
+    .tag.warn{border-color:rgba(251,191,36,.35);color:#ffe08a}
+
+    ul{margin:8px 0 0 18px;color:var(--muted);line-height:1.7}
+    li{margin:4px 0}
+    b{color:#dbe4ff}
+    code.k{font-family:var(--mono);font-size:12px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.10);padding:2px 6px;border-radius:8px;color:#dbe4ff}
+
+    .steps{counter-reset:step;list-style:none;padding-left:0;margin:10px 0 0}
+    .steps li{margin:10px 0;padding:10px 12px;border:1px solid rgba(255,255,255,.10);border-radius:12px;background:rgba(255,255,255,.02)}
+    .steps li:before{counter-increment:step;content:counter(step);display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:999px;background:rgba(141,225,255,.16);border:1px solid rgba(141,225,255,.25);color:#dbe4ff;font-weight:800;margin-right:10px}
+
+    @media print{
+      body{background:#fff;color:#000}
+      a{color:#000}
+      .topnav,.pill{display:none !important}
+      .box{border:1px solid #ddd;background:#fff}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>BEABA 一次煮三餐 workflow（慳位＋易洗版）</h1>
+        <div class="sub">對象：目標「一次出 3 餐」泥糊/蓉為主＋少量手指食物（混合餵）｜原則：<b>簡單、易觀察、低哽塞風險</b>。</div>
+        <div class="topnav">
+          <a href="../">返回 BLW 目錄</a>
+          <a href="../../">返回 育兒資料目錄</a>
+        </div>
+      </div>
+      <div class="pill"><span class="mono">UPDATED</span> <span class="ok">2026-03-15</span></div>
+    </header>
+
+    <div class="box">
+      <div><span class="tag">目標</span> <span class="tag">一次出 3 餐</span> <span class="tag">易洗</span> <span class="tag">唔霸位</span> <span class="tag warn">安全第一</span></div>
+      <ul>
+        <li><b>最穩陣做法：</b>一次只做 <b>1 種主食材</b>（例如南瓜/番薯），分 3 盒。對過敏觀察最清楚。</li>
+        <li><b>混合餵技巧：</b>同一轉蒸，留 2–3 條 <b>大條狀</b>（番薯條/南瓜條）唔攪拌，用嚟畀 BB 練抓握（全程看住）。</li>
+        <li class="muted">備註：BEABA 不同型號（Solo/Neo）容量/細滑度會有差，但流程一致。</li>
+      </ul>
+    </div>
+
+    <h2>0) 先準備好「收納」＝你唔會爆炸</h2>
+    <div class="box">
+      <ul>
+        <li>小盒 x3（每盒 1 餐）或分格盒（1 格 = 1 餐/一份菜蓉）</li>
+        <li>貼紙/marker：寫 <b>日期＋食材</b>（例如 <code class="k">2026-04-10 南瓜 Day1</code>）</li>
+        <li>（可選）冷凍格：多咗一份就冷凍做救命餐</li>
+      </ul>
+    </div>
+
+    <h2>1) 一次煮三餐：實戰步驟（蒸 → 攪 → 分盒）</h2>
+    <div class="box">
+      <ol class="steps">
+        <li><b>切料</b>：洗淨/去皮（如需要），切成 1–2cm 粒（均勻易熟）。</li>
+        <li><b>加水</b>：水箱加到建議刻度（香港用耐會水垢，記得定期除垢）。</li>
+        <li><b>蒸</b>：蒸到「拇指食指一夾就扁」——你想更安全就寧願蒸軟啲。</li>
+        <li><b>攪拌</b>：用蒸出嚟嘅水少少加，慢慢調稀稠（起步建議偏稀）。</li>
+        <li><b>分盒</b>：趁熱分入 3 盒，貼上日期＋食材。</li>
+      </ol>
+      <div class="sub" style="margin-top:10px"><b>份量：</b>每餐由 5–10 茶匙起步；BB 接受度高先逐步加。</div>
+    </div>
+
+    <h2>2) 混合餵：同一轉蒸加埋「手指食物」</h2>
+    <div class="box">
+      <ul>
+        <li>蒸之前留 2–3 條「條狀」食物（例如番薯條/南瓜條）。</li>
+        <li>蒸完後：粒狀→攪拌做蓉；條狀→獨立放盒（每日 1–2 條畀 BB 探索）。</li>
+        <li><b>安全：</b>條狀要做到「一捏就爛」，一次只放 1–2 件，成人全程望住。</li>
+      </ul>
+    </div>
+
+    <h2>3) 清潔（最短路線）</h2>
+    <div class="box">
+      <ol class="steps">
+        <li><b>即刻洗</b>（唔好過夜）：杯加暖水＋一滴洗潔精，攪幾秒自洗 → 倒走沖淨。</li>
+        <li>蒸籠/蓋/刀頭：沖水＋小刷兩下。</li>
+        <li>水箱：用完倒乾；每 1–2 週除垢一次（香港水垢快）。</li>
+      </ol>
+    </div>
+
+    <h2>4) 最穩陣「一次三餐」食材例子（單一食材）</h2>
+    <div class="box">
+      <ul>
+        <li><b>南瓜蓉 ×3</b>（非常常用）</li>
+        <li><b>番薯蓉 ×3</b>（接受度高）</li>
+        <li><b>梨/蘋果蓉 ×3</b>（水果易令便便稀，初期唔好連做太多日）</li>
+      </ul>
+    </div>
+
+    <div class="box">
+      <div class="sub"><b>想我再幫你補充：</b>你如果話我知你係 BEABA 邊款（Solo/Neo）同「三餐」係連續三日用定同一日三餐，我可以再加埋：冷藏/冷凍保存時間、翻熱方法、同一個更精準嘅 batch 節奏。</div>
+    </div>
+  </div>
+</body>
+</html>
