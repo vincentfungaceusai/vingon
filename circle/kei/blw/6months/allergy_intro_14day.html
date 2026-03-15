@@ -38,10 +38,16 @@
     .col-food{width:240px}
     .col-amt{width:180px}
 
+    .controls{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:10px}
+    label{color:var(--muted);font-size:13px}
+    input[type="date"]{appearance:none;-webkit-appearance:none;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:10px;color:var(--text);padding:8px 10px;font-size:14px;}
+    button{cursor:pointer;background:rgba(141,225,255,.14);border:1px solid rgba(141,225,255,.25);color:var(--text);padding:8px 10px;border-radius:10px;font-size:13px;}
+    button:hover{background:rgba(141,225,255,.18)}
+
     @media print{
       body{background:#fff;color:#000}
       a{color:#000}
-      .topnav,.pill{display:none !important}
+      .topnav,.pill,.controls{display:none !important}
       .box,table{border:1px solid #ddd;background:#fff}
       th{background:#f3f4f6;color:#111}
       .muted{color:#333}
@@ -55,7 +61,7 @@
         <h1>致敏食物引入｜14 日落地表（蛋／花生）</h1>
         <div class="sub">
           適用：大約 <b>6 個月</b>、readiness 已齊、而家每日 <b>1 餐固體</b>（其餘主要靠奶）。
-          <br/>你話估計 <b>5 月中</b>開始，所以以下用 <b>2026-05-15</b> 做示例起點；如果你延後/提前，日期跟住順延就得。
+          <br/>用下面「起始日期」自動排 14 日；你提前/延後開始都得。
         </div>
         <div class="topnav">
           <a href="./">返回 6 個月頁</a>
@@ -79,6 +85,13 @@
         <li><b>成功引入後要規律持續</b>：之後每週 2–3 次少量出現，先算建立耐受。</li>
         <li class="muted">提示：輕微作嘔（gagging）係常見學習；真噎（choking）係無聲/呼吸困難。你之前要咗嘅「分辨小抄」可以同呢張表一齊用。</li>
       </ul>
+
+      <div class="controls" role="group" aria-label="Start date controls">
+        <label for="startDate"><b>起始日期</b></label>
+        <input id="startDate" type="date" />
+        <button id="apply">套用</button>
+        <span class="muted">（會即刻改表格日期；列印會保留你選嘅日期。）</span>
+      </div>
     </div>
 
     <div class="box">
@@ -97,27 +110,82 @@
         </tr>
       </thead>
       <tbody>
-        <tr><td>1</td><td>2026-05-15</td><td><b>蛋黃</b>（全熟）拌糊</td><td>1/8 茶匙</td><td class="muted">首次引入：只試蛋，其他食物用已熟悉嗰啲。</td></tr>
-        <tr><td>2</td><td>2026-05-16</td><td>休息／重複熟悉食物</td><td>—</td><td class="muted">唔加新致敏源；觀察有冇延遲反應。</td></tr>
-        <tr><td>3</td><td>2026-05-17</td><td><b>蛋黃</b>（全熟）拌糊</td><td>1/4 茶匙</td><td></td></tr>
-        <tr><td>4</td><td>2026-05-18</td><td>休息／重複熟悉食物</td><td>—</td><td></td></tr>
-        <tr><td>5</td><td>2026-05-19</td><td><b>蛋黃</b>（全熟）拌糊</td><td>1/2 茶匙</td><td></td></tr>
-        <tr><td>6</td><td>2026-05-20</td><td>休息／重複熟悉食物</td><td>—</td><td></td></tr>
-        <tr><td>7</td><td>2026-05-21</td><td><b>蛋黃</b>（維持）</td><td>1/2–1 茶匙</td><td class="muted">若全程 OK：之後每週安排 2–3 次蛋（少量都得）。</td></tr>
-        <tr><td>8</td><td>2026-05-22</td><td><b>花生</b>（花生粉/溶稀花生醬）</td><td>1/8 茶匙</td><td class="muted">首次引入花生：務必拌到唔黏口。</td></tr>
-        <tr><td>9</td><td>2026-05-23</td><td>休息／重複熟悉食物</td><td>—</td><td></td></tr>
-        <tr><td>10</td><td>2026-05-24</td><td><b>花生</b>（維持）</td><td>1/4 茶匙</td><td></td></tr>
-        <tr><td>11</td><td>2026-05-25</td><td>休息／重複熟悉食物</td><td>—</td><td></td></tr>
-        <tr><td>12</td><td>2026-05-26</td><td><b>花生</b>（增加）</td><td>1/2 茶匙</td><td></td></tr>
-        <tr><td>13</td><td>2026-05-27</td><td>休息／重複熟悉食物</td><td>—</td><td></td></tr>
-        <tr><td>14</td><td>2026-05-28</td><td><b>花生</b>（維持）</td><td>1/2–1 茶匙</td><td class="muted">若全程 OK：之後每週安排 2–3 次花生（少量都得）。</td></tr>
+        <tr><td>1</td><td><span class="date" data-offset="0">2026-05-15</span></td><td><b>蛋黃</b>（全熟）拌糊</td><td>1/8 茶匙</td><td class="muted">首次引入：只試蛋，其他食物用已熟悉嗰啲。</td></tr>
+        <tr><td>2</td><td><span class="date" data-offset="1">2026-05-16</span></td><td>休息／重複熟悉食物</td><td>—</td><td class="muted">唔加新致敏源；觀察有冇延遲反應。</td></tr>
+        <tr><td>3</td><td><span class="date" data-offset="2">2026-05-17</span></td><td><b>蛋黃</b>（全熟）拌糊</td><td>1/4 茶匙</td><td></td></tr>
+        <tr><td>4</td><td><span class="date" data-offset="3">2026-05-18</span></td><td>休息／重複熟悉食物</td><td>—</td><td></td></tr>
+        <tr><td>5</td><td><span class="date" data-offset="4">2026-05-19</span></td><td><b>蛋黃</b>（全熟）拌糊</td><td>1/2 茶匙</td><td></td></tr>
+        <tr><td>6</td><td><span class="date" data-offset="5">2026-05-20</span></td><td>休息／重複熟悉食物</td><td>—</td><td></td></tr>
+        <tr><td>7</td><td><span class="date" data-offset="6">2026-05-21</span></td><td><b>蛋黃</b>（維持）</td><td>1/2–1 茶匙</td><td class="muted">若全程 OK：之後每週安排 2–3 次蛋（少量都得）。</td></tr>
+        <tr><td>8</td><td><span class="date" data-offset="7">2026-05-22</span></td><td><b>花生</b>（花生粉/溶稀花生醬）</td><td>1/8 茶匙</td><td class="muted">首次引入花生：務必拌到唔黏口。</td></tr>
+        <tr><td>9</td><td><span class="date" data-offset="8">2026-05-23</span></td><td>休息／重複熟悉食物</td><td>—</td><td></td></tr>
+        <tr><td>10</td><td><span class="date" data-offset="9">2026-05-24</span></td><td><b>花生</b>（維持）</td><td>1/4 茶匙</td><td></td></tr>
+        <tr><td>11</td><td><span class="date" data-offset="10">2026-05-25</span></td><td>休息／重複熟悉食物</td><td>—</td><td></td></tr>
+        <tr><td>12</td><td><span class="date" data-offset="11">2026-05-26</span></td><td><b>花生</b>（增加）</td><td>1/2 茶匙</td><td></td></tr>
+        <tr><td>13</td><td><span class="date" data-offset="12">2026-05-27</span></td><td>休息／重複熟悉食物</td><td>—</td><td></td></tr>
+        <tr><td>14</td><td><span class="date" data-offset="13">2026-05-28</span></td><td><b>花生</b>（維持）</td><td>1/2–1 茶匙</td><td class="muted">若全程 OK：之後每週安排 2–3 次花生（少量都得）。</td></tr>
       </tbody>
     </table>
 
     <div class="box">
       <div class="sub"><b>何時要停＋求醫：</b>全身風癩/紅疹快速擴散、反覆嘔吐精神差、咳喘/呼吸怪、嘴唇/眼皮腫 → 立即求醫。</div>
-      <div class="sub" style="margin-top:8px"><b>備註：</b>如果你想我再加「可打印版本（A4）」或「自動改起始日期」功能，我可以幫你加一個日期選擇器。</div>
+      <div class="sub" style="margin-top:8px"><b>備註：</b>如你之後想加「自動保存記錄」（每格備註自動保存喺你部機），我都可以幫你加。</div>
     </div>
   </div>
+
+  <script>
+    (function(){
+      const $ = (sel) => document.querySelector(sel);
+      const input = $('#startDate');
+      const applyBtn = $('#apply');
+
+      function pad2(n){ return String(n).padStart(2,'0'); }
+      function fmt(d){ return `${d.getFullYear()}-${pad2(d.getMonth()+1)}-${pad2(d.getDate())}`; }
+
+      function parseDate(s){
+        // s expected YYYY-MM-DD (input[type=date])
+        if(!s) return null;
+        const [y,m,dd] = s.split('-').map(x=>parseInt(x,10));
+        if(!y||!m||!dd) return null;
+        // local date (avoid timezone surprises)
+        return new Date(y, m-1, dd);
+      }
+
+      function setDates(start){
+        const nodes = document.querySelectorAll('[data-offset]');
+        nodes.forEach((el)=>{
+          const off = parseInt(el.getAttribute('data-offset')||'0',10);
+          const d = new Date(start.getFullYear(), start.getMonth(), start.getDate() + off);
+          el.textContent = fmt(d);
+        });
+      }
+
+      function currentStartFromTable(){
+        const first = document.querySelector('[data-offset="0"]');
+        return first ? first.textContent.trim() : '2026-05-15';
+      }
+
+      function init(){
+        const defaultStart = currentStartFromTable();
+        input.value = defaultStart;
+        const d = parseDate(defaultStart);
+        if(d) setDates(d);
+      }
+
+      applyBtn.addEventListener('click', ()=>{
+        const d = parseDate(input.value);
+        if(!d) return;
+        setDates(d);
+      });
+
+      input.addEventListener('change', ()=>{
+        const d = parseDate(input.value);
+        if(!d) return;
+        setDates(d);
+      });
+
+      init();
+    })();
+  </script>
 </body>
 </html>
