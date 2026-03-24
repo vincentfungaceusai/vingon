@@ -67,10 +67,22 @@
       <div><span class="tag good">BB</span> <span class="tag">4.5個月</span> <span class="tag">10日</span> <span class="tag">奶粉</span> <span class="tag warn">晚晚轉酒店</span></div>
       <ul>
         <li><b>尿片用量：</b>約 10 片/日 → 全程約 100 片。日本易買，建議帶頭 5–6 日份量，其餘到埗買。</li>
-        <li><b>奶粉用量（估算）：</b>每日約 750ml。大多數配方奶粉沖調大約落喺 <code class="k">130–150g/日</code> 左右（視乎品牌匙數/克數）。
-          <br/>所以 10 日大約 <code class="k">1.3–1.5kg</code> 粉，<b>800g/罐 → 建議帶 2 罐</b>（第二罐係保險）。</li>
-        <li class="muted">提示：最準係按你罐身「每餐匙數×每匙克數」計。呢度先以旅行安全 buffer 為主。</li>
+        <li><b>奶粉用量（HiPP 模板）：</b>你話 BB 每日約 <b>750ml</b>。
+          <br/>HiPP 多數係 <code class="k">每 30ml 水 + 1 平匙</code>（實際以你罐身為準）。
+          <br/>下面計算器會用「每平匙幾多克」去計粉量（你可以改）。</li>
+        <li class="muted">提示：不同 HiPP 段數/產地匙重可能不同。你可以照罐身標示填入「每平匙克數」就會變成精準。</li>
       </ul>
+    </div>
+
+    <div class="box" id="formulaCalc">
+      <div><span class="tag">奶粉計算器</span> <span class="tag">HiPP</span> <span class="tag">750ml/日</span></div>
+      <div class="sub" style="margin-top:8px">填入「每平匙克數」，就會自動計：每日幾多克、10日幾多克、需要幾多罐（800g/罐）。</div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:10px">
+        <label class="sub" style="margin:0">每平匙克數： <input id="scoopG" type="number" step="0.1" min="3" max="8" style="width:90px;padding:8px 10px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.06);color:var(--text)" /> g</label>
+        <label class="sub" style="margin:0">沖調比例： <span class="mono">1 匙 / 30ml</span></label>
+      </div>
+      <ul id="calcOut" style="margin-top:10px"></ul>
+      <div class="sub muted">預設值係常見範圍作起點；請以你 HiPP 罐身標示為準（例如「每平匙=4.3g」）。</div>
     </div>
 
     <div class="grid" aria-label="Checklist columns">
@@ -133,22 +145,61 @@
 
     <script>
       (function(){
+        // checklist persistence
         const lists = document.querySelectorAll('.checklist');
         lists.forEach(list => {
           const key = 'circle:' + list.getAttribute('data-key');
           const boxes = Array.from(list.querySelectorAll('input[type=checkbox]'));
-          // load
           try{
             const saved = JSON.parse(localStorage.getItem(key) || '[]');
             boxes.forEach((b,i)=>{ b.checked = !!saved[i]; });
           }catch(e){}
-          // save
           boxes.forEach((b)=>{
             b.addEventListener('change', ()=>{
               const state = boxes.map(x=>x.checked);
               localStorage.setItem(key, JSON.stringify(state));
             });
           });
+        });
+
+        // HiPP formula calculator
+        const DAILY_ML = 750;
+        const CAN_G = 800;
+        const RATIO_ML_PER_SCOOP = 30;
+        const scoopInput = document.getElementById('scoopG');
+        const out = document.getElementById('calcOut');
+
+        function fmt(n, d=0){
+          return n.toLocaleString(undefined, {maximumFractionDigits:d, minimumFractionDigits:d});
+        }
+
+        function render(){
+          const scoopG = parseFloat(scoopInput.value || '0');
+          if(!scoopG || scoopG<=0){ out.innerHTML=''; return; }
+          const scoopsPerDay = DAILY_ML / RATIO_ML_PER_SCOOP;
+          const gramsPerDay = scoopsPerDay * scoopG;
+          const grams10 = gramsPerDay * 10;
+          const cans = Math.ceil(grams10 / CAN_G);
+          const bufferCans = Math.max(2, cans); // at least 2 cans for travel buffer
+
+          out.innerHTML = [
+            `<li><b>每日匙數：</b> ${fmt(scoopsPerDay,0)} 匙（按 750ml ÷ 30ml）</li>`,
+            `<li><b>每日粉量：</b> 約 ${fmt(gramsPerDay,0)} g</li>`,
+            `<li><b>10日粉量：</b> 約 ${fmt(grams10,0)} g（≈ ${fmt(grams10/1000,1)} kg）</li>`,
+            `<li><b>理論最少：</b> ${cans} 罐（800g/罐）</li>`,
+            `<li><b>旅行建議：</b> ${bufferCans} 罐（含 buffer；避免延誤/食量波動）</li>`
+          ].join('');
+        }
+
+        // default: common scoop weight starting point
+        const key = 'circle:kansai10d:scoopG';
+        const saved = localStorage.getItem(key);
+        scoopInput.value = saved || '4.3';
+        render();
+
+        scoopInput.addEventListener('input', ()=>{
+          localStorage.setItem(key, scoopInput.value);
+          render();
         });
       })();
     </script>
