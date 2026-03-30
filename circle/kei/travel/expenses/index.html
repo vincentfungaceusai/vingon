@@ -86,6 +86,9 @@
         <label>日期
           <input id="date" type="date" />
         </label>
+        <label>時間
+          <input id="time" type="time" />
+        </label>
         <label>幣別
           <select id="currency">
             <option value="JPY">JPY</option>
@@ -137,6 +140,7 @@
         <thead>
           <tr>
             <th style="width:110px">日期</th>
+            <th style="width:78px">時間</th>
             <th style="width:84px">幣別</th>
             <th class="right" style="width:120px">金額</th>
             <th style="width:110px">分類</th>
@@ -160,6 +164,7 @@
         const countTag = $('#countTag');
 
         const dateEl = $('#date');
+        const timeEl = $('#time');
         const currencyEl = $('#currency');
         const amountEl = $('#amount');
         const categoryEl = $('#category');
@@ -225,10 +230,17 @@
         }
 
         function render(items){
-          // sort: date desc, then time
+          // sort: date+time desc (receipt time). Missing time => 00:00.
+          const keyDT = (it)=>{
+            const d = String(it.date||'');
+            const t = String(it.time||'00:00').slice(0,5) || '00:00';
+            return d + 'T' + t;
+          };
           const sorted = [...items].sort((a,b)=>{
-            if(a.date === b.date) return (b.id||'').localeCompare(a.id||'');
-            return String(b.date||'').localeCompare(String(a.date||''));
+            const ka = keyDT(a);
+            const kb = keyDT(b);
+            if(ka === kb) return (b.id||'').localeCompare(a.id||'');
+            return kb.localeCompare(ka);
           });
 
           // totals by currency
@@ -251,6 +263,7 @@
             const tr = document.createElement('tr');
             tr.innerHTML = `
               <td>${it.date || ''}</td>
+              <td>${it.time || ''}</td>
               <td>${it.currency || ''}</td>
               <td class="right">${fmtNum(it.amount)}</td>
               <td>${it.category || ''}</td>
@@ -283,15 +296,18 @@
 
         // init form
         dateEl.value = todayISO();
+        timeEl.value = '';
 
         addBtn.addEventListener('click', ()=>{
           const date = dateEl.value || todayISO();
+          const time = (timeEl.value || '').slice(0,5);
           const currency = currencyEl.value || 'JPY';
           const amount = amountEl.value;
           if(!amount){ return; }
           const item = {
             id: uid(),
             date,
+            time,
             currency,
             amount: Number(amount),
             category: categoryEl.value,
@@ -319,6 +335,7 @@
             const normalized = items.map(it => ({
               id: it.id || uid(),
               date: it.date || todayISO(),
+              time: String(it.time || '').slice(0,5),
               currency: it.currency || 'JPY',
               amount: Number(it.amount||0),
               category: it.category || '其他',
