@@ -2,5 +2,14 @@
   "currency": "JPY",
   "tripName": "Trip",
   "notes": "Seed list committed to repo. Your local edits are stored in this browser (localStorage) and won't sync across devices unless you export/import.",
-  "items": []
+  "items": [
+    {
+      "id": "seed-20260330-zetteria-lunch",
+      "date": "2026-03-30",
+      "currency": "JPY",
+      "amount": 1880,
+      "category": "食",
+      "note": "ZETTERIA lunch (card)"
+    }
+  ]
 }
