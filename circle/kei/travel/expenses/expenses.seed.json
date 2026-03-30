@@ -4,6 +4,24 @@
   "notes": "Seed list committed to repo. Your local edits are stored in this browser (localStorage) and won't sync across devices unless you export/import.",
   "items": [
     {
+      "id": "seed-20260330-familymart-shimizucho-nishi",
+      "date": "2026-03-30",
+      "time": "19:44",
+      "currency": "JPY",
+      "amount": 2415,
+      "category": "食",
+      "note": "FamilyMart (Osaka Chuo-ku Nishishinsaibashi)"
+    },
+    {
+      "id": "seed-20260330-kukuru-shinsaibashi-61",
+      "date": "2026-03-30",
+      "time": "19:35",
+      "currency": "JPY",
+      "amount": 1520,
+      "category": "食",
+      "note": "Kukuru くくる 心斎橋61店 (takoyaki)"
+    },
+    {
       "id": "seed-20260330-zetteria-lunch",
       "date": "2026-03-30",
       "time": "12:49",
