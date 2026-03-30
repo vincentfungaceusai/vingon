@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="zh-HK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>旅行開支記錄｜Receipt Log</title>
+  <style>
+    :root{--bg:#0b1020;--text:#eef1ff;--muted:#a9b3d1;--accent:#8de1ff;--line:rgba(255,255,255,.12);--good:#86efac;--warn:#fbbf24;--bad:#fb7185;--mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;}
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(180deg,#070a16,var(--bg));color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,"PingFang HK","Noto Sans CJK HK",sans-serif;}
+    a{color:var(--accent)}
+    .wrap{max-width:1060px;margin:0 auto;padding:28px 18px 60px;}
+    header{display:flex;gap:14px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;}
+    h1{margin:0;font-size:22px;letter-spacing:.2px}
+    h2{margin:18px 0 10px;font-size:15px;letter-spacing:.2px}
+    .sub{margin-top:8px;color:var(--muted);font-size:14px;line-height:1.6}
+    .topnav{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px}
+    .topnav a{display:inline-block;padding:6px 10px;border:1px solid var(--line);border-radius:999px;text-decoration:none;background:rgba(255,255,255,.04);color:var(--accent);font-size:13px;}
+    .pill{display:inline-flex;align-items:center;gap:8px;padding:7px 10px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.04);color:var(--muted);font-size:12px;}
+    .ok{color:var(--good);font-family:var(--mono)}
+    .mono{font-family:var(--mono)}
+
+    .box{margin-top:12px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.03);padding:14px;}
+    .tag{display:inline-flex;align-items:center;gap:6px;padding:3px 8px;border:1px solid rgba(255,255,255,.14);border-radius:999px;background:rgba(255,255,255,.03);font-size:12px;color:var(--muted)}
+    .tag.good{border-color:rgba(134,239,172,.25);color:#c9f7d7}
+    .tag.warn{border-color:rgba(251,191,36,.35);color:#ffe08a}
+
+    .row{display:flex;gap:10px;flex-wrap:wrap;align-items:end}
+    label{display:flex;flex-direction:column;gap:6px;color:var(--muted);font-size:13px}
+    input,select,textarea{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:10px;color:var(--text);padding:8px 10px;font-size:14px;}
+    textarea{min-height:90px;resize:vertical}
+    button{cursor:pointer;background:rgba(141,225,255,.14);border:1px solid rgba(141,225,255,.25);color:var(--text);padding:9px 11px;border-radius:10px;font-size:13px;}
+    button:hover{background:rgba(141,225,255,.18)}
+    button.secondary{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12)}
+    button.danger{background:rgba(251,113,133,.12);border-color:rgba(251,113,133,.25)}
+
+    table{width:100%;border-collapse:separate;border-spacing:0;margin-top:12px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:rgba(255,255,255,.02)}
+    th,td{padding:10px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+    th{font-size:12px;letter-spacing:.4px;text-transform:uppercase;color:#cbd5ff;background:rgba(255,255,255,.04)}
+    tr:last-child td{border-bottom:none}
+    .muted{color:var(--muted)}
+
+    .right{text-align:right}
+    .small{font-size:12px}
+
+    @media print{
+      body{background:#fff;color:#000}
+      a{color:#000}
+      .topnav,.pill,.controls,.hint{display:none !important}
+      .box,table{border:1px solid #ddd;background:#fff}
+      th{background:#f3f4f6;color:#111}
+      .muted{color:#333}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>旅行開支記錄｜Receipt Log</h1>
+        <div class="sub">
+          你可以：
+          <b>(1)</b> 自己手動加項目（只儲存在你部手機/瀏覽器），
+          <b>(2)</b> 將收據相傳俾我，我幫你 OCR/整理後寫入網站（會同步到網站）。
+        </div>
+        <div class="topnav">
+          <a href="../">返回 Travel 目錄</a>
+          <a href="../../">返回 育兒資料目錄</a>
+        </div>
+      </div>
+      <div class="pill"><span class="mono">UPDATED</span> <span class="ok">2026-03-30</span></div>
+    </header>
+
+    <div class="box hint">
+      <div><span class="tag good">推薦流程</span> <span class="tag">旅行中</span> <span class="tag warn">跨裝置不同步</span></div>
+      <ul class="muted" style="margin:8px 0 0 18px;line-height:1.7">
+        <li><b>旅行中（手機）</b>：用下面表單快速加開支（localStorage）。</li>
+        <li><b>每日/隔日</b>：按「Export」拎 JSON 備份（例如放去 Notes/雲端）。</li>
+        <li><b>你將收據相傳俾我</b>：我會把項目寫入網站 seed（可跨裝置睇到）。</li>
+      </ul>
+    </div>
+
+    <div class="box controls">
+      <h2 style="margin-top:0">快速新增</h2>
+      <div class="row">
+        <label>日期
+          <input id="date" type="date" />
+        </label>
+        <label>幣別
+          <select id="currency">
+            <option value="JPY">JPY</option>
+            <option value="HKD">HKD</option>
+            <option value="USD">USD</option>
+            <option value="CNY">CNY</option>
+            <option value="EUR">EUR</option>
+          </select>
+        </label>
+        <label>金額
+          <input id="amount" type="number" step="0.01" placeholder="" />
+        </label>
+        <label>分類
+          <select id="category">
+            <option>食</option>
+            <option>交通</option>
+            <option>住宿</option>
+            <option>購物</option>
+            <option>景點</option>
+            <option>BB用品</option>
+            <option>其他</option>
+          </select>
+        </label>
+        <label>商戶/備註
+          <input id="note" type="text" placeholder="例如：Lawson / JR / Hotel" style="min-width:260px" />
+        </label>
+        <button id="add">新增</button>
+      </div>
+      <div class="row" style="margin-top:10px">
+        <button class="secondary" id="export">Export JSON</button>
+        <button class="secondary" id="import">Import JSON</button>
+        <button class="secondary" id="copyCsv">Copy CSV</button>
+        <button class="danger" id="clear">清除本機資料</button>
+        <span class="muted small">（Export/Import 只處理「你本機」資料；唔會影響網站 seed。）</span>
+      </div>
+      <textarea id="io" class="mono" placeholder="Export 會出 JSON；Import 就貼返 JSON 入嚟再按 Import。" style="margin-top:10px;width:100%"></textarea>
+    </div>
+
+    <div class="box">
+      <div class="row" style="justify-content:space-between;align-items:center">
+        <div>
+          <span class="tag">總數</span> <span class="tag good" id="totalTag">0</span>
+          <span class="tag">項目</span> <span class="tag" id="countTag">0</span>
+        </div>
+        <div class="muted small">提示：seed（網站）＋ local（你本機）會一齊顯示。</div>
+      </div>
+
+      <table aria-label="Expense list">
+        <thead>
+          <tr>
+            <th style="width:110px">日期</th>
+            <th style="width:84px">幣別</th>
+            <th class="right" style="width:120px">金額</th>
+            <th style="width:110px">分類</th>
+            <th>備註</th>
+            <th style="width:90px">來源</th>
+            <th style="width:88px"></th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+
+    <script>
+      (function(){
+        const SEED_URL = './expenses.seed.json';
+        const LS_KEY = 'circle:travel:expenses:v1';
+
+        const $ = (s) => document.querySelector(s);
+        const tbody = $('#tbody');
+        const totalTag = $('#totalTag');
+        const countTag = $('#countTag');
+
+        const dateEl = $('#date');
+        const currencyEl = $('#currency');
+        const amountEl = $('#amount');
+        const categoryEl = $('#category');
+        const noteEl = $('#note');
+        const addBtn = $('#add');
+
+        const exportBtn = $('#export');
+        const importBtn = $('#import');
+        const copyCsvBtn = $('#copyCsv');
+        const clearBtn = $('#clear');
+        const io = $('#io');
+
+        function todayISO(){
+          const d = new Date();
+          const pad=(n)=>String(n).padStart(2,'0');
+          return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+        }
+
+        function loadLocal(){
+          try{
+            const raw = localStorage.getItem(LS_KEY);
+            if(!raw) return [];
+            const parsed = JSON.parse(raw);
+            return Array.isArray(parsed) ? parsed : [];
+          }catch(e){return []}
+        }
+
+        function saveLocal(items){
+          localStorage.setItem(LS_KEY, JSON.stringify(items));
+        }
+
+        function uid(){
+          return Math.random().toString(16).slice(2) + '-' + Date.now().toString(16);
+        }
+
+        function fmtNum(n){
+          const x = Number(n);
+          if(!isFinite(x)) return '';
+          return x.toLocaleString(undefined, {maximumFractionDigits:2});
+        }
+
+        function toCsv(items){
+          const header = ['date','currency','amount','category','note','source'];
+          const esc = (s) => {
+            const t = String(s ?? '');
+            if(/[\n",]/.test(t)) return '"' + t.replaceAll('"','""') + '"';
+            return t;
+          };
+          const rows = items.map(it => [it.date,it.currency,it.amount,it.category,it.note||'',it.source].map(esc).join(','));
+          return header.join(',') + '\n' + rows.join('\n');
+        }
+
+        async function loadSeed(){
+          try{
+            const r = await fetch(SEED_URL, {cache:'no-store'});
+            if(!r.ok) return [];
+            const seed = await r.json();
+            const items = (seed.items || []).map(it => ({...it, source:'seed'}));
+            return items;
+          }catch(e){
+            return [];
+          }
+        }
+
+        function render(items){
+          // sort: date desc, then time
+          const sorted = [...items].sort((a,b)=>{
+            if(a.date === b.date) return (b.id||'').localeCompare(a.id||'');
+            return String(b.date||'').localeCompare(String(a.date||''));
+          });
+
+          // totals by currency
+          const totals = {};
+          sorted.forEach(it => {
+            const cur = it.currency || 'JPY';
+            const amt = Number(it.amount || 0);
+            totals[cur] = (totals[cur] || 0) + (isFinite(amt) ? amt : 0);
+          });
+          const totalStr = Object.entries(totals)
+            .sort((a,b)=>a[0].localeCompare(b[0]))
+            .map(([c,v])=> `${c} ${fmtNum(v)}`)
+            .join(' · ');
+
+          totalTag.textContent = totalStr || '0';
+          countTag.textContent = String(sorted.length);
+
+          tbody.innerHTML = '';
+          sorted.forEach(it => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `
+              <td>${it.date || ''}</td>
+              <td>${it.currency || ''}</td>
+              <td class="right">${fmtNum(it.amount)}</td>
+              <td>${it.category || ''}</td>
+              <td>${(it.note||'').replaceAll('<','&lt;').replaceAll('>','&gt;')}</td>
+              <td class="muted">${it.source||''}</td>
+              <td class="right">${it.source==='local' ? '<button class="danger small" data-del="'+it.id+'">刪除</button>' : ''}</td>
+            `;
+            tbody.appendChild(tr);
+          });
+
+          // bind delete
+          tbody.querySelectorAll('button[data-del]').forEach(btn => {
+            btn.addEventListener('click', ()=>{
+              const id = btn.getAttribute('data-del');
+              const local = loadLocal();
+              saveLocal(local.filter(x => x.id !== id));
+              refresh();
+            });
+          });
+
+          // keep last rendered for export/csv
+          window.__EXPENSES__ = sorted;
+        }
+
+        async function refresh(){
+          const seedItems = await loadSeed();
+          const localItems = loadLocal().map(it => ({...it, source:'local'}));
+          render([...seedItems, ...localItems]);
+        }
+
+        // init form
+        dateEl.value = todayISO();
+
+        addBtn.addEventListener('click', ()=>{
+          const date = dateEl.value || todayISO();
+          const currency = currencyEl.value || 'JPY';
+          const amount = amountEl.value;
+          if(!amount){ return; }
+          const item = {
+            id: uid(),
+            date,
+            currency,
+            amount: Number(amount),
+            category: categoryEl.value,
+            note: noteEl.value.trim()
+          };
+          const local = loadLocal();
+          local.push(item);
+          saveLocal(local);
+          amountEl.value = '';
+          // keep note (often reused)
+          refresh();
+        });
+
+        exportBtn.addEventListener('click', ()=>{
+          const local = loadLocal();
+          io.value = JSON.stringify({version:1, exportedAt: new Date().toISOString(), items: local}, null, 2);
+        });
+
+        importBtn.addEventListener('click', ()=>{
+          try{
+            const parsed = JSON.parse(io.value || '{}');
+            const items = parsed.items;
+            if(!Array.isArray(items)) throw new Error('Invalid items');
+            // normalize
+            const normalized = items.map(it => ({
+              id: it.id || uid(),
+              date: it.date || todayISO(),
+              currency: it.currency || 'JPY',
+              amount: Number(it.amount||0),
+              category: it.category || '其他',
+              note: it.note || ''
+            }));
+            saveLocal(normalized);
+            refresh();
+          }catch(e){
+            alert('Import 失敗：JSON 格式唔啱');
+          }
+        });
+
+        copyCsvBtn.addEventListener('click', async ()=>{
+          const items = window.__EXPENSES__ || [];
+          const csv = toCsv(items);
+          try{
+            await navigator.clipboard.writeText(csv);
+            io.value = csv;
+          }catch(e){
+            io.value = csv;
+            alert('已生成 CSV（但瀏覽器唔允許自動複製）。你可以手動 copy。');
+          }
+        });
+
+        clearBtn.addEventListener('click', ()=>{
+          if(confirm('確定要清除本機所有開支記錄？（唔會影響網站 seed）')){
+            localStorage.removeItem(LS_KEY);
+            refresh();
+          }
+        });
+
+        refresh();
+      })();
+    </script>
+  </div>
+</body>
+</html>
