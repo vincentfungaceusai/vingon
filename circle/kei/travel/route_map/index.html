@@ -1,0 +1,287 @@
+<!doctype html>
+<html lang="zh-HK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>旅行足跡地圖｜由收據砌返路線</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+  <style>
+    :root{--bg:#0b1020;--text:#eef1ff;--muted:#a9b3d1;--accent:#8de1ff;--line:rgba(255,255,255,.12);--good:#86efac;--warn:#fbbf24;--mono:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;}
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(180deg,#070a16,var(--bg));color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,"PingFang HK","Noto Sans CJK HK",sans-serif;}
+    a{color:var(--accent)}
+    .wrap{max-width:1100px;margin:0 auto;padding:28px 18px 60px;}
+    header{display:flex;gap:14px;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;}
+    h1{margin:0;font-size:22px;letter-spacing:.2px}
+    .sub{margin-top:8px;color:var(--muted);font-size:14px;line-height:1.6}
+    .topnav{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px}
+    .topnav a{display:inline-block;padding:6px 10px;border:1px solid var(--line);border-radius:999px;text-decoration:none;background:rgba(255,255,255,.04);color:var(--accent);font-size:13px;}
+    .pill{display:inline-flex;align-items:center;gap:8px;padding:7px 10px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.04);color:var(--muted);font-size:12px;}
+    .ok{color:var(--good);font-family:var(--mono)}
+    .mono{font-family:var(--mono)}
+
+    .box{margin-top:12px;border:1px solid var(--line);border-radius:14px;background:rgba(255,255,255,.03);padding:14px;}
+    .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+    button{cursor:pointer;background:rgba(141,225,255,.14);border:1px solid rgba(141,225,255,.25);color:var(--text);padding:9px 11px;border-radius:10px;font-size:13px;}
+    button.secondary{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.12)}
+
+    #map{height:520px;border-radius:14px;border:1px solid var(--line);overflow:hidden;background:rgba(255,255,255,.03)}
+
+    table{width:100%;border-collapse:separate;border-spacing:0;margin-top:12px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:rgba(255,255,255,.02)}
+    th,td{padding:10px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+    th{font-size:12px;letter-spacing:.4px;text-transform:uppercase;color:#cbd5ff;background:rgba(255,255,255,.04)}
+    tr:last-child td{border-bottom:none}
+    input{width:100%;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:10px;color:var(--text);padding:8px 10px;font-size:14px;}
+    .muted{color:var(--muted)}
+    .small{font-size:12px}
+
+    @media print{.topnav,.pill,.controls,.hint{display:none !important}#map{height:380px}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>旅行足跡地圖｜由收據砌返路線</h1>
+        <div class="sub">
+          會讀取 <b>travel/expenses</b> 入面嘅 seed（網站同步）＋你本機手動記帳（localStorage），
+          然後用 OpenStreetMap 地理編碼（Nominatim）砌返地圖。
+          <br/><span class="muted small">提示：第一次可能要按「開始定位」；如果某筆收據太模糊/只得品牌名，請你喺下表補返城市或地址，例如加「Osaka」/「Namba」。</span>
+        </div>
+        <div class="topnav">
+          <a href="../">返回 Travel 目錄</a>
+          <a href="../expenses/">返回 開支表</a>
+        </div>
+      </div>
+      <div class="pill"><span class="mono">UPDATED</span> <span class="ok">2026-03-30</span></div>
+    </header>
+
+    <div class="box controls">
+      <div class="row">
+        <div>
+          <b>操作：</b>
+          <span class="muted">1) 檢查/補地址 → 2) 按「開始定位」 → 3) 地圖會出 marker + 依時間排序</span>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <button id="geocode">開始定位</button>
+          <button class="secondary" id="reset">清除已定位（本機）</button>
+        </div>
+      </div>
+      <div class="sub muted small" style="margin-top:8px">
+        已定位結果只會儲存在你而家呢部手機/瀏覽器（localStorage）。如果你換機，重新按一次即可。
+      </div>
+    </div>
+
+    <div id="map" class="box" aria-label="Map"></div>
+
+    <div class="box hint">
+      <b>地址修正（你可以手動 edit）：</b>
+      <div class="sub muted">地圖定位靠下面每筆嘅「查詢文字」。如果定位錯，就加更具體（例如「Hotel Nikko Osaka, Shinsaibashi」）。</div>
+      <table aria-label="Queries">
+        <thead>
+          <tr>
+            <th style="width:140px">日期</th>
+            <th style="width:70px">時間</th>
+            <th style="width:160px">來源</th>
+            <th>查詢文字（可改）</th>
+            <th style="width:110px">結果</th>
+          </tr>
+        </thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <script>
+      (function(){
+        const SEED_URL = '../expenses/expenses.seed.json';
+        const LS_LOCAL_KEY = 'circle:travel:expenses:v1';
+        const LS_GEO_KEY = 'circle:travel:route_map:geocoded:v1';
+        const LS_QUERY_KEY = 'circle:travel:route_map:queries:v1';
+
+        const tbody = document.getElementById('tbody');
+        const btn = document.getElementById('geocode');
+        const resetBtn = document.getElementById('reset');
+
+        const map = L.map('map', {zoomControl:true});
+        const tiles = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          maxZoom: 19,
+          attribution: '&copy; OpenStreetMap contributors'
+        }).addTo(map);
+
+        const markersLayer = L.layerGroup().addTo(map);
+
+        function keyDT(it){
+          const d = String(it.date||'');
+          const t = String(it.time||'00:00').slice(0,5) || '00:00';
+          return d + 'T' + t;
+        }
+
+        function loadLocalExpenses(){
+          try{ return JSON.parse(localStorage.getItem(LS_LOCAL_KEY) || '[]') || []; }catch(e){ return []; }
+        }
+
+        async function loadSeedExpenses(){
+          try{
+            const r = await fetch(SEED_URL, {cache:'no-store'});
+            if(!r.ok) return [];
+            const j = await r.json();
+            return (j.items || []).map(x => ({...x, source:'seed'}));
+          }catch(e){ return []; }
+        }
+
+        function loadQueries(){
+          try{ return JSON.parse(localStorage.getItem(LS_QUERY_KEY) || '{}') || {}; }catch(e){ return {}; }
+        }
+        function saveQueries(q){ localStorage.setItem(LS_QUERY_KEY, JSON.stringify(q)); }
+
+        function loadGeocoded(){
+          try{ return JSON.parse(localStorage.getItem(LS_GEO_KEY) || '{}') || {}; }catch(e){ return {}; }
+        }
+        function saveGeocoded(g){ localStorage.setItem(LS_GEO_KEY, JSON.stringify(g)); }
+
+        function defaultQueryFor(item){
+          // Use note as base; add Osaka/Japan to improve hit-rate
+          const base = (item.note || '').trim();
+          if(!base) return '';
+          // A few heuristics
+          const lower = base.toLowerCase();
+          if(lower.includes('kansai')) return base + ', Japan';
+          if(lower.includes('osaka') || lower.includes('大阪') || lower.includes('心斎橋') || lower.includes('shinsaibashi')) return base + ', Japan';
+          return base + ', Osaka, Japan';
+        }
+
+        function rowId(item){ return item.id || (keyDT(item) + ':' + (item.note||'')); }
+
+        function renderRows(items){
+          const queries = loadQueries();
+          const geocoded = loadGeocoded();
+
+          tbody.innerHTML = '';
+          items.forEach(it => {
+            const id = rowId(it);
+            const tr = document.createElement('tr');
+            const q = (queries[id] ?? defaultQueryFor(it));
+            const geo = geocoded[id];
+            tr.innerHTML = `
+              <td>${it.date||''}</td>
+              <td>${(it.time||'') || ''}</td>
+              <td class="muted">${(it.note||'').slice(0,28)}${(it.note||'').length>28?'…':''}</td>
+              <td><input data-q="${id}" value="${(q||'').replaceAll('&','&amp;').replaceAll('"','&quot;')}" /></td>
+              <td class="muted small">${geo ? ('OK ('+geo.lat.toFixed(5)+', '+geo.lon.toFixed(5)+')') : '未定位'}</td>
+            `;
+            tbody.appendChild(tr);
+          });
+
+          tbody.querySelectorAll('input[data-q]').forEach(inp => {
+            inp.addEventListener('input', ()=>{
+              const id = inp.getAttribute('data-q');
+              const q = loadQueries();
+              q[id] = inp.value;
+              saveQueries(q);
+            });
+          });
+        }
+
+        function drawMap(items){
+          markersLayer.clearLayers();
+          const geocoded = loadGeocoded();
+          const pts = [];
+
+          // sort chronological
+          const sorted = [...items].sort((a,b)=> keyDT(a).localeCompare(keyDT(b)));
+
+          sorted.forEach(it => {
+            const id = rowId(it);
+            const geo = geocoded[id];
+            if(!geo) return;
+            const lat = geo.lat, lon = geo.lon;
+            pts.push([lat, lon]);
+            const label = `${it.date||''} ${(it.time||'')||''}`.trim();
+            const note = it.note || '';
+            const m = L.marker([lat, lon]);
+            m.bindPopup(`<b>${note}</b><br/><span class='muted'>${label}</span><br/><a target='_blank' rel='noreferrer' href='https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(note)}'>Google Maps</a>`);
+            m.addTo(markersLayer);
+          });
+
+          if(pts.length){
+            const bounds = L.latLngBounds(pts);
+            map.fitBounds(bounds.pad(0.2));
+            // draw route line
+            L.polyline(pts, {color:'#8de1ff', weight:3, opacity:0.7}).addTo(markersLayer);
+          }else{
+            map.setView([34.6937, 135.5023], 12); // Osaka
+          }
+        }
+
+        async function nominatim(q){
+          const url = 'https://nominatim.openstreetmap.org/search?format=json&limit=1&q=' + encodeURIComponent(q);
+          const r = await fetch(url, {
+            headers: {
+              // Nominatim politely requests an identifiable UA; browsers block custom UA.
+              'Accept': 'application/json'
+            }
+          });
+          if(!r.ok) throw new Error('HTTP '+r.status);
+          const j = await r.json();
+          if(!j || !j.length) return null;
+          return {lat: parseFloat(j[0].lat), lon: parseFloat(j[0].lon), display: j[0].display_name};
+        }
+
+        async function geocodeAll(items){
+          btn.disabled = true;
+          btn.textContent = '定位中…';
+          const queries = loadQueries();
+          const geocoded = loadGeocoded();
+
+          const sorted = [...items].sort((a,b)=> keyDT(a).localeCompare(keyDT(b)));
+          for(const it of sorted){
+            const id = rowId(it);
+            const q = (queries[id] ?? defaultQueryFor(it)).trim();
+            if(!q) continue;
+            if(geocoded[id]) continue;
+            try{
+              const res = await nominatim(q);
+              if(res){
+                geocoded[id] = res;
+                saveGeocoded(geocoded);
+                renderRows(items);
+                drawMap(items);
+              }
+            }catch(e){
+              // ignore and continue
+            }
+            // be gentle
+            await new Promise(r=>setTimeout(r, 1100));
+          }
+
+          btn.disabled = false;
+          btn.textContent = '開始定位';
+        }
+
+        async function init(){
+          const seed = await loadSeedExpenses();
+          const local = loadLocalExpenses().map(x=>({...x, source:'local'}));
+          const items = [...seed, ...local]
+            .filter(x => x.note)
+            .sort((a,b)=> keyDT(b).localeCompare(keyDT(a)));
+
+          renderRows(items);
+          drawMap(items);
+
+          btn.addEventListener('click', ()=>geocodeAll(items));
+          resetBtn.addEventListener('click', ()=>{
+            if(confirm('清除本機已定位結果？（唔會影響開支表）')){
+              localStorage.removeItem(LS_GEO_KEY);
+              drawMap(items);
+              renderRows(items);
+            }
+          });
+        }
+
+        init();
+      })();
+    </script>
+  </div>
+</body>
+</html>
