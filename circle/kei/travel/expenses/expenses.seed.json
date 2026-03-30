@@ -26,6 +26,14 @@
       "amount": 21054,
       "category": "BB用品",
       "note": "Birthday (バースディ) Uenoshiba store, 16 items (card)"
+    },
+    {
+      "id": "seed-20260330-welcia-uenoshiba",
+      "date": "2026-03-30",
+      "currency": "JPY",
+      "amount": 10733,
+      "category": "購物",
+      "note": "welcia 堺上野芝店 (drugstore), 9 items (card)"
     }
   ]
 }
