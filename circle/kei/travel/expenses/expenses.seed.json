@@ -34,6 +34,14 @@
       "amount": 10733,
       "category": "購物",
       "note": "welcia 堺上野芝店 (drugstore), 9 items (card)"
+    },
+    {
+      "id": "seed-20260329-hotel-nikko-kansai-airport",
+      "date": "2026-03-29",
+      "currency": "JPY",
+      "amount": 23857,
+      "category": "住宿",
+      "note": "Hotel Nikko Kansai Airport: hotel stay plan (arr 2026-03-29 dep 2026-03-30), paid by credit card"
     }
   ]
 }
