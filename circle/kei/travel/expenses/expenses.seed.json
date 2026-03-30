@@ -18,6 +18,14 @@
       "amount": 66760,
       "category": "BB用品",
       "note": "Akachan Honpo (Ito-Yokado) Tsukuno store, 51 items (card)"
+    },
+    {
+      "id": "seed-20260330-birthday-uenoshiba",
+      "date": "2026-03-30",
+      "currency": "JPY",
+      "amount": 21054,
+      "category": "購物",
+      "note": "Birthday (ベースディ?) Uenoshiba store, 16 items (card)"
     }
   ]
 }
