@@ -10,6 +10,14 @@
       "amount": 1880,
       "category": "食",
       "note": "ZETTERIA lunch (card)"
+    },
+    {
+      "id": "seed-20260330-akachan-honpo-itoyokado-tsukuno",
+      "date": "2026-03-30",
+      "currency": "JPY",
+      "amount": 66760,
+      "category": "BB用品",
+      "note": "Akachan Honpo (Ito-Yokado) Tsukuno store, 51 items (card)"
     }
   ]
 }
