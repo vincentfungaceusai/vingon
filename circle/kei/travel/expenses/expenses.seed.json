@@ -4,6 +4,15 @@
   "notes": "Seed list committed to repo. Your local edits are stored in this browser (localStorage) and won't sync across devices unless you export/import.",
   "items": [
     {
+      "id": "seed-20260331-seveneleven-shinsaibashi-suomachi",
+      "date": "2026-03-31",
+      "time": "19:34",
+      "currency": "JPY",
+      "amount": 357,
+      "category": "食",
+      "note": "7-Eleven 船場心斎橋筋分店: drink/snack (card)"
+    },
+    {
       "id": "seed-20260331-katsuoji-entry",
       "date": "2026-03-31",
       "time": "13:40",
@@ -40,15 +49,6 @@
       "note": "Katsuo-ji 勝尾寺 泊車"
     },
     {
-      "id": "seed-20260331-gindaco-minoh-qsm",
-      "date": "2026-03-31",
-      "time": "16:46",
-      "currency": "JPY",
-      "amount": 715,
-      "category": "食",
-      "note": "GINDACO 銀だこ みのおキューズモール店 (takoyaki)"
-    },
-    {
       "id": "seed-20260331-tanita-cafe-minoh-qsm-1617",
       "date": "2026-03-31",
       "time": "16:17",
@@ -65,6 +65,15 @@
       "amount": 1034,
       "category": "食",
       "note": "鳥〇食堂 × タニタカフェ みのおキューズモール店 (meal)"
+    },
+    {
+      "id": "seed-20260331-gindaco-minoh-qsm",
+      "date": "2026-03-31",
+      "time": "16:46",
+      "currency": "JPY",
+      "amount": 715,
+      "category": "食",
+      "note": "GINDACO 銀だこ みのおキューズモール店 (takoyaki)"
     },
     {
       "id": "seed-20260330-familymart-shimizucho-nishi",
