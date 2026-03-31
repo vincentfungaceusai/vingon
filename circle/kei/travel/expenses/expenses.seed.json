@@ -13,15 +13,6 @@
       "note": "Katsuo-ji 勝尾寺 入山料 (adult x2)"
     },
     {
-      "id": "seed-20260331-katsuoji-parking",
-      "date": "2026-03-31",
-      "time": "15:30",
-      "currency": "JPY",
-      "amount": 1000,
-      "category": "交通",
-      "note": "Katsuo-ji 勝尾寺 泊車"
-    },
-    {
       "id": "seed-20260331-katsuoji-omikuji-daruma",
       "date": "2026-03-31",
       "time": "14:21",
@@ -38,6 +29,42 @@
       "amount": 4598,
       "category": "食",
       "note": "花の茶屋 (Katsuo-ji): udon/snacks (card)"
+    },
+    {
+      "id": "seed-20260331-katsuoji-parking",
+      "date": "2026-03-31",
+      "time": "15:30",
+      "currency": "JPY",
+      "amount": 1000,
+      "category": "交通",
+      "note": "Katsuo-ji 勝尾寺 泊車"
+    },
+    {
+      "id": "seed-20260331-gindaco-minoh-qsm",
+      "date": "2026-03-31",
+      "time": "16:46",
+      "currency": "JPY",
+      "amount": 715,
+      "category": "食",
+      "note": "GINDACO 銀だこ みのおキューズモール店 (takoyaki)"
+    },
+    {
+      "id": "seed-20260331-tanita-cafe-minoh-qsm-1617",
+      "date": "2026-03-31",
+      "time": "16:17",
+      "currency": "JPY",
+      "amount": 1089,
+      "category": "食",
+      "note": "鳥〇食堂 × タニタカフェ みのおキューズモール店 (meal)"
+    },
+    {
+      "id": "seed-20260331-tanita-cafe-minoh-qsm-1628",
+      "date": "2026-03-31",
+      "time": "16:28",
+      "currency": "JPY",
+      "amount": 1034,
+      "category": "食",
+      "note": "鳥〇食堂 × タニタカフェ みのおキューズモール店 (meal)"
     },
     {
       "id": "seed-20260330-familymart-shimizucho-nishi",
