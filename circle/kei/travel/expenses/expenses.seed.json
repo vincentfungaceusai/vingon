@@ -13,6 +13,14 @@
       "note": "Katsuo-ji 勝尾寺 入山料 (adult x2)"
     },
     {
+      "id": "seed-20260331-katsuoji-parking",
+      "date": "2026-03-31",
+      "currency": "JPY",
+      "amount": 1000,
+      "category": "交通",
+      "note": "Katsuo-ji 勝尾寺 泊車"
+    },
+    {
       "id": "seed-20260331-katsuoji-omikuji-daruma",
       "date": "2026-03-31",
       "time": "14:21",
