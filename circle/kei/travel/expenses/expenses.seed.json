@@ -4,6 +4,33 @@
   "notes": "Seed list committed to repo. Your local edits are stored in this browser (localStorage) and won't sync across devices unless you export/import.",
   "items": [
     {
+      "id": "seed-20260331-katsuoji-entry",
+      "date": "2026-03-31",
+      "time": "13:40",
+      "currency": "JPY",
+      "amount": 1000,
+      "category": "景點",
+      "note": "Katsuo-ji 勝尾寺 入山料 (adult x2)"
+    },
+    {
+      "id": "seed-20260331-katsuoji-omikuji-daruma",
+      "date": "2026-03-31",
+      "time": "14:21",
+      "currency": "JPY",
+      "amount": 3500,
+      "category": "景點",
+      "note": "Katsuo-ji 勝尾寺：だるまみくじ + 勝ちダルマ10号"
+    },
+    {
+      "id": "seed-20260331-katsuoji-hana-no-chaya",
+      "date": "2026-03-31",
+      "time": "15:06",
+      "currency": "JPY",
+      "amount": 4598,
+      "category": "食",
+      "note": "花の茶屋 (Katsuo-ji): udon/snacks (card)"
+    },
+    {
       "id": "seed-20260330-familymart-shimizucho-nishi",
       "date": "2026-03-30",
       "time": "19:44",
