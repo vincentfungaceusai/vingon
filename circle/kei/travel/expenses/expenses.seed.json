@@ -4,6 +4,15 @@
   "notes": "Seed list committed to repo. Your local edits are stored in this browser (localStorage) and won't sync across devices unless you export/import.",
   "items": [
     {
+      "id": "seed-20260401-3coins-plus-umie",
+      "date": "2026-04-01",
+      "time": "15:43",
+      "currency": "JPY",
+      "amount": 7000,
+      "category": "購物",
+      "note": "3COINS+plus 神戸ハーバーランドumie店 (card)"
+    },
+    {
       "id": "seed-20260401-motomachi-doria-kobe",
       "date": "2026-04-01",
       "time": "14:00",
