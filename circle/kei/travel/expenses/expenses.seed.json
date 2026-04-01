@@ -4,6 +4,15 @@
   "notes": "Seed list committed to repo. Your local edits are stored in this browser (localStorage) and won't sync across devices unless you export/import.",
   "items": [
     {
+      "id": "seed-20260401-motomachi-doria-kobe",
+      "date": "2026-04-01",
+      "time": "14:00",
+      "currency": "JPY",
+      "amount": 4169,
+      "category": "食",
+      "note": "神戸 元町ドリア (Kobe Motomachi Doria)"
+    },
+    {
       "id": "seed-20260331-seveneleven-shinsaibashi-suomachi",
       "date": "2026-03-31",
       "time": "19:34",
