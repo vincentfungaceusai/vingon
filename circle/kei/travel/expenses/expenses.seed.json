@@ -4,6 +4,15 @@
   "notes": "Seed list committed to repo. Your local edits are stored in this browser (localStorage) and won't sync across devices unless you export/import.",
   "items": [
     {
+      "id": "seed-20260403-alfredo-kobe",
+      "date": "2026-04-03",
+      "time": "14:08",
+      "currency": "JPY",
+      "amount": 3900,
+      "category": "食",
+      "note": "Alfredo Kobe (card)"
+    },
+    {
       "id": "seed-20260402-bon-marche-otemae",
       "date": "2026-04-02",
       "time": "20:39",
