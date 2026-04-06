@@ -4,6 +4,24 @@
   "notes": "Seed list committed to repo. Your local edits are stored in this browser (localStorage) and won't sync across devices unless you export/import.",
   "items": [
     {
+      "id": "seed-20260406-birthday-receipt-0707",
+      "date": "2026-04-06",
+      "time": "16:38",
+      "currency": "JPY",
+      "amount": 12309,
+      "category": "BB用品",
+      "note": "Birthday (バースディ) receipt #0707 (card)"
+    },
+    {
+      "id": "seed-20260406-birthday-receipt-0067",
+      "date": "2026-04-06",
+      "time": "16:14",
+      "currency": "JPY",
+      "amount": 1848,
+      "category": "BB用品",
+      "note": "Birthday (バースディ) receipt #0067 (card)"
+    },
+    {
       "id": "seed-20260403-alfredo-kobe",
       "date": "2026-04-03",
       "time": "14:08",
