@@ -38,6 +38,10 @@
     .badge.blue{color:#bae6fd;border-color:rgba(141,225,255,.35)}
     .badge.green{color:#bbf7d0;border-color:rgba(134,239,172,.35)}
     .badge.amber{color:#fde68a;border-color:rgba(251,191,36,.35)}
+    .elig{padding:10px;border:1px solid rgba(255,255,255,.12);border-radius:10px;background:rgba(255,255,255,.035);font-size:13px;line-height:1.45}
+    .elig.okay{border-color:rgba(134,239,172,.32);background:rgba(20,83,45,.18)}
+    .elig.no{border-color:rgba(252,165,165,.34);background:rgba(127,29,29,.2)}
+    .elig.check{border-color:rgba(251,191,36,.34);background:rgba(120,53,15,.18)}
     dl{display:grid;gap:8px;margin:0}
     dl div{display:grid;grid-template-columns:64px minmax(0,1fr);gap:9px}
     dt{color:var(--muted);font-size:12px;font-weight:700}
@@ -74,7 +78,7 @@
     <section class="summary" aria-label="summary">
       <div class="box urgent"><span class="num">1</span><span class="label">要即刻處理：激活 9月7日開報名</span></div>
       <div class="box soon"><span class="num">1</span><span class="label">有簡介會：安基司 9月18日</span></div>
-      <div class="box"><span class="num">10</span><span class="label">已核實 2027/28 或最新報名安排</span></div>
+      <div class="box"><span class="num">2</span><span class="label">明確見到 BB 未符合首輪 N/幼初班出生日期</span></div>
       <div class="box"><span class="num">34</span><span class="label">元朗區 N/PN 或 2-3歲幼兒服務學校</span></div>
     </section>
 
@@ -88,6 +92,31 @@
     </section>
 
     <section class="box">
+      <h2>BB 出生日期資格 Remark（2025-11-04）</h2>
+      <div class="grid">
+        <div class="elig no">
+          <b>明確見到未符合 / 可能無首輪面試資格</b>
+          <ul>
+            <li><b>珈琳中英文幼稚園 N1</b>：2027/28 N1 收 <span class="mono">2025-07-31</span> 或之前出生；BB 係 <span class="mono">2025-11-04</span>，遲過 cut-off。</li>
+            <li><b>香港基督教服務處天恒幼兒學校 幼初班</b>：官方頁寫 2027/28 幼初班接受 <span class="mono">2025-01-01</span> 至 <span class="mono">2025-08-31</span> 出生，並註明否則未能處理申請；BB 遲過範圍。</li>
+          </ul>
+        </div>
+        <div class="elig okay">
+          <b>目前資料睇落符合</b>
+          <ul>
+            <li>激活、安基司、新界婦孺：公開條件見到接受 2025 年出生或 2025-12-31 或之前出生。</li>
+          </ul>
+        </div>
+        <div class="elig check">
+          <b>要致電確認</b>
+          <ul>
+            <li>雅麗斯樂思、天樂、多多、心怡天地、萊恩等未見清楚出生日期 cut-off；如果學校要求「開學時已足兩歲」，BB 到 <span class="mono">2027-11-04</span> 先足兩歲，可能要問可否後補入學或仍可面試。</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="box">
       <h2>已核實（有官方來源 / 校方公開資料）</h2>
       <div class="grid">
         <article class="card">
@@ -98,6 +127,7 @@
             <div><dt>報名</dt><dd><span class="mono">2026-09-07 09:00</span> 至 <span class="mono">2026-09-11 23:59</span></dd></div>
             <div><dt>參觀</dt><dd>開放日 <span class="mono">2026-06-06</span>（已過）</dd></div>
             <div><dt>面試</dt><dd>兩歲級首輪面試 <span class="mono">2027-01-16</span></dd></div>
+            <div><dt>資格</dt><dd class="ok">BB 2025-11-04：目前睇落符合</dd></div>
             <div><dt>來源</dt><dd><a href="https://www.gigamind.edu.hk/zh/kindergarten/admissions/how-to-apply" target="_blank" rel="noreferrer">校方收生頁</a></dd></div>
           </dl>
           <div class="cl" data-school="gigamind"><label><input type="checkbox" data-k="view"/>已睇資料</label><label><input type="checkbox" data-k="call"/>已致電</label><label><input type="checkbox" data-k="apply"/>已報名</label><label><input type="checkbox" data-k="visit"/>已參觀</label><label><input type="checkbox" data-k="interview"/>已面試</label><label><input type="checkbox" data-k="result"/>已出結果</label></div>
@@ -111,6 +141,7 @@
             <div><dt>報名</dt><dd>2026/27 及 2027/28 現正接受申請</dd></div>
             <div><dt>參觀</dt><dd>入學簡介會 <span class="mono">2026-09-18 16:30-18:00</span></dd></div>
             <div><dt>年齡</dt><dd>2027/28 PN 收 2025 年出生小朋友</dd></div>
+            <div><dt>資格</dt><dd class="ok">BB 2025-11-04：符合 2025 年出生條件</dd></div>
             <div><dt>來源</dt><dd><a href="https://www.anchorsacademy.edu.hk/tc/content.php?wid=165" target="_blank" rel="noreferrer">收生頁</a>｜<a href="https://www.anchorsacademy.edu.hk/tc/content.php?wid=171" target="_blank" rel="noreferrer">學費頁</a></dd></div>
           </dl>
           <div class="cl" data-school="anchors"><label><input type="checkbox" data-k="view"/>已睇資料</label><label><input type="checkbox" data-k="call"/>已致電</label><label><input type="checkbox" data-k="apply"/>已報名</label><label><input type="checkbox" data-k="visit"/>已參觀</label><label><input type="checkbox" data-k="interview"/>已面試</label><label><input type="checkbox" data-k="result"/>已出結果</label></div>
@@ -124,6 +155,7 @@
             <div><dt>報名</dt><dd><span class="mono">2026-08-17</span> 至 <span class="mono">2026-11-18</span></dd></div>
             <div><dt>參觀</dt><dd>未見最新參觀日</dd></div>
             <div><dt>年齡</dt><dd>N班要求 <span class="mono">2025-12-31</span> 或以前出生</dd></div>
+            <div><dt>資格</dt><dd class="ok">BB 2025-11-04：符合</dd></div>
             <div><dt>來源</dt><dd><a href="https://www.ntwjwaylns.edu.hk/%E5%85%A5%E5%AD%B8%E7%94%B3%E8%AB%8B%E8%B3%87%E6%96%99/" target="_blank" rel="noreferrer">入學申請資料</a></dd></div>
           </dl>
           <div class="cl" data-school="ntwjw-yuenlong"><label><input type="checkbox" data-k="view"/>已睇資料</label><label><input type="checkbox" data-k="call"/>已致電</label><label><input type="checkbox" data-k="apply"/>已報名</label><label><input type="checkbox" data-k="visit"/>已參觀</label><label><input type="checkbox" data-k="interview"/>已面試</label><label><input type="checkbox" data-k="result"/>已出結果</label></div>
@@ -137,6 +169,7 @@
             <div><dt>報名</dt><dd><span class="mono">2026-09-02</span> 開始；交文件截止 <span class="mono">2026-10-16</span></dd></div>
             <div><dt>參觀</dt><dd>未見最新參觀日</dd></div>
             <div><dt>備註</dt><dd>網上報名後列印文件交回學校</dd></div>
+            <div><dt>資格</dt><dd class="warn">BB 2025-11-04：未見清楚 cut-off，要致電確認</dd></div>
             <div><dt>來源</dt><dd><a href="https://www.agneskg.edu.hk/agneswise/" target="_blank" rel="noreferrer">校方網站</a></dd></div>
           </dl>
           <div class="cl" data-school="agnes-wise"><label><input type="checkbox" data-k="view"/>已睇資料</label><label><input type="checkbox" data-k="call"/>已致電</label><label><input type="checkbox" data-k="apply"/>已報名</label><label><input type="checkbox" data-k="visit"/>已參觀</label><label><input type="checkbox" data-k="interview"/>已面試</label><label><input type="checkbox" data-k="result"/>已出結果</label></div>
@@ -150,6 +183,7 @@
             <div><dt>報名</dt><dd><span class="mono">2026-09-02</span> 開始；交文件截止 <span class="mono">2026-10-22</span></dd></div>
             <div><dt>參觀</dt><dd>未見最新參觀日</dd></div>
             <div><dt>備註</dt><dd>面試及結果按校方通知</dd></div>
+            <div><dt>資格</dt><dd class="warn">BB 2025-11-04：未見清楚 cut-off，要致電確認</dd></div>
             <div><dt>來源</dt><dd><a href="https://www.agneskg.edu.hk/agnestalent/" target="_blank" rel="noreferrer">校方網站</a></dd></div>
           </dl>
           <div class="cl" data-school="agnes-talent"><label><input type="checkbox" data-k="view"/>已睇資料</label><label><input type="checkbox" data-k="call"/>已致電</label><label><input type="checkbox" data-k="apply"/>已報名</label><label><input type="checkbox" data-k="visit"/>已參觀</label><label><input type="checkbox" data-k="interview"/>已面試</label><label><input type="checkbox" data-k="result"/>已出結果</label></div>
@@ -163,6 +197,7 @@
             <div><dt>報名</dt><dd><span class="mono">2026-09-01</span> 至 <span class="mono">2026-10-31</span></dd></div>
             <div><dt>參觀</dt><dd>未見最新參觀日</dd></div>
             <div><dt>年齡</dt><dd>2027/28 N1 收 <span class="mono">2025-07-31</span> 或之前出生</dd></div>
+            <div><dt>資格</dt><dd class="bad">BB 2025-11-04：不符合 N1 出生日期 cut-off</dd></div>
             <div><dt>來源</dt><dd><a href="https://www.karlam.edu.hk/yuenlong?page_id=255" target="_blank" rel="noreferrer">收生簡介</a></dd></div>
           </dl>
           <div class="cl" data-school="karlam"><label><input type="checkbox" data-k="view"/>已睇資料</label><label><input type="checkbox" data-k="call"/>已致電</label><label><input type="checkbox" data-k="apply"/>已報名</label><label><input type="checkbox" data-k="visit"/>已參觀</label><label><input type="checkbox" data-k="interview"/>已面試</label><label><input type="checkbox" data-k="result"/>已出結果</label></div>
@@ -176,6 +211,7 @@
             <div><dt>報名</dt><dd>全年接受報名；按先後輪候</dd></div>
             <div><dt>參觀</dt><dd>未見最新參觀日</dd></div>
             <div><dt>備註</dt><dd>不設面試，報名費用全免；電話 <span class="mono">2479 0999</span></dd></div>
+            <div><dt>資格</dt><dd class="warn">BB 2025-11-04：未見清楚 cut-off，要致電確認可否排 N 位</dd></div>
             <div><dt>來源</dt><dd><a href="https://www.poleungkuk.org.hk/service/social/child-care/kindergartens-cum-nurseries-admissions" target="_blank" rel="noreferrer">保良局招生頁</a></dd></div>
           </dl>
           <div class="cl" data-school="plk-liu-siu-ha"><label><input type="checkbox" data-k="view"/>已睇資料</label><label><input type="checkbox" data-k="call"/>已致電</label><label><input type="checkbox" data-k="apply"/>已報名</label><label><input type="checkbox" data-k="visit"/>已參觀</label><label><input type="checkbox" data-k="interview"/>已面試</label><label><input type="checkbox" data-k="result"/>已出結果</label></div>
@@ -189,6 +225,7 @@
             <div><dt>報名</dt><dd>2027/28 已可申請</dd></div>
             <div><dt>參觀</dt><dd>提交申請後校方安排參觀及面見</dd></div>
             <div><dt>備註</dt><dd>未見清楚截止日</dd></div>
+            <div><dt>資格</dt><dd class="warn">BB 2025-11-04：未見清楚 cut-off，要致電確認</dd></div>
             <div><dt>來源</dt><dd><a href="https://www.tutortime.com.hk/tc/admission/" target="_blank" rel="noreferrer">收生頁</a></dd></div>
           </dl>
           <div class="cl" data-school="tutor-time-yuen-long"><label><input type="checkbox" data-k="view"/>已睇資料</label><label><input type="checkbox" data-k="call"/>已致電</label><label><input type="checkbox" data-k="apply"/>已報名</label><label><input type="checkbox" data-k="visit"/>已參觀</label><label><input type="checkbox" data-k="interview"/>已面試</label><label><input type="checkbox" data-k="result"/>已出結果</label></div>
@@ -202,6 +239,7 @@
             <div><dt>報名</dt><dd>2027/28 Admission Enrol Now</dd></div>
             <div><dt>參觀</dt><dd>未見最新參觀日</dd></div>
             <div><dt>備註</dt><dd>未見清楚截止日</dd></div>
+            <div><dt>資格</dt><dd class="warn">BB 2025-11-04：未見清楚 cut-off，要致電確認</dd></div>
             <div><dt>來源</dt><dd><a href="https://www.think.edu.hk/" target="_blank" rel="noreferrer">學校網站</a></dd></div>
           </dl>
           <div class="cl" data-school="think-yuen-long"><label><input type="checkbox" data-k="view"/>已睇資料</label><label><input type="checkbox" data-k="call"/>已致電</label><label><input type="checkbox" data-k="apply"/>已報名</label><label><input type="checkbox" data-k="visit"/>已參觀</label><label><input type="checkbox" data-k="interview"/>已面試</label><label><input type="checkbox" data-k="result"/>已出結果</label></div>
@@ -215,6 +253,7 @@
             <div><dt>報名</dt><dd>2027/28 新生現正接受報名</dd></div>
             <div><dt>參觀</dt><dd>未見最新參觀日</dd></div>
             <div><dt>備註</dt><dd>未見清楚截止日</dd></div>
+            <div><dt>資格</dt><dd class="warn">BB 2025-11-04：未見清楚 cut-off，要致電確認</dd></div>
             <div><dt>來源</dt><dd><a href="https://www.st-lorraine.edu.hk/" target="_blank" rel="noreferrer">學校網站</a></dd></div>
           </dl>
           <div class="cl" data-school="st-lorraine"><label><input type="checkbox" data-k="view"/>已睇資料</label><label><input type="checkbox" data-k="call"/>已致電</label><label><input type="checkbox" data-k="apply"/>已報名</label><label><input type="checkbox" data-k="visit"/>已參觀</label><label><input type="checkbox" data-k="interview"/>已面試</label><label><input type="checkbox" data-k="result"/>已出結果</label></div>
@@ -266,7 +305,7 @@
     </script>
 
     <footer>
-      <div>最後更新：2026-09-07</div>
+      <div>最後更新：2026-09-07（已加入 BB 2025-11-04 出生日期資格 Remark）</div>
       <div>資料來源：學校官網、保良局招生頁、Schooland/教育局幼稚園概覽。正式申請前以學校最新公布為準。</div>
     </footer>
   </div>
