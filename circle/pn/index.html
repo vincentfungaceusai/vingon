@@ -50,6 +50,10 @@
     li{margin:6px 0;color:var(--text);line-height:1.45}
     .school-list{display:flex;flex-wrap:wrap;gap:8px}
     .school-list span{display:inline-flex;align-items:center;min-height:32px;padding:6px 9px;border:1px solid rgba(255,255,255,.12);border-radius:999px;background:rgba(255,255,255,.035);font-size:12px;color:#dbeafe}
+    .fee-table{width:100%;border-collapse:collapse;font-size:13px}
+    .fee-table th,.fee-table td{padding:9px 8px;border-bottom:1px solid var(--line);vertical-align:top;text-align:left}
+    .fee-table th{color:var(--muted);font-size:12px}
+    .fee-table td:last-child{color:var(--muted)}
     .cl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px 10px}
     .cl label{display:flex;align-items:center;gap:6px;color:var(--text);font-size:12px;line-height:1.2}
     .cl input{width:14px;height:14px;accent-color:#8de1ff}
@@ -115,6 +119,40 @@
           </ul>
         </div>
       </div>
+    </section>
+
+    <section class="box">
+      <h2>學券 / 資助 vs 私立年費</h2>
+      <div class="note sub">口語講「學券」，現時正式多數叫「幼稚園教育計劃 / 政府資助」。要留意：<b>N/PN（2-3歲）通常唔等同 K1-K3 學券資助</b>；即使學校本身參加計劃，N/幼兒服務都要另睇校方收費、幼兒中心資助計劃同入息審查。</div>
+      <div class="grid" style="margin-top:12px">
+        <div class="elig okay">
+          <b>參加計劃 / 非牟利類</b>
+          <p class="sub">頁底 34 間清單入面，大部分社福機構、教會、保良局、仁愛堂、仁濟、博愛、救世軍、聖公會、東華三院、圓玄等屬呢類；K1-K3 較大機會有政府資助，N/PN 仍要逐間睇收費。</p>
+        </div>
+        <div class="elig check">
+          <b>私立 / 國際 / 一般不能用學券</b>
+          <p class="sub">多多、安基司、德怡、心怡天地、YORK Wetland、YORK Montessori、英藝賞湖、萊恩英文等要當私立或高收費學校處理；下面係 2025/26 或校方公開年費作預算。</p>
+        </div>
+      </div>
+      <table class="fee-table" aria-label="private school fees">
+        <thead>
+          <tr>
+            <th>私立 / 國際學校</th>
+            <th>一年學費粗略預算</th>
+            <th>備註</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>多多國際幼稚園（形點）</td><td><span class="mono">$115,280-$127,380</span>（11期）；2-3歲服務約 <span class="mono">$129,000</span></td><td>上午/下午收費不同；無全日班資料</td></tr>
+          <tr><td>安基司學校附屬國際幼稚園</td><td>PN 約 <span class="mono">$107,000</span>；全日約 <span class="mono">$154,000</span></td><td>校方 2026/27 fee；另留意 levy/雜費</td></tr>
+          <tr><td>德怡國際幼稚園（元朗）</td><td>半日約 <span class="mono">$75,000</span>；全日約 <span class="mono">$103,800</span>；2-3歲服務約 <span class="mono">$69,000</span></td><td>2025/26 教育局概覽 / Schooland</td></tr>
+          <tr><td>心怡天地國際幼稚園（元朗）</td><td>半日約 <span class="mono">$71,280</span>；2-3歲服務約 <span class="mono">$76,560</span></td><td>未見全日班資料</td></tr>
+          <tr><td>YORK International Pre-School（Wetland）</td><td>半日約 <span class="mono">$57,600-$63,600</span>；全日約 <span class="mono">$87,600-$102,000</span></td><td>2025/26 教育局概覽</td></tr>
+          <tr><td>YORK Montessori International Pre-School（Yuen Long）</td><td>半日約 <span class="mono">$60,000-$87,600</span></td><td>未見全日班資料</td></tr>
+          <tr><td>英藝幼稚園（賞湖）</td><td>半日約 <span class="mono">$74,400</span>；全日約 <span class="mono">$106,800</span>；2-3歲服務全日約 <span class="mono">$115,728</span></td><td>2025/26 教育局概覽</td></tr>
+          <tr><td>萊恩英文幼稚園</td><td>半日約 <span class="mono">$69,600-$81,600</span></td><td>2025/26 公開資料；正式以收費證明書為準</td></tr>
+        </tbody>
+      </table>
     </section>
 
     <section class="box">
